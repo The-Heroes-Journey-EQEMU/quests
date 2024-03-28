@@ -47,6 +47,9 @@ sub check_handin {
 	}
 
 	foreach my $req (keys %required) {
+		if (!defined $hashref->{$req} || $hashref->{$req} != $required{$req}) {
+			return;
+		}
 		if ($required{$req} < $hashref->{$req}) {
 			$hashref->{$req} -= $required{$req};
 		} else {
