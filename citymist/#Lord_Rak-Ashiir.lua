@@ -12,5 +12,5 @@ function event_trade(e)
 	else
 		e.self:Say("Go away! We don't have time for the likes of you.");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

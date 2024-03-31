@@ -81,9 +81,9 @@ local race = e.other:Race();
 			e.self:Say("Oh, yeah, the armor pattern book. Sorry, I forgot about that. Here you go!");
 			e.other:SummonItem(38447); --Ancestral Halfling Armor
 		else
-			--item_lib.return_items(e.self, e.other, e.trade);
+			item_lib.return_items(e.self, e.other, e.trade);
 		end
 	else -- if($race eq "Halfling")
-		--item_lib.return_items(e.self, e.other, e.trade);
+		item_lib.return_items(e.self, e.other, e.trade);
 	end
 end -- sub EVENT_ITEM

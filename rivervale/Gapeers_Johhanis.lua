@@ -33,6 +33,6 @@ local item_lib = require("items");
 		e.other:GiveCash(18,13,0,0);
 		e.other:AddEXP(100);
 	else
-		--item_lib.return_items(e.self, e.other, e.trade); -- return unused items
+		item_lib.return_items(e.self, e.other, e.trade); -- return unused items
 	end
 end

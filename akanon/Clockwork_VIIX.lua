@@ -32,5 +32,5 @@ function event_trade(e)
 		e.other:AddEXP(100000);
 		e.other:SummonItem(10611); -- Item: 2nd Piece of Staff
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

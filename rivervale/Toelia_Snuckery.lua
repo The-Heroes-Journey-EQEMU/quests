@@ -37,7 +37,7 @@ function event_trade(e)
 		e.other:AddEXP(1000);
 		e.other:GiveCash(0,0,0,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19063 -- Toelia_Snuckery 

@@ -72,7 +72,7 @@ function event_trade(e)
 		e.other:Faction(285,-12,0); -- Mayong Mistmoore
 		e.other:AddEXP(1000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos  ID:1133 -- Belious_Naliedin

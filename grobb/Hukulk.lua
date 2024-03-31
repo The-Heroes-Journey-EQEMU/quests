@@ -67,7 +67,7 @@ function event_trade(e)
 		e.other:Faction(235,2,0);	-- Da Bashers
 		e.other:AddEXP(250);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function reject(e, pfaction)

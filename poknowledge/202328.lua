@@ -71,5 +71,5 @@ function event_trade(e)
       e.self:Say("Well done, while nowhere near the accomplishments of Magi'Kot, defeating these rogue elementals has proven you are at least worthy to follow his [" .. eq.say_link("Footsteps") .. "]");
       eq.set_global("mage_epic","1",5,"F");   
    end
-   --item_lib.return_items(e.self, e.other, e.trade);
+   item_lib.return_items(e.self, e.other, e.trade);
 end

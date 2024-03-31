@@ -27,7 +27,7 @@ function event_trade(e)
 	else
 		e.self:Say("I require all four reagents, anything less is useless. Incompetence will get you nowhere amongst the faithful of Cazic-Thule!");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade, false)
+	item_lib.return_items(e.self, e.other, e.trade, false)
 end
 
 -- END of FILE Zone:paineel  ID:75071 -- Nivold_Predd

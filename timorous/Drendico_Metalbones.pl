@@ -4,7 +4,7 @@
 sub EVENT_SAY {
   if($text=~/hail/i) {
     quest::say("The hills ears keep spinning the wonders of wells. Twisting twisting fly in water scar hot horses. Teach me! Bring floating water islands of doom!");
-  #plugin::return_items
+  plugin::return_items
 }
 
 sub EVENT_ITEM {

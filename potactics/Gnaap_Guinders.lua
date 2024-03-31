@@ -19,7 +19,7 @@ function event_trade(e)
 		e.self:AssignWaypoints(191);
 		e.self:ResumeWandering();		
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)	
+	item_lib.return_items(e.self, e.other, e.trade)	
 end
 
 function event_waypoint_arrive(e)

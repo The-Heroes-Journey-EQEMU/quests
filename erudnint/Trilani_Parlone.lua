@@ -35,7 +35,7 @@ function event_trade(e)
 		e.other:Faction(279,3,0); -- Faction: King Tearis Thex
 		e.other:Faction(239,-3,0); -- Faction: The Dead
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:erudnint  ID:23020 -- Trilani_Parlone

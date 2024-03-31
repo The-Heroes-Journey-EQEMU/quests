@@ -24,7 +24,7 @@ function event_trade(e)
 		e.other:AddEXP(25);
 		e.other:GiveCash(3,12,0,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freportw -- Tara_Neklene

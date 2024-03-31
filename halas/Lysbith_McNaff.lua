@@ -50,7 +50,7 @@ function event_trade(e)
 		e.other:Faction(328,3);		-- Merchants of Halas
 		e.other:Faction(311,1);		-- Steel Warriors
 	end
---item_lib.return_items(e.self, e.other, e.trade)
+item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- Updated by Blaz

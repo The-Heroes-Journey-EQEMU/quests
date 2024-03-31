@@ -48,5 +48,5 @@ function event_trade(e)
         e.self:Say("Apologies my friend, I have no time to trade now. I must keep watch over the fort until this invasion is over.");
     end
     
-    --item_lib.return_items(e.self, e.other, e.trade)
+    item_lib.return_items(e.self, e.other, e.trade)
 end

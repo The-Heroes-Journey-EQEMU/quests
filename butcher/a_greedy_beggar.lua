@@ -30,7 +30,7 @@ function event_trade(e) -- Note that we are intentionally accepting any trade
 		followtarget = e.other:GetID();
 		eq.set_timer("follow",3000);
 	else
-		--item_lib.return_items(e.self, e.other, e.trade)
+		item_lib.return_items(e.self, e.other, e.trade)
 	end
 end
 

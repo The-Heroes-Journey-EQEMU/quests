@@ -35,7 +35,7 @@ function event_trade(e)
 		e.self:Say("Take dis.");
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

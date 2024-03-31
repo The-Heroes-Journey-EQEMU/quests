@@ -20,7 +20,7 @@ function event_trade(e)
 		e.other:Faction(5015,1,0); -- Coalition of TradeFolk III
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_signal(e)

@@ -43,7 +43,7 @@ function event_trade(e)
 		e.other:AddEXP(3000);
 		e.other:GiveCash(0,0,300,10);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE  Zone:qey2hh1  ID:12019 -- Vilnius_the_Small

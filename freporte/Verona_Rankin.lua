@@ -52,7 +52,7 @@ function event_trade(e)
 		e.other:Faction(330,1,0); -- Freeport Militia
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 --END of FILE Zone:freporte  ID:10129 --  Verona_Rankin

@@ -83,5 +83,5 @@ function event_trade(e)
 		e.self:Emote("raises his claw to your brow once more. This time, you stand confident with the razored claws mere inches from your eyes. The familiar motions flash across your eyes again, and a feeling of renewed confidence beats in your chest.")		
 	end
 	
-    --item_lib.return_items(e.self, e.other, e.trade)
+    item_lib.return_items(e.self, e.other, e.trade)
 end

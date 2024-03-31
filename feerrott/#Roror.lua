@@ -33,5 +33,5 @@ function event_trade(e)
 		e.other:Faction(344,10,0); -- Faction: Beta Neutral
 		e.other:AddEXP(300);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

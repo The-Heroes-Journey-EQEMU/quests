@@ -45,7 +45,7 @@ function event_trade(e)
 		e.other:SummonFixedItem(20366); -- Item: Mahlin's Mystical Bongos
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:southkarana  ID:14046 -- Baenar_Swiftsong

@@ -18,7 +18,7 @@ function event_trade(e)
 		e.other:AddEXP(5000);
 		eq.spawn2(71040,0,0,604.5,1346.3,-766,0); 	--spawn the master of elements
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

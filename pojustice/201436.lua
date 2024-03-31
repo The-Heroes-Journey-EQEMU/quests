@@ -154,7 +154,7 @@ function event_trade(e)
       e.other:SummonItem(31846); -- Item: Mark of Suffocation
    end
 
-   --item_lib.return_items(e.self, e.other, e.trade);
+   item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function MoveGroup(trial_group, src_x, src_y, src_z, distance, tgt_x, tgt_y, tgt_z, tgt_h, msg)

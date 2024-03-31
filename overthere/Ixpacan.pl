@@ -41,7 +41,7 @@ if (plugin::check_handin(\%itemcount, 48042 => 1)) {
       quest::spawn2(93189,0,0,$x,$y + 5,$z,$h); # NPC: child_of_Charasis
       quest::say("It's out of my control! Defeat it before it destroys us both!");
 }
-#plugin::return_items(\%itemcount); # return unused items
+plugin::return_items(\%itemcount); # return unused items
  }
 
 #END of FILE Zone:Overthere ID:93148 - Ixpacan (Ixpacan.pl)

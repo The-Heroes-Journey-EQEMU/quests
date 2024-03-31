@@ -42,7 +42,7 @@ function event_trade(e)
 		e.other:SummonItem(eq.ChooseRandom(13122, 5019, 6017)); -- Item(s): Erud's Tonic (13122)
 		e.other:GiveCash(random_copper,random_silver,0,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:98002 -- Nolusia_Finharn

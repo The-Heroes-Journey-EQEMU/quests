@@ -15,7 +15,7 @@ sub EVENT_SAY {
 }
 
 sub EVENT_ITEM {
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
 #End of File, Zone:oot  NPC:69062 -- Fendlemend_Figlefop

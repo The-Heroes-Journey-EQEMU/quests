@@ -29,7 +29,7 @@ function event_trade(e)
 		e.other:AddEXP(1500);
 		e.other:GiveCash(6,0,0,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:freporte  ID:10107 -- Harkin_Duskfoot

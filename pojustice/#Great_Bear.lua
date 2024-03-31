@@ -20,7 +20,7 @@ function event_trade(e)
 		e.other:SummonItem(62845); --Living Brambles See
 		eq.set_timer("poof",6000);	
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

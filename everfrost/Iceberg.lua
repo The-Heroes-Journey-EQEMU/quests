@@ -37,7 +37,7 @@ function event_trade(e)
 		e.other:Faction(311,5,0); -- Faction: Steel Warriors
 		e.other:AddEXP(1000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:everfrost  ID:30046 -- Iceberg 

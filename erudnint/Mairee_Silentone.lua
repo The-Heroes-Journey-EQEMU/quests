@@ -26,7 +26,7 @@ function event_trade(e)
     e.other:SummonFixedItem(62600); -- Item: Essence of Earth and Wind
     eq.set_global("ranger_epic15_pre","11",5,"F");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF zone: erudnint ID: 23019 NPC: Mairee_Silentone

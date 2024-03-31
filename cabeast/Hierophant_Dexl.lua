@@ -24,5 +24,5 @@ function event_trade(e)
 		e.other:Faction(441, 10); 					--Legion of Cabilis
 		e.other:QuestReward(e.self,0,0,0,10,5146,140000); 	--Give the player The Cudgel of the Hierophant
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

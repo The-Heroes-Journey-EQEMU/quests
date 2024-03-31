@@ -51,5 +51,5 @@ function event_trade(e)
 			number_of_bone_chip = number_of_bone_chip - 1;
 		until number_of_bone_chip == 0
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

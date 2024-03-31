@@ -23,7 +23,7 @@ sub EVENT_ITEM {
     quest::summonitem(12952); # Item: Dragon Scales
     quest::exp(50000);
   }
-  #plugin::return_items(\%itemcount);    
+  plugin::return_items(\%itemcount);    
 }
 
 # 10028 = Peridot

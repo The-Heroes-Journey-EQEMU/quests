@@ -25,7 +25,7 @@ function event_trade(e)
 		e.other:AddEXP(1000);		--This quest is doable at level 1, I didn't feel comfortable giving out more xp than this per step
 		eq.set_global("DeliveredToGearo","1",0,"D30");--Set a variable here.
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -------------------------------------------------------------------------------------------------

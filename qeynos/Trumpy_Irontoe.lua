@@ -54,5 +54,5 @@ function event_trade(e)
 	end
 	drinks = 0;
 	moredrinks = 0;
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

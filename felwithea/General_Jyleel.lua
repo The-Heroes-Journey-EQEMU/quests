@@ -59,7 +59,7 @@ function event_trade(e)
 	elseif(qglobals["paladin_epic"] == "9" and item_lib.check_turn_in(e.trade, {platinum = 500})) then
 		e.self:Say("I once heard a story from a drunken Dwarf knight. He boasted about this rare jewel he happened upon. You should head in his direction and send my regards.");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:felwithea  ID:61026 -- General_Jyleel

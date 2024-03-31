@@ -26,6 +26,6 @@ if(plugin::check_handin(\%itemcount,10029=> 1)){
 quest::exp(500);
 quest::summonitem(18068); # Item: Before Green
 }
-#plugin::return_items(\%itemcount); # return unused items
+plugin::return_items(\%itemcount); # return unused items
   }
 #END of FILE Zone:Overthere ID:93148 � Dom_K`Perl (Dom_K-Perl.pl)

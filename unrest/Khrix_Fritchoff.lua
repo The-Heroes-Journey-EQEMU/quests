@@ -16,7 +16,7 @@ function event_trade(e)
 		eq.unique_spawn(63111,0,0,60,622,20,0); -- spawns Khrixs Abomination
 		e.other:AddEXP(1000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- Khrix_Fritchoff  zone - unrest.

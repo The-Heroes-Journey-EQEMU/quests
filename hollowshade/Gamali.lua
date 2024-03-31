@@ -31,5 +31,5 @@ function event_trade(e)
 		e.other:SummonItem(31761); -- Bottle of fresh water
 		e.other:QuestReward(e.self,0,0,0,0,31761); -- Bottle of fresh water
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

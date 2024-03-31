@@ -21,5 +21,5 @@ function event_trade(e)
 			e.other:Faction(1022, -20); --1022 firiona vie
 			e.other:Faction(1023, -20); --1023 norraths keepers
 		end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

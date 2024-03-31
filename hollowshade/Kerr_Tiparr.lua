@@ -45,5 +45,5 @@ function event_trade(e)
         e.self:Say("Apologies my friend, this will have to wait until we are able to return to the fort.");
     end
     
-    --item_lib.return_items(e.self, e.other, e.trade)
+    item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -63,5 +63,5 @@ function event_trade(e)
 				canine = canine - 1;
 			until canine == 0;
 		end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

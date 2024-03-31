@@ -23,6 +23,6 @@ function event_trade(e)
         eq.spawn2(27130, 0, 0, -469, -6104, -557, 376); -- NPC: A_Plasmatic_Priestess
         eq.depop_with_timer();
     end
-    --item_lib.return_items(e.self, e.other, e.trade)
+    item_lib.return_items(e.self, e.other, e.trade)
 end
 

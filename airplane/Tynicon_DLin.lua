@@ -40,7 +40,7 @@ function event_trade(e)
 		e.self:Say("You have truly earned this.");
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

@@ -19,5 +19,5 @@ function event_trade(e)
 		e.other:SummonItem(9033); -- Item: Wrapped Spider Totem
 		e.other:SummonItem(9031); -- Item: Official Seal of the Khati Sha
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

@@ -58,5 +58,5 @@ function event_trade(e)
 		e.other:Faction(5001,5001,0); -- Anti-Mage
 		e.other:AddEXP(75000); -- Give ~2 bubbles of exp at level 10
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

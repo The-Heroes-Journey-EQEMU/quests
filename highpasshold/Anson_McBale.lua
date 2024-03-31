@@ -31,7 +31,7 @@ function event_trade(e)
 		e.other:AddMoneyToPP(0, 0, 0, 35, true);
 		eq.spawn2(5088,0,0,336,10,45,450); -- NPC: Stanos_Herkanor
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_signal(e)

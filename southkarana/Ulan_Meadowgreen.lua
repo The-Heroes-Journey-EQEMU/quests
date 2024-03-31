@@ -59,7 +59,7 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:AddEXP(25000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF zone: southkarana ID: 14073 NPC: Ulan_Meadowgreen

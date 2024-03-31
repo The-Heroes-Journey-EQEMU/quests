@@ -42,7 +42,7 @@ sub EVENT_ITEM {
   else { 
    quest::say("I do not know you well enough to entrust you with such an item, yet."); 
   }
-  #plugin::return_items(\%itemcount); 
+  plugin::return_items(\%itemcount); 
 }
 
 

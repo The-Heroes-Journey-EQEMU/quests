@@ -51,7 +51,7 @@ function event_trade(e)
 			eq.spawn2(54237,0,0,2852,3239,-155,219); -- NPC: Faelin_Bloodbriar
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -------------------------------------------------------------------------------------------------

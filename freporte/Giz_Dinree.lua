@@ -12,5 +12,5 @@ function event_trade(e)
 	if(item_lib.check_turn_in(e.trade, {item1 = 18844})) then -- Sealed Letter
 		e.self:Say("I am glad to see you. We have a problem. The last runner and I attempted to carry the chest from a boat. It fell overboard! He went in after it, but the sharks made a meal of him. If you want to try and get it, it is down below in the water in the harbor. Be careful.");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

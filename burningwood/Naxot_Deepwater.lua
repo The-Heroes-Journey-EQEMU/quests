@@ -14,7 +14,7 @@ function event_trade(e)
 		eq.unique_spawn(87151,0,0,1500,-2000,-375); 			-- Ixiblat Fer, kill him, loot scepter of I.F.
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

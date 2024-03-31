@@ -39,7 +39,7 @@ function event_trade(e)
 		e.other:AddEXP(50000);
 		e.other:SummonItem(12277); -- Item: Candle of Bravery
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

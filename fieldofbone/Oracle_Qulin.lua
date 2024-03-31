@@ -16,5 +16,5 @@ function event_trade(e)
 		e.self:Say("It seems this particular ancient does not wish to be put to rest. Return this note to Hierophant Granix and tell him what happened. He will surely wish this skull to be disposed of properly, but I do not have the power to do it myself.");
 		e.other:QuestReward(e.self,0,0,0,0,30986); --note to Hierophant Granix
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

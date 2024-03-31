@@ -72,7 +72,7 @@ function event_trade(e)
 			e.other:GiveCash(0,0,0,9);
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:qeynos2 ID:2092 -- Camlend_Serbold

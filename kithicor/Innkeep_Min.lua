@@ -20,5 +20,5 @@ function event_trade(e)
 		e.self:Say("Here you go, bring these back to Crysta. She will be most pleased with my information, and don't try to put your nose in there you'll never understand those notes!");
 		e.other:SummonItem(46200); -- Item: Cryptic Scroll
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

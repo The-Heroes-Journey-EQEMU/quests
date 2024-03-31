@@ -18,5 +18,5 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:SummonItem(2355); -- Gleaming Gloves
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

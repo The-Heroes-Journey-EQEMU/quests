@@ -40,7 +40,7 @@ function event_trade(e)
 		e.other:Faction(280,1,0); -- Knights of Thunder
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:eastkarana  ID:15048 -- Sir_Morgan

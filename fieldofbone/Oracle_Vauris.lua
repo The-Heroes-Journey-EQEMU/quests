@@ -26,5 +26,5 @@ function event_trade(e)
 		e.self:Say("You have done well " .. e.other:GetCleanName() .. ". Now it is time for the true test of your clairvoyance. Only a true Scaled mystic will be able to put these spirits to rest. Be warned, these souls will not go quietly into the next world. They have strong ties to this land, and it is these ties we must break. Take them to the City of the Kunzar, the birthplace of the emperor. Only there will you be able to tear asunder the dark rituals that have twisted the souls of our ancient heroes. I will await you in that place " .. e.other:GetCleanName() .. ".");
 		e.other:QuestReward(e.self,0,0,0,0,30994); --give the player Iksar Relics
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

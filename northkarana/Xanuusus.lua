@@ -116,7 +116,7 @@ function event_trade(e)
     e.other:SummonItem(62604); -- Stone of Winde
     eq.set_global("ranger_epic15_pre","9",5,"F");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF zone: northkarana ID: 13061 NPC: Xanuusus 

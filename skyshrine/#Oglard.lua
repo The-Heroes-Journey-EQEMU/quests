@@ -41,5 +41,5 @@ function event_trade(e)
 		e.self:Say("Thank you, " .. e.other:GetCleanName() .. ". With this urn, our fears are confirmed. His spirit is split, each striving for its own desire. We've decided what must be done. Your help is key in the success of our plans. If you wish to continue what you have started, please take this urn to Eldriaks Fe`Dhar. He will make known to you our plan.");
 		e.other:QuestReward(e.self,0,0,0,0,2053,5000); -- Dragon Craft Urn (2nd combined version)
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -24,7 +24,7 @@ function event_trade(e)
 		eq.spawn2(12184, 0, 0, xloc,    yloc +35, zloc,   256); -- a snarling werewolf (high)
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EndFile: qey2hh1\#Yuanda.lua (12188)

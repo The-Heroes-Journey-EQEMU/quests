@@ -70,7 +70,7 @@ function event_trade(e)
 		e.other:Faction(361,1,0); -- Faction: Ashen Order
 		e.other:AddEXP(1500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos2  NPC:Phin_Esrinap 

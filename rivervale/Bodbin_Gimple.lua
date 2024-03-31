@@ -32,7 +32,7 @@ local item_lib = require("items");
 		e.other:AddEXP(10);
 		e.other:SummonItem(19685); -- Item: Bravefoot Short Sword
 	else
-		--item_lib.return_items(e.self, e.other, e.trade);
+		item_lib.return_items(e.self, e.other, e.trade);
 	end
 end
 

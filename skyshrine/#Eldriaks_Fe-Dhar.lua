@@ -55,5 +55,5 @@ function event_trade(e)
 		e.self:Say("You have decided to wield the Naginata after all?");
 		e.other:QuestReward(e.self,0,0,0,0,2097); -- Ethereal Bladed Naginata (Eldriak's Verified Naginata)
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

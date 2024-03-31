@@ -13,7 +13,7 @@ function event_trade(e)
 		eq.spawn2(71069,0,0,e.self:GetX(),e.self:GetY(),-8,e.self:GetHeading()); -- NPC: Gwan
 	else
 		e.self:Say("I have no need for this, " .. e.other:GetName() .. ".");
-		--item_lib.return_items(e.self, e.other, e.trade)
+		item_lib.return_items(e.self, e.other, e.trade)
 	end
 end
 

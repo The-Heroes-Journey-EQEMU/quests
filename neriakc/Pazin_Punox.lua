@@ -24,7 +24,7 @@ function event_trade(e)
 		e.self:Emote("laughs. 'Here, take this then!'");--text made up
 		e.other:QuestReward(e.self,0,0,0,0,24095); --Vein Rot Sketch
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 --END of FILE Zone:neriakc  ID:42075 -- Pazin_Punox

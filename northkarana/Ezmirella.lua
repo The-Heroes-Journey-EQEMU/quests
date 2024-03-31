@@ -15,7 +15,7 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:AddEXP(1000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- Quest by mystic414 / converted to lua by robregen

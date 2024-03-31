@@ -45,5 +45,5 @@ sub EVENT_ITEM
 			quest::exp(10000);
 		}
 	}
-	#plugin::return_items(\%itemcount); #return items if not the ones required
+	plugin::return_items(\%itemcount); #return items if not the ones required
 }#END of FILE Zone:ponightmare ID:204055 --#Kelletia.pl

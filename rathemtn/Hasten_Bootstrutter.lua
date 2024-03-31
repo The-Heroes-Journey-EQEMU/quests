@@ -24,5 +24,5 @@ function event_trade(e)
 		e.self:Say("The time to trade has come!! I am now rich and you are now fast. Take the Journeyman Boots and run like the wind.");
 		e.other:QuestReward(e.self,0,0,0,0,2300,1250);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

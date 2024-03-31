@@ -14,5 +14,5 @@ function event_trade(e)
 		e.self:Say("Camlend gave me an old set of prayer beads ages ago. He said that they would be needed at some point. Over the years I crafted sockets in them thinking that one day I would add a few gems to them. Take the beads. I'm glad to hear they could be of some use to help someone. Thank you for your donation. It should be enough to cover the cost of creating the sockets.");
 		e.other:SummonItem(69960); --qeynos prayer bead
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end 

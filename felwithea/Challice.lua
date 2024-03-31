@@ -15,7 +15,7 @@ function event_trade(e)
 		e.other:AddEXP(100000);
 		e.other:SummonItem(14335); -- Item: Arantir's Ring
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:felwithea  ID:61006 -- Challice

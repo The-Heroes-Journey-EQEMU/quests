@@ -27,5 +27,5 @@ function event_trade(e)
 		eq.set_global("rogue_epic_larithim","1",5,"F");
 		e.other:Message(15,"You have confirmed Larithim's innocence.");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

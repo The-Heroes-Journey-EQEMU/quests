@@ -39,5 +39,5 @@ function event_trade(e)
 		e.other:MovePC(78,1065,525,176,388); -- Field of Bone test area.
 		eq.set_timer("spawn",15000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

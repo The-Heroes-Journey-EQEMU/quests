@@ -20,7 +20,7 @@ function event_trade(e)
 		e.other:AddEXP(500);
 		e.other:GiveCash(0,12,6,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freporte  ID:10101 -- Netuk_Phenzon

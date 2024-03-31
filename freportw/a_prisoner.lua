@@ -25,7 +25,7 @@ function event_trade(e)
 		e.other:SummonItem(12143); -- H. K. 102
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 --END of FILE Zone:freportw -- a_prisoner

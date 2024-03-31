@@ -33,7 +33,7 @@ function event_trade(e)
 		eq.spawn2(71091,0,0,-586,767,176,128); -- NPC: Inte_Akera
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

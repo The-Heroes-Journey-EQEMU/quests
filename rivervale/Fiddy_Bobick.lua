@@ -32,7 +32,7 @@ local item_lib = require("items");
 		e.other:GiveCash(0,8,1,0);
 		e.other:AddEXP(15);
 	else
-		--item_lib.return_items(e.self, e.other, e.trade); -- return unused items
+		item_lib.return_items(e.self, e.other, e.trade); -- return unused items
 	end
 end
  --END of FILE Zone:rivervale  ID:19086 -- Fiddy_Bobick

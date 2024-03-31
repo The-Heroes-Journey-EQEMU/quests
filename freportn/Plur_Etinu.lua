@@ -27,5 +27,5 @@ function event_trade(e)
 		e.other:Ding();
 		e.self:CastSpell(17,e.other:GetID()); -- Spell: Light Healing
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

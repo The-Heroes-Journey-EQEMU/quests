@@ -11,5 +11,5 @@ function event_trade(e)
 		eq.unique_spawn(105185,0,0,-13,-690,8,34); --an Arisen Acolyte
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

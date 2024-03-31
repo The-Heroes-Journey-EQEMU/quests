@@ -71,5 +71,5 @@ function event_trade(e)
 		e.other:Faction(280,1,0); -- Priests of Life
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -40,7 +40,7 @@ function event_trade(e)
 	e.other:AddLevelBasedExp(14.2, 3); -- Guessed max level - data from lvl1
 	end
 
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos  ID:1054 -- Kasine_Paegra

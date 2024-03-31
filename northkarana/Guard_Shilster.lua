@@ -38,7 +38,7 @@ function event_trade(e)
 		e.other:Faction(223,10,0); -- Circle Of Unseen Hands
 		e.other:Faction(221,10,0); -- Bloodsabers
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:northkarana  ID:13021 -- Guard_Shilster

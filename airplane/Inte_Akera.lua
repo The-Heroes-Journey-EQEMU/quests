@@ -61,7 +61,7 @@ function event_trade(e)
 		e.other:AddEXP(100000);
 		eq.set_global("paladin_epic","10",5,"F");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

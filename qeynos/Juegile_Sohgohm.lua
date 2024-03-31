@@ -54,7 +54,7 @@ function event_trade(e)
 		e.other:Faction(296,-30,0); -- Faction: Opal Darkbriar
 		e.other:AddEXP(5000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF zone: qeynos ID: 3037 name: Juegile_Sohgohm 

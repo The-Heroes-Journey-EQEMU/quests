@@ -35,5 +35,5 @@ function event_trade(e)
       eq.target_global("Wayfarer", "4", "F", 0, e.other:CharacterID(), 0);
     end
   end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

@@ -23,7 +23,7 @@ function event_trade(e)
 			eq.unique_spawn(9143,87,0,-154,-55,-10,256); -- spawns Krazen Loosh
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_signal(e)

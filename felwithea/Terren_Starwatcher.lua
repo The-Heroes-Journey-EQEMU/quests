@@ -55,7 +55,7 @@ function event_trade(e)
 		e.other:Faction(5001,10,0); -- Faction: Anti-mage
 		e.other:AddEXP(36450);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:felwithea  ID:61010 -- Terren_Starwatcher

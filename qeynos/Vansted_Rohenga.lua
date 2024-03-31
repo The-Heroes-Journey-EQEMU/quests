@@ -54,6 +54,6 @@ function event_trade(e)
 		e.other:AddEXP(1000);
 	end
 	
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 	
 end

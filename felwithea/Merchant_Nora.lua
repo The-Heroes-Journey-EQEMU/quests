@@ -9,7 +9,7 @@ function event_trade(e)
 		e.other:SummonItem(20459); -- Item: Bag of Provisions
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF zone: felwithea ID: 61034 NPC: Merchant_Nora

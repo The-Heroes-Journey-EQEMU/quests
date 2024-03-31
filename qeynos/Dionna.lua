@@ -12,5 +12,5 @@ function event_trade(e)
 		e.other:Faction(304, -5,0); -- Faction: Ring of Scale
 		e.other:Faction(285, -5,0); -- Faction: Mayong Mistmoore
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

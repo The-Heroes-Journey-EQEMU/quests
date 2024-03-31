@@ -68,7 +68,7 @@ function event_trade(e)
 		e.other:Faction(244, -3);     							-- Ebon Mask
 		e.other:AddEXP(300);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 --Note: Completed and tested on April 17, 2010 by mrhodes

@@ -44,7 +44,7 @@ function event_trade(e)
 		e.other:Faction(285,-5,0); -- Faction: Mayong Mistmoore
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freportn  -- Caskin_Marsheart

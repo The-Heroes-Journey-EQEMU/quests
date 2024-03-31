@@ -15,7 +15,7 @@ function event_trade(e)
 		e.other:Ding();
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- End of File, Zone:soldungb  NPC:32038 -- Zordak_Ragefire

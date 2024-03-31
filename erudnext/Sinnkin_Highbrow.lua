@@ -19,7 +19,7 @@ function event_trade(e)
 		e.other:Faction(694,5,0); -- Faction: Erudite Citizen (Race)
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:98036 -- Sinnkin_Highbrow

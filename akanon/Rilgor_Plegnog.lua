@@ -53,5 +53,5 @@ function event_trade(e)
 		e.self:Say("'Very fine it is. So kind of you to fulfill a dream of mine. I believe this device should be able to handle just about anything you'd need. In fact, if I were you I would take it along to your master right away.' ");
 		e.other:SummonItem(52945); -- Item: Gnomish Translating Device
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

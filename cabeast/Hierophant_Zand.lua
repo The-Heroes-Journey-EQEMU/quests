@@ -35,5 +35,5 @@ function event_trade(e)
 			e.other:QuestReward(e.self,0,0,0,10,5145,120000); 	--Give the player The Cudgel of the Channeler
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

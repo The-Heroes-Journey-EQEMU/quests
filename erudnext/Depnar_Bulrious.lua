@@ -31,7 +31,7 @@ function event_trade(e)
 		e.other:Faction(265,-25,0); -- Heretics
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:98062 -- Depnar_Bulrious

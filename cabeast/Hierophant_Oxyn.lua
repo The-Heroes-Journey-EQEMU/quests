@@ -63,5 +63,5 @@ function event_trade(e)
 		e.other:Faction(441, 5); 				--Legion of Cabilis
 		e.other:QuestReward(e.self,0,0,5,1,5142,60000); --Iron Cudgel of the Seer
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

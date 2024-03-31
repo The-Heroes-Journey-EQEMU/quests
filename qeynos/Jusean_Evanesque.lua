@@ -65,5 +65,5 @@ function event_trade(e)
 		e.other:Faction(285,-30,0); -- mayong mistmoore
 		e.other:AddEXP(2500);	
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

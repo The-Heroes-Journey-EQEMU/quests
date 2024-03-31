@@ -35,7 +35,7 @@ function event_trade(e)
 		e.other:SummonItem(59016); -- Item: Spell: Scryer's Trespass
 		e.other:AddEXP(1750000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --  EOF Zone: erudnext ID: 24013 NPC: Stofo_Olan

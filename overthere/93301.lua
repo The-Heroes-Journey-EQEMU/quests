@@ -53,5 +53,5 @@ function event_trade(e)
 			e.other:SummonItem(9590); -- Item: Notice to Cease and Desist
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

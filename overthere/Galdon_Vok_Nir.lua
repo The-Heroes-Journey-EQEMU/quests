@@ -18,5 +18,5 @@ function event_trade(e)
 		e.self:Say("A deal is a deal I suppose, many have attempt to do what I have asked, but fallen to the Overseer.");
 		e.other:QuestReward(e.self,0,0,0,0,12740); -- Give the player the Iksar Skull
 	end
-	--item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
+	item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
 end

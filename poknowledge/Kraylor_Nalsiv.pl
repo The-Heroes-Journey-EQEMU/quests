@@ -11,6 +11,6 @@ sub EVENT_SAY {
 }
 
 sub EVENT_ITEM {
-	#plugin::return_items(\%itemcount); #return items if not the ones required
+	plugin::return_items(\%itemcount); #return items if not the ones required
 }
 #END of FILE Zone:poknowledge ID:202337 --Kraylor_Nalsiv.pl

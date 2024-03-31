@@ -35,5 +35,5 @@ function event_trade(e)
 		e.self:Emote("takes the tunic from you and peers at it. 'What'd you give me this for "..e.other:GetName().."? It's clearly not my size! Oh! you wanted it modified that's right.' He turns and puts the robe on his work bench and slowly but surely goes to work on it. Half way through he spills some of his wine on it. Undaunted, he continues to work until he finally turns back to you and hands you a very well made tunic. Although it does smell of elven wine now.");
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

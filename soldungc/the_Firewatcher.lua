@@ -17,6 +17,6 @@ function event_trade(e)
 			e.self:Say("This should do the trick, I think! The gate is...Yes it's opening. Ha ha! The Gatekeeper comes!");
 		end
 	end;
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end
 

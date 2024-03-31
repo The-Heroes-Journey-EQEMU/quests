@@ -26,7 +26,7 @@ sub EVENT_ITEM {
     quest::faction(1486,-100); #heart of seru
     quest::exp(2000000);
   }
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
 #End of File, Zone:katta  NPC:160375 -- Lcea_Katta

@@ -33,5 +33,5 @@ function event_trade(e)
 		e.other:Faction(236,10,0); -- Dark Bargainers
 		e.other:AddEXP(274400); -- 10% level 15 experience.
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

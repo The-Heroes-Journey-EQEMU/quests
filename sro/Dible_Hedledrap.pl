@@ -264,5 +264,5 @@ sub EVENT_ITEM {
             last;
         }
     }
-    #plugin::return_items(\%itemcount );
+    plugin::return_items(\%itemcount );
 }

@@ -25,6 +25,6 @@ sub EVENT_SAY {
     quest::summonitem(quest::ChooseRandom(28416, 28425, 28427)); #Level 65 Necromancer spell, PoP (Blood of Thule, Child of Bertoxxulous, Word of Terris)
   }
  
-    #plugin::return_items(\%itemcount);   
+    plugin::return_items(\%itemcount);   
 }
 #Done, quest by Kilelen 

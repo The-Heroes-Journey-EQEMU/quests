@@ -33,7 +33,7 @@ function event_trade(e)
 		e.other:AddEXP(20000);
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 --End of File, Zone:akheva  NPC:179144 -- --The_Spirit_of_Akelha-Ra.pl
 -------------------------------------------------------------------------------------------------

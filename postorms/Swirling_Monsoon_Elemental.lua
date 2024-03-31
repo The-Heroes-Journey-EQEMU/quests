@@ -7,5 +7,5 @@ function event_trade(e)
       e.self:AddToHateList(e.other,1);
 	  e.other:SummonItem(11304); -- Vial of Elemental Binding
    end
-   --item_lib.return_items(e.self, e.other, e.trade)
+   item_lib.return_items(e.self, e.other, e.trade)
 end

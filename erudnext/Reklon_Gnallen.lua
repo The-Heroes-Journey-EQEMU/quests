@@ -57,7 +57,7 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:SummonItem(29010); -- Item: Mark of Atonement
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:24044 -- Reklon_Gnallen

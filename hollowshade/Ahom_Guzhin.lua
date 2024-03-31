@@ -32,6 +32,6 @@ function event_trade(e)
         e.other:SummonItem(6275); -- Cloak of the Taruun Journeyman
         e.other:QuestReward(e.self,0,0,0,0,8466); -- Ahoms Journal
     end
-    --item_lib.return_items(e.self, e.other, e.trade)
+    item_lib.return_items(e.self, e.other, e.trade)
 end
 

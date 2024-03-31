@@ -21,7 +21,7 @@ function event_trade(e)
 		e.other:Faction(324,-1,0); -- Faction: Unkempt Druids
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF Zone:rivervale  NPC:19053 -- Uner_Gnarltrunk

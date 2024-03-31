@@ -83,5 +83,5 @@ function event_trade(e)
 		e.other:SetGlobal("guktan_shield", "3", 0, "F");
 	end
 	
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

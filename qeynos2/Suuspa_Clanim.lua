@@ -35,7 +35,7 @@ function event_trade(e)
 		e.other:AddEXP(1000);
 		e.other:GiveCash(math.random(20),math.random(20),0,0); -- Random from 20cp20sp
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos2  ID:2048 -- Suuspa_Clanim

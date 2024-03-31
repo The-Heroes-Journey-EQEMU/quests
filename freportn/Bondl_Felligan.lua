@@ -19,7 +19,7 @@ function event_trade(e)
 		eq.spawn2(8118,0,0,67,103,32.1,508); -- needs_heading_validation
 		e.self:Say("What!? You don't approve of me buyin' some drinks with this gem? Who the heck are you to offer me a gift and order me what to do with it? Is this some kinda conditional kindness? Well? Are you gonna let me buy some booze with this or not?");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF Bondl_Felligan

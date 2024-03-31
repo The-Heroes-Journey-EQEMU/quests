@@ -21,7 +21,7 @@ function event_trade(e)
 		e.self:Say("Ah, very good then. What you will need to make your sash is the Celestial Thread I have handed you, as well as a Belt Pattern, and your three [" .. eq.say_link("polished") .. "] symbols in a sewing kit.");
 		e.other:SummonItem(48123); -- Dirk of the Slickfinger
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- End of File

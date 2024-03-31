@@ -15,7 +15,7 @@ function event_trade(e)
 		e.other:SummonItem(6551); -- Item: Rozzut's Whistler
 		e.other:AddEXP(25000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

@@ -37,5 +37,5 @@ function event_trade(e)
 		e.other:Faction(222,-1,0); -- Faction: Broken Skull Clan
 	end
 
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

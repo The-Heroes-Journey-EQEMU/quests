@@ -13,6 +13,6 @@ quest::summonitem(62204); # Item: Aged Earring of Aptitude
 quest::exp("1000");
 quest::givecash(2,1,5,2); 
 }
-#plugin::return_items(\%itemcount); # return unused items
+plugin::return_items(\%itemcount); # return unused items
  }
 #END of FILE Zone:lakeofillomen ID:85 - Pagik_Tsissun (Pagik_Tsissun.pl) 

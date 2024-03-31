@@ -50,7 +50,7 @@ function event_trade(e)
 			e.self:Say("Your head shall look grand mounted on the wall of the Steel Warriors Arena!!");
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF Plagus_Ladeson

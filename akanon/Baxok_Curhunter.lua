@@ -54,5 +54,5 @@ function event_trade(e)
 		e.other:Faction(238,-10,0); -- -Dark Reflection
 		e.other:Faction(1604,-10,0); -- -Clan Grikbar
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

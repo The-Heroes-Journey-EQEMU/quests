@@ -75,7 +75,7 @@ function event_trade(e)
 		e.other:QuestReward(e.self,0,0,0,0,2388,2000); -- Qeynos Badge of Honor
 	end
 	
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EndFile qeynos2\Vegalys_Keldrane.lua (2051)

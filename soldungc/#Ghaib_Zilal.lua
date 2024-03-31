@@ -33,5 +33,5 @@ function event_trade(e)
 		e.other:QuestReward(e.self,0,0,0,0,55261,100000); -- Ghaib's Flame-Forged Longsword
 		eq.delete_global("HelpGhaib");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

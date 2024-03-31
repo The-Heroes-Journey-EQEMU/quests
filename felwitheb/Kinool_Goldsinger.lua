@@ -53,7 +53,7 @@ function event_trade(e)
   		e.other:AddEXP(5000);
   		e.other:SummonItem(8402); -- Item: Rain Caller
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:felwitheb  ID:62020 -- Kinool_Goldsinger 

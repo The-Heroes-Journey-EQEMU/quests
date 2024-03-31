@@ -20,7 +20,7 @@ function event_trade(e)
 		e.other:AddEXP(100000);
 		e.other:SummonFixedItem(10608); -- Item: Chalice of Kings
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF Zone: felwitheb ID: 62000 NPC: Joren_Nobleheart

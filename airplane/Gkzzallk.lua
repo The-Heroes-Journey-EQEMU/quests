@@ -15,7 +15,7 @@ function event_trade(e)
 		e.other:SummonItem(20652); -- Item: Gkzzallk in a Box
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 --Quest by: Solid11

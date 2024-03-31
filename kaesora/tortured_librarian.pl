@@ -11,5 +11,5 @@ quest::emote("fades out of existence. The air smells of death. Something has app
         quest::depop_withtimer();
 	quest::summonitem(12889); # Item: Large Tassel Bookmark
  }
-#plugin::return_items(\%itemcount); # return unused items
+plugin::return_items(\%itemcount); # return unused items
 }

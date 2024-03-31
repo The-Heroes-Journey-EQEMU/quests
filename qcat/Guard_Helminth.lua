@@ -21,5 +21,5 @@ function event_trade(e)
 		e.self:Say("Well, well! Vegalys did send you after all. Are you [ready to complete the mission]? I am certain I know where Azibelle is hiding.");
 		e.other:QuestReward(e.self,0,0,0,0,2694);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

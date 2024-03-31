@@ -38,7 +38,7 @@ local item_lib = require("items");
 		e.other:Ding();
 		e.other:GiveCash(4,10,0,0);
 	else
-		--item_lib.return_items(e.self, e.other, e.trade);
+		item_lib.return_items(e.self, e.other, e.trade);
 	end
 end
 

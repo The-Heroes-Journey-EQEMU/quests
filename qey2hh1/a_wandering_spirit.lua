@@ -40,7 +40,7 @@ function event_trade(e)
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 1670})) then -- Part of Shaman Epic 1.0
 		e.self:Say("This is a sad day. You have failed and strayed from the path set before you. Please try to live as close to the spirits as you are able, though this is the closest you will ever get.");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- Submitted by: Jim Mills (Gilmore Girls`Is`Awesome`XOXO)

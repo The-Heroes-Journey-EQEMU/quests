@@ -37,5 +37,5 @@ function event_trade(e)
 			ear = ear - 1;
 		until ear == 0
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -8,7 +8,7 @@ function event_trade(e)
 		e.other:SummonItem(eq.ChooseRandom(5037,5029,13313)); -- Item(s): Bronze Two Handed Battle Axe (5037), Bronze Bastard Sword (5029), Dwarven Axe (13313)
 	end
 
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --by Angelox

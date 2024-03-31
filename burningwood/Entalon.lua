@@ -15,7 +15,7 @@ function event_trade(e)
 		e.other:AddEXP(5000);
 		e.other:MovePC(87,-4039,6280,-53); --Atheling Plague's Tower
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

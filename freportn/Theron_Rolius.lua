@@ -40,7 +40,7 @@ function event_trade(e)
 		e.other:Faction(330,-30,0); -- freeport militia
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freportn  ID:8073 -- Theron_Rolius

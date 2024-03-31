@@ -40,5 +40,5 @@ function event_trade(e)
 		e.self:Say("Wonderful!  This is an amazing seed.  It has a resonance of the power of life that seems familiar.  It reminds me very much of the feeling I get when one of the Storm Wardens come through here with their Nature Walkers Scimitars.  It's a thrill to be able to examine it, thank you.");
 		e.other:SummonItem(62809); -- Give seed of wrath back - reward exp - finish 1.5 prequest.
 	end	
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

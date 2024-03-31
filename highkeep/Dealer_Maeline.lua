@@ -24,7 +24,7 @@ local qglobals = eq.get_qglobals(e.other)
   elseif(e.other:Class() == "Rogue") and qglobals["roguepre"] ~= nil and item_lib.check_turn_in(e.trade, {item1 = 9446}) then -- Gold-Leafed Urn
     e.self:Say("Oh, it's you. I'm not falling for that again.");
   end
-  --item_lib.return_items(e.self, e.other, e.trade)
+  item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_say(e)

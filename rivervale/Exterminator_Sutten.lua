@@ -17,7 +17,7 @@ local item_lib = require("items");
 		e.other:AddEXP(5);
 		e.other:GiveCash(1,1,1,0);
 	else
-		--item_lib.return_items(e.self, e.other, e.trade);
+		item_lib.return_items(e.self, e.other, e.trade);
 	end
 end
 

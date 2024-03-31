@@ -21,7 +21,7 @@ function event_trade(e)
 		e.other:SummonFixedItem(20371); -- Item: Note for Baenar
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:unrest  ID:63029 -- Serra

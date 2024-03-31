@@ -11,7 +11,7 @@ sub EVENT_ITEM {
       $gogetem = $attack->CastToNPC();
       $gogetem->AddToHateList($client, 1);
     }
-    #plugin::return_items(\%itemcount); # return unused items
+    plugin::return_items(\%itemcount); # return unused items
   } else { # not at least indiff, he will say this
     quest::say("I will do nothing to aid beings like you.");
   }

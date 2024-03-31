@@ -42,5 +42,5 @@ function event_trade(e)
 		e.other:Faction(232,-1,0);	-- Craknek Warrior
 		e.other:QuestReward(e.self,0,0,0,0,2177,5000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

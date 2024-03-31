@@ -35,7 +35,7 @@ function event_trade(e)
 		e.other:Faction(5001,1,0); -- Anti-mage Faction
 		e.other:AddEXP(150);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freportw -- Linadian

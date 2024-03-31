@@ -32,7 +32,7 @@ function event_trade(e)
 		e.other:AddEXP(500);
 		eq.set_global("Llara","ghoul",0,"D30");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF #Llara : Cauldron

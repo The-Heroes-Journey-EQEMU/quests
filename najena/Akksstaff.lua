@@ -27,7 +27,7 @@ function event_trade(e)
 		e.other:SummonFixedItem(28004); -- Item: Words of Mastery
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone: najena  ID:44063 -- Akksstaff

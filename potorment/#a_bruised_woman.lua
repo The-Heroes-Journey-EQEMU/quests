@@ -18,5 +18,5 @@ function event_trade(e)
         e.other:QuestReward(e.self, 0, 0, 0, 0, 77629, 1); -- Vhalen's Necklace
         eq.depop_with_timer()
     end
-    --item_lib.return_items(e.self, e.other, e.trade)
+    item_lib.return_items(e.self, e.other, e.trade)
 end

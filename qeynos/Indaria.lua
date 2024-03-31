@@ -20,5 +20,5 @@ function event_trade(e)
     e.other:Faction(291,1,0); -- Merchants of Qeynos
     e.other:AddEXP(27440);
   end
-  --item_lib.return_items(e.self, e.other, e.trade)
+  item_lib.return_items(e.self, e.other, e.trade)
 end

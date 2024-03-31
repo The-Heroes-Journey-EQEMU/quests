@@ -50,10 +50,10 @@ function event_trade(e)
       local priest = eq.spawn2(80042,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(),e.self:GetHeading()):AddToHateList(e.other,1); -- NPC: a_plasmatic_priest
       eq.depop_with_timer();
     else
-      --item_lib.return_items(e.self, e.other, e.trade);
+      item_lib.return_items(e.self, e.other, e.trade);
     end
   else
-    --item_lib.return_items(e.self, e.other, e.trade);
+    item_lib.return_items(e.self, e.other, e.trade);
   end
 
 end

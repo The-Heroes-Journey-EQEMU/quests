@@ -13,5 +13,5 @@ function event_trade(e)
 		eq.depop_with_timer();
 		-- an npc named, Friend Vagnar the Channeler, is supposed to spawn and shout that text while running away, figure this would b easier on the server...
 	end
-	--item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
+	item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
 end

@@ -23,7 +23,7 @@ sub EVENT_ITEM {
   quest::exp(1000);
     
   }
- #plugin::return_items(\%itemcount); 
+ plugin::return_items(\%itemcount); 
 }
 #END of FILE Zone:sharvahl  ID:155208 -- Jangle 
 

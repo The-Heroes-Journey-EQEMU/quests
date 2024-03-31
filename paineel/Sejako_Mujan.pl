@@ -21,5 +21,5 @@ sub EVENT_ITEM {
 		quest::exp(150);
 		quest::say("Excellent!! These shall provide valuable information to my research on the spirit realm."); 
     }
-	#plugin::return_items(\%itemcount); 
+	plugin::return_items(\%itemcount); 
 }

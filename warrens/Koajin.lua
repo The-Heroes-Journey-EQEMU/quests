@@ -14,5 +14,5 @@ function event_trade(e)
 		e.self:Emote("takes the tools, plate, and sketch wearily and begins carving the tsuba. It takes him many hours to finish it but the wait is worth it. The tsuba is beautifully crafted, matching the complicated sketch perfectly. Koajin says, 'There you go, " .. e.other:GetCleanName() .. ". It's a wonderful piece. I have no idea what the diagram is for, but it was a pleasure to craft it. Now if I can get myself out of here.");
 		e.other:QuestReward(e.self,0,0,0,0,2055,5000); -- Finished Tsuba
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

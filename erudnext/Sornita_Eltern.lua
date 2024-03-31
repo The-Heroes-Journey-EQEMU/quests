@@ -21,7 +21,7 @@ function event_trade(e)
 		e.other:SummonItem(12591); -- Translated Ancient Tome
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:98016 -- Sornita_Eltern

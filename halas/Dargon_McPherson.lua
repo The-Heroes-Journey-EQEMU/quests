@@ -31,6 +31,6 @@ function event_trade(e)
 		e.other:Faction(311,10); -- 311 : Faction Steel Warriors
 		e.other:Faction(320,10); -- 320 : Faction Wolves of the North
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 

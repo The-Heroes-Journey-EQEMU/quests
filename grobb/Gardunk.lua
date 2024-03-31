@@ -22,7 +22,7 @@ function event_trade(e)
 		e.other:Faction(251,-2,0); -- Frogloks of Guk
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:grobb  ID:6084 -- Gardunk

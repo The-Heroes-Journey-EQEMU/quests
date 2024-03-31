@@ -40,7 +40,7 @@ function event_trade(e)
 			e.other:GiveCash(2,10,0,0);
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freportw -- Nusk_Treton

@@ -111,7 +111,7 @@ sub EVENT_ITEM {
       quest::say("You have done well.");
     }
     else {
-      #plugin::return_items(\%itemcount); 
+      plugin::return_items(\%itemcount); 
       quest::say("These are not the pieces I need.");
     }
   }

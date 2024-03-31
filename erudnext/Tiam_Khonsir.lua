@@ -25,7 +25,7 @@ function event_trade(e)
 		e.other:AddEXP(2000);
 		e.other:GiveCash(12,14,5,0); -- Copper x 12, Silver x 14, Gold x 5
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:98051 -- Tiam_Khonsir

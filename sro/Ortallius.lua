@@ -38,5 +38,5 @@ function event_trade(e)
 		e.other:Faction(416,-1,0);		-- faction worse: 'Shadowed Men'
 		e.other:GiveCash(8,4,0,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

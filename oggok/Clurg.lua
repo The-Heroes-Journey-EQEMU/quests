@@ -76,5 +76,5 @@ function event_trade(e)
 			e.other:SummonItem(13379);	-- Compendium returned. Not enough faction @ indifferent
 		end
 	end
-    --item_lib.return_items(e.self, e.other, e.trade);
+    item_lib.return_items(e.self, e.other, e.trade);
 end

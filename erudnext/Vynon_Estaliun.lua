@@ -19,7 +19,7 @@ function event_trade(e)
 		e.other:Faction(265,-10,0); -- Faction: Heretics
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:98043 -- Vynon_Estaliun

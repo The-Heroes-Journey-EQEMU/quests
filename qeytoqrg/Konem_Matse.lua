@@ -19,5 +19,5 @@ function event_trade(e)
 		e.other:Faction(361,1,0); -- Ashen Order
 		e.other:AddEXP(1500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

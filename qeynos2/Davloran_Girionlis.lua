@@ -50,7 +50,7 @@ function event_trade(e)
 		e.other:Faction(262,3,0); -- Faction: Guards of Qeynos
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:qeynos2  ID:2033 -- Davloran_Girionlis

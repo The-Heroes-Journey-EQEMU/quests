@@ -50,7 +50,7 @@ function event_trade(e)
 	else
 		e.self:Say("Whoooops! I'll need the two ruined wolf pelts along with the berries and black wolf skin before I can reward you, " .. e.other:GetName() .. ". Don't dawdle.");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19111 -- Beek_Guinders

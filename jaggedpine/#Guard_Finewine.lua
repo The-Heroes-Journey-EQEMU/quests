@@ -29,5 +29,5 @@ function event_trade(e)
 		e.self:Say("Ah yes, this is perfect! I feel my head clearing already. Wait, is that the sun poking through the trees there or the moon? Hard to tell in this hideous jungle... Oh wait, yes. My shift reports for the last few weeks. Why don't you go ahead and turn these into Sergeant Caelin for me? I'm going to enjoy this fine pate.");
 		e.other:QuestReward(e.self,0,0,0,0,8279); -- Stack of Shift Reports
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

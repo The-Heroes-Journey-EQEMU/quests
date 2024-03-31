@@ -22,5 +22,5 @@ function event_trade(e)
 			e.other:SummonItem(69912); -- sword back but diff ID for turn-in.
 			eq.set_global("pre_pal","4",5,"F");
 		end		
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

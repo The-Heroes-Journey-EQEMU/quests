@@ -56,5 +56,5 @@ function event_trade(e)
 		eq.signal(14050,9,5000); -- NPC: an_interrogator
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

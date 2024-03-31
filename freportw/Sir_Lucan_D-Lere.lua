@@ -31,7 +31,7 @@ function event_trade(e)
 		e.other:Faction(362,-40,0); -- Faction: Priests of Marr
 		e.other:AddEXP(7500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freportw  ID:9018 -- Sir_Lucan_D`Lere

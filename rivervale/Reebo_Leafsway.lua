@@ -47,7 +47,7 @@ function event_trade(e)
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 13974,item2 = 13974,item3 = 13974}) or item_lib.check_turn_in(e.trade, {item1 = 13974,item2 = 13974}) or item_lib.check_turn_in(e.trade, {item1 = 13974})) then
 		e.self:Say("Oh good! I see you have taugh that nasty Nillipuss a thing or two! Good. But it seems to me that he has stolen more jumjum than this. Perhaps he needs another lesson?");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_waypoint_arrive(e)

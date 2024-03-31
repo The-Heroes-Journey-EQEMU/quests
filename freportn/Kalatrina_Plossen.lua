@@ -32,5 +32,5 @@ function event_trade(e)
 		e.other:Faction(311,1,0); -- Faction: Steel Warriors
 		e.other:Faction(281,1,0); -- Faction: Knights of Truth
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

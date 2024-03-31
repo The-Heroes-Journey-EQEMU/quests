@@ -62,5 +62,5 @@ function event_trade(e)
 		e.other:Faction(238,3,0); 	-- Dark reflection
 		e.other:Faction(239,3,0); 	-- the dead
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

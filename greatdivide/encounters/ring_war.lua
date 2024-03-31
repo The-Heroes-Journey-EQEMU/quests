@@ -179,7 +179,7 @@ function Churn_Trade(e)
     e.self:Depop();
   end
 
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -196,7 +196,7 @@ function Kargin_Trade(e)
     e.self:Depop();
   end
 
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -213,7 +213,7 @@ function Corbin_Trade(e)
     e.self:Depop();
   end
 
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -230,7 +230,7 @@ function Dobbin_Trade(e)
     e.self:Depop();
   end
 
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- Hand in.: Shorn Head of Narandi (1741)
@@ -247,7 +247,7 @@ function Garadain_Trade(e)
     e.self:Depop();
   end
 
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function Zrelik_Trade(e)
@@ -255,7 +255,7 @@ function Zrelik_Trade(e)
   if (item_lib.check_turn_in(e.trade, {item1 = 18511})) then
     Start_Event();
   end
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function event_encounter_load(e)

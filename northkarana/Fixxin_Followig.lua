@@ -28,7 +28,7 @@ function event_trade(e)
 		e.other:Faction(280,10,0); -- knights of thunder
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF zone: northkarana ID: 13063 NPC: Fixxin_Followig 

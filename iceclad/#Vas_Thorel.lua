@@ -32,5 +32,5 @@ function event_trade(e)
         e.self:Say("Well done " .. e.other:Race() .. ", but I'm afraid this scroll bears ill tidings indeed. Lantaric must be informed with haste. Take the heads of the necromancers and give them to Lantaric. I have a feeling your work is far from done " .. e.other:Race() .. ".")				
 	end
 	
-    --item_lib.return_items(e.self, e.other, e.trade)
+    item_lib.return_items(e.self, e.other, e.trade)
 end

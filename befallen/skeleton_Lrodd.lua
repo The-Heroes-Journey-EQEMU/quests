@@ -7,5 +7,5 @@ function event_trade(e)
 		eq.spawn2(36096,0,0,-88,-637,-66,254); -- NPC: Cmdr_Windstream
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -45,7 +45,7 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:SummonItem(9935); -- Item: Etched Songweavers Longsword
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- End of FILE Zone:freportn - Sten_Harnak

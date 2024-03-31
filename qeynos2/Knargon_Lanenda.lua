@@ -50,7 +50,7 @@ function event_trade(e)
 		e.other:Faction(262,-10,0); -- Guards of Qeynos
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:qeynos2  ID:2063 -- Knargon_Lanenda

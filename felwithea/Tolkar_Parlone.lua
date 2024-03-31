@@ -22,7 +22,7 @@ function event_trade(e)
 		e.other:Faction(239,-3,0); -- The Dead
 		e.other:AddEXP(1000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:felwithea  ID:61017 -- Tolkar_Parlone

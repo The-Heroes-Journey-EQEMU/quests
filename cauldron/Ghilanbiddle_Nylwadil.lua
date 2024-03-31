@@ -37,7 +37,7 @@ function event_trade(e)
 		e.other:AddEXP(18000);
 		eq.spawn2(70072, 0, 0, -2133.49, -727.05, 154.86, 0); -- NPC: #Captain Klunga
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function event_signal(e)

@@ -55,7 +55,7 @@ function event_trade(e)
 		e.self:Say("No this can't be true! Metala must have been kidnapped and forced to sign this letter!  You must find her and save her, " .. e.other:GetName() .. "! Please!  Take this necklace; it was a gift she gave me on our anniversary long ago.  Surely it will help her remember her true self and make her come to her senses.");
 		e.other:QuestReward(e.self, 0, 0, 0, 0, 77629, 1); -- Vhalen's Necklace
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE zone:southkarana ID:14058 -- Vhalen_Nostrolo.pl

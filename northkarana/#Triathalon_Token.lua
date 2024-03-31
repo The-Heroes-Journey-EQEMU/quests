@@ -15,5 +15,5 @@ function event_trade(e)
 		e.other:SummonItem(20695); -- Item: Warm Pulsing Treant Heart
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

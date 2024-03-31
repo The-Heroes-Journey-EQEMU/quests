@@ -24,5 +24,5 @@ function event_trade(e)
 		e.other:AddEXP(500);
 		e.other:SummonItem(eq.ChooseRandom(12162,12167)); -- Gnome Take (Good or Bad)
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

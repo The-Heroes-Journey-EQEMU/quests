@@ -60,7 +60,7 @@ function event_trade(e)
 		e.self:Say("Not too much farther. I spit on thee knave! Ehem. Take these. Go on! Make your fortunes. No one cares about Narris. I mean Sirran. Hah! See if I care what you think! Oh, when did you say you were [leaving]?");
 		e.other:SummonItem(20918); --Veeshan's Key (not the one purchased on island --1 which is 20919)
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_combat(e)

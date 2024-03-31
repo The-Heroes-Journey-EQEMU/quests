@@ -31,7 +31,7 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:AddEXP(16000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:northkarana  ID:13067 -- Mrysila

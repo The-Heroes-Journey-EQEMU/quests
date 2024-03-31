@@ -45,7 +45,7 @@ function event_trade(e)
 		e.other:Faction(309,3,0); -- Silent Fist Clan
 		e.other:AddEXP(400);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freportw  ID:9084 -- Reyia_Beslin 

@@ -12,5 +12,5 @@ function event_trade(e)
 		e.self:Emote("pockets the change and hands you the book. He says, 'Be careful with that now, it's very old. If it comes back all ripped up, ye owe me a beer.'");
 		e.other:QuestReward(e.self,0,0,0,0,18237,1000); -- Worn Coldain Tome
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

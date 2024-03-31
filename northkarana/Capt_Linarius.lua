@@ -35,5 +35,5 @@ function event_trade(e)
 		e.self:Say("You fool!!! You have slain a loyal defender of the guard!  Prepare to DIE!!!"); -- text made up
 		eq.attack(e.other:GetName());
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

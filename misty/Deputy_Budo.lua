@@ -47,5 +47,5 @@ function event_trade(e)
 	end		
 
 	
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

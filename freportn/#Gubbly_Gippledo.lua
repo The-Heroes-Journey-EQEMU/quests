@@ -28,5 +28,5 @@ function event_trade(e)
 		e.other:Faction(1709,2,0); -- Faction: Protectors of Gukta
 		e.other:AddEXP(4000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

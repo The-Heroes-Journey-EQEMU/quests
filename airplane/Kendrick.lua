@@ -35,7 +35,7 @@ function event_trade(e)
 		e.self:Say("Excellent! Fizzlethorpe blesses you with this gift.");
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

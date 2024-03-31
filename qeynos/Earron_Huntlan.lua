@@ -19,5 +19,5 @@ function event_trade(e)
 		e.other:Faction(229,-10,0); -- Faction: Coalition of Tradefolk
 		e.other:Faction(262,-10,0); -- Faction: Guards of Qeynos
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -20,7 +20,7 @@ function event_trade(e)
 	elseif(item_lib.check_turn_in(e.trade, {gold = 2})) then
 		e.self:CastSpell(213,e.other:GetID()); -- Spell: Cure Disease
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
   
 -- END of FILE Zone:erudnext

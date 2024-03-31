@@ -21,5 +21,5 @@ function event_trade(e)
 		e.other:SummonItem(18884); -- Item: Tattered Note
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -19,7 +19,7 @@ sub EVENT_SAY {
   
   
 sub EVENT_ITEM {
-	#plugin::return_items(\%itemcount); 
+	plugin::return_items(\%itemcount); 
 }#Done
 #END of FILE Zone:poknowledge  ID:202053 -- Cadelawin_Browan 
 

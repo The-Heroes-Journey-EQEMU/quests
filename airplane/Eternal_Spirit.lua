@@ -18,5 +18,5 @@ function event_trade(e)
 		e.other:SummonItem(57083); -- Item: Blessed Talisman of Wisdom
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

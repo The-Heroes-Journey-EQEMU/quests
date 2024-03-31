@@ -28,7 +28,7 @@ function event_trade(e)
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 22295})) then
 		e.self:Say(string.format("I see you have drawn the card that best represents a %s such as yourself. You lose!",e.other:Race()));
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freporte  ID:10153 -- Zenita_DRin

@@ -24,7 +24,7 @@ sub EVENT_ITEM {
     quest::exp(10000);
   }
 
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
 #End of File, Zone:skyshrine  NPC:114227 -- Commander_Leuz

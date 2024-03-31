@@ -13,5 +13,5 @@ function event_trade(e)
 		e.self:Say("May the valor of Mithaniel Marr burn brightly in our soul!");
 		e.self:CastSpell(213,e.other:GetID()); -- Spell: Cure Disease
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

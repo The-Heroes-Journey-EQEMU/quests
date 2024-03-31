@@ -16,7 +16,7 @@ function event_trade(e)
 		e.self:Say("Ok shaman, let us be off.");
 		eq.start(57);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 function event_waypoint_arrive(e)

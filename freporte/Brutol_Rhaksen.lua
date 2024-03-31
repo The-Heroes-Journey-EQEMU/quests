@@ -33,7 +33,7 @@ function event_trade(e)
 		e.other:SummonItem(19938); -- Dismal Rage BattleAxe
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freporte -- Brutol_Rhaksen

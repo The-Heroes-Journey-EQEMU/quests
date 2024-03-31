@@ -47,5 +47,5 @@ function event_trade(e)
 		e.self:Say("Amazing, " .. e.other:GetName() .. ". You have cleansed all of the Mistmoore Catacombs of the impeding Vampire attack, as well as defeated their leader, Valdoon Kel`Novar. I shall take this to Lord Tynkale now and explain everything to him. You have saved us from a potential travesty. Take this, it may aide you in your journeys.");
 		e.other:SummonItem(69956); --Token of Cleansing
 	end	
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

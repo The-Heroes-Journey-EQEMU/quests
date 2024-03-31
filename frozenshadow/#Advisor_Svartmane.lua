@@ -8,6 +8,6 @@ function event_trade(e)
 			e.other:SummonItem(54289); -- Item: 1st Piece of the Staff
 		end
 	end	
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 

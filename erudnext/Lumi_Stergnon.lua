@@ -42,7 +42,7 @@ function event_trade(e)
 		e.other:Faction(266, 2, 0);  -- High Council of Erudin
 		e.other:Faction(265, -2, 0);  -- Heretics
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:erudnext  ID:98045 -- Lumi_Stergnon

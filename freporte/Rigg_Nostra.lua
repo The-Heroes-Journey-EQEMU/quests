@@ -18,5 +18,5 @@ function event_trade(e)
 		e.other:Ding();
 		eq.spawn2(10000,0,0,-144,-456,-52,0); -- NPC: Orc_Centurion
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

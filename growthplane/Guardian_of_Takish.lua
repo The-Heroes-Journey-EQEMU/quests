@@ -27,7 +27,7 @@ function event_trade(e)
 		e.other:SummonItem(1223); -- Item: Symbol of Tunarian Worship
     e.other:AddEXP(2500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_signal(e)

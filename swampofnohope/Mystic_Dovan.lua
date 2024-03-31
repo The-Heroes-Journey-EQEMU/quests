@@ -47,5 +47,5 @@ function event_trade(e)
 		e.other:Faction(445, 1); --Scaled Mystics
 		e.other:Faction(441, 1); --Legion of Cabilis
 	end
-	--item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
+	item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
 end

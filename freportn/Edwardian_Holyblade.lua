@@ -48,7 +48,7 @@ function event_trade(e)
 		e.other:SummonItem(13554); -- Faded Purple Tunic
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freportn -- Edwardian_Holyblade

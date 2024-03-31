@@ -51,7 +51,7 @@ local item_lib = require("items");
 		e.other:Faction(223, -1); -- Faction: Circle of Unseen Hands
 		e.other:Faction(336, -1); -- Faction: Coalition of Tradefolk Underground
 	else
-		--item_lib.return_items(e.self, e.other, e.trade);
+		item_lib.return_items(e.self, e.other, e.trade);
 	end
 end
 

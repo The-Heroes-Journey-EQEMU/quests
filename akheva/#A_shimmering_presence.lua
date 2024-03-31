@@ -23,7 +23,7 @@ function event_trade(e)
 		e.other:Ding();
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 --End of File, Zone:akheva  NPC:179165 -- --A_shimmering_presence
 -------------------------------------------------------------------------------------------------

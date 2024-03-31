@@ -27,6 +27,6 @@ sub EVENT_ITEM {
     quest::summonitem(28792); #Beginner Stealth Manual
     quest::exp(500000);
   }
-  #plugin::return_items(\%itemcount);    
+  plugin::return_items(\%itemcount);    
 }#END of FILE Zone:poknowledge  ID:202049 -- Winon_Glahar 
 

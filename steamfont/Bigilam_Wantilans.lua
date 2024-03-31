@@ -16,5 +16,5 @@ function event_trade(e)
 		e.self:Say("Good! You found a mana battery!! Here is the heart I owe you. Bye bye now!");
 		e.other:SummonItem(69979); -- Item: Slain Vampire's Heart
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

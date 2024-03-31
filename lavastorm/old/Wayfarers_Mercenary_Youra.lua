@@ -17,5 +17,5 @@ function event_trade(e)
 			e.other:Faction(1020, -20);
 			e.other:Faction(1021, -20);
 		end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

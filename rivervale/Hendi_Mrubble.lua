@@ -24,7 +24,7 @@ local item_lib = require("items");
 		e.self:Say("May the swift and silent spirit of Fizzlethorpe Bristlebane smile upon your frail soul.");
 		eq.SelfCast(12);
 	else
-		--item_lib.return_items(e.self, e.other, e.trade);
+		item_lib.return_items(e.self, e.other, e.trade);
 	end
 end
 --END of FILE Zone:rivervale  ID:19067 -- Hendi_Mrubble 

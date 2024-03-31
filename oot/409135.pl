@@ -27,7 +27,7 @@ sub EVENT_ITEM {
     quest::ding();
     quest::say("Excellent! Here is your sword. I feel like I'm at home already!");
   }
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
  sub EVENT_SPAWN {

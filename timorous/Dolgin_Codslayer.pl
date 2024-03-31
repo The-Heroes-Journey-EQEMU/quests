@@ -18,5 +18,5 @@ sub EVENT_ITEM {
     quest::spawn2(96073,0,0,-2178,-11745,-0.63,126); # NPC: #Faydedar
     quest::depop_withtimer();
   }
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }

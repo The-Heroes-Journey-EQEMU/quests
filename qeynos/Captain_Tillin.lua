@@ -82,7 +82,7 @@ function event_trade(e)
 		e.other:AddEXP(500);
 		e.other:GiveCash(math.random(10),math.random(10),math.random(10),math.random(10));
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:qeynos  ID:1077 -- Captain_Tillin

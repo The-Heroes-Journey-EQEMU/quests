@@ -43,7 +43,7 @@ function event_trade(e)
 		e.other:AddEXP(200);
 		e.other:GiveCash(0,1,0,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19061 -- Marshal_Lanena

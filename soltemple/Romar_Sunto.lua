@@ -39,5 +39,5 @@ function event_trade(e)
 	elseif(item_lib.check_turn_in(e.trade, {gold = 50})) then -- 50 gold
 		e.other:SummonItem(18032); -- Tome of Tesh
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

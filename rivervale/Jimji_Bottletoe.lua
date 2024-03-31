@@ -34,7 +34,7 @@ function event_trade(e)
 		e.other:SummonItem(17124); -- Item: Mail Assembly Kit
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19047 -- Jimji_Bottletoe 

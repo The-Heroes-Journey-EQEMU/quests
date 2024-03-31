@@ -47,5 +47,5 @@ function event_item(e)
 		e.other:QuestReward(e.self, {itemid = 61099});
 		e.self:Say(string.format("Very good, %s, and here is your reward as promised.", e.other:GetCleanName()));
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

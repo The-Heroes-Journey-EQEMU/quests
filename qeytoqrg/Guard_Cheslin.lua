@@ -64,7 +64,7 @@ function event_trade(e)
 		e.other:AddEXP(1500);
 		e.other:GiveCash(8,11,2,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_waypoint_arrive(e)

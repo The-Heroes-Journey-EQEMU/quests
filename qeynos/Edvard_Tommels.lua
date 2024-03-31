@@ -31,5 +31,5 @@ function event_trade(e)
 		e.other:AddEXP(5000);
 		e.other:GiveCash(cp,sp,gp,pp);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

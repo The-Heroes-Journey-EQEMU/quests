@@ -13,7 +13,7 @@ function event_trade(e)
 		e.other:SummonItem("18843"); -- Sealed Letter (Letter To Seloxia)
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

@@ -27,7 +27,7 @@ function event_trade(e)
 		e.other:AddEXP(5000);
 		e.other:GiveCash(5,1,1,2);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19064 -- Rueppy_Kutpurse

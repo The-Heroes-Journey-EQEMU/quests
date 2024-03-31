@@ -16,5 +16,5 @@ function event_trade(e)
 		eq.unique_spawn(45131,0,0,-49,378,-39,128); --Guard_Helminth (45131)
 		e.other:QuestReward(e.self,0,0,0,0,2694);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

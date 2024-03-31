@@ -25,5 +25,5 @@ function event_trade(e)
 		eq.set_global("Ruathey","ghoul",0,"D30");
 		e.other:AddEXP(500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

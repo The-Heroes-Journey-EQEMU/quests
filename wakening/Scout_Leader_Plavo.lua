@@ -18,5 +18,5 @@ function event_trade(e)
 		eq.spawn2(119176,0,0,861.99,-3016.40,20,0); --Dark Disciple Master
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

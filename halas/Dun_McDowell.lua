@@ -30,7 +30,7 @@ function event_trade(e)
 		e.other:Faction(305,100); 	-- Rogues of the White Rose
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:halas  ID:29069 -- Dun_McDowell 

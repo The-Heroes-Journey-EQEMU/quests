@@ -46,7 +46,7 @@ function event_trade(e)
 		e.other:AddEXP(500);
   		e.other:SummonItem(22945); -- Item: Edge of the Proudfoot
 	else
-		--item_lib.return_items(e.self, e.other, e.trade);
+		item_lib.return_items(e.self, e.other, e.trade);
 	end
 end
 --END of FILE Zone:rivervale  ID:19025 -- Dalorio_Blistbobble

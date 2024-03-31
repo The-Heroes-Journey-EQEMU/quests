@@ -17,7 +17,7 @@ function event_trade(e)
 		e.other:AddEXP(2500);
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

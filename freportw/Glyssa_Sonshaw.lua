@@ -15,7 +15,7 @@ function event_trade(e)
 		e.other:Faction(330,-20,0); -- Faction: The Freeport Militia
 		e.other:AddEXP(1000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freportw -- Glyssa_Sonshaw

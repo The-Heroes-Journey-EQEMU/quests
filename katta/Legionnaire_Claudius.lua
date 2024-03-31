@@ -23,5 +23,5 @@ function event_trade(e)
 		eq.spawn2(160433,30,0,-2107,99,33,0); --#Legionnaire_Claudius (160433)
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -34,5 +34,5 @@ function event_trade(e)
 		e.self:Say("Here is your translation.");
 		e.other:SummonItem(18961); -- Translated Parchment
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -18,7 +18,7 @@ function event_trade(e)
 		e.other:Faction(362,-30,0); -- priests of marr
 		e.other:AddEXP(10000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF zone: freportw ID: NPC: Armorer_Dellin

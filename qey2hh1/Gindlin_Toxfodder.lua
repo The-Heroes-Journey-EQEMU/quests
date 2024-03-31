@@ -17,7 +17,7 @@ function event_trade(e)
 		e.other:SummonItem(14015); -- Item: Spider Venom
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE zone: ID:12011 -- Gindlin_Toxfodder.lua

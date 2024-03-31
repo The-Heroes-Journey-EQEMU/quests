@@ -39,5 +39,5 @@ function event_trade(e)
 		e.other:SummonItem(1224); -- Item: Chord of Vines
 		e.other:AddEXP(2500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -42,5 +42,5 @@ function event_trade(e)
 		e.self:Say("The glory of Rodcet Nife flows through your soul. May your body and soul live in righteous health.");
 		e.self:CastSpell(17,e.other:GetID()); -- Spell: Light Healing
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

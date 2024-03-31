@@ -15,5 +15,5 @@ function event_trade(e)
 		e.other:SummonItem(eq.ChooseRandom(15126,15126,15248)); -- Item(s): Spell: Inspire Fear (15126), Spell: Inspire Fear (15126), Spell: Ward Summoned (15248)
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

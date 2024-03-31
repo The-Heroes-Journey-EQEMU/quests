@@ -54,7 +54,7 @@ function event_trade(e)
 		e.other:Ding();
 		e.other:SummonItem(17918); -- Item: Testament of Vanear
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_death_complete(e)

@@ -39,7 +39,7 @@ sub EVENT_ITEM {
       quest::depop_withtimer();
     }
   }
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
 #End of File, Zone:skyshrine  NPC:114002 -- #Ralgyn

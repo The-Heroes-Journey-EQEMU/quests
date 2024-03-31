@@ -45,7 +45,7 @@ sub EVENT_ITEM {
       }
     }
   }
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
 #End of File, Zone:wakening  NPC:119104 -- Rolandal

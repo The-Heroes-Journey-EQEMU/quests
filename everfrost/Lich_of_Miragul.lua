@@ -12,7 +12,7 @@ function event_trade(e)
 		eq.spawn2(30094, 0, 0, e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading()); -- Spawn Miragul
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:everfrost  ID:3233 -- Lich_of_Miragul

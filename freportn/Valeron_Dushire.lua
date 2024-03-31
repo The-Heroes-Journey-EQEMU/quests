@@ -41,7 +41,7 @@ function event_trade(e)
 		e.other:SummonItem(13947); -- Brilliant Sword of Faith
 		e.other:Ding();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF zone: freportn ID: 8077 NPC: Valeron_Dushire

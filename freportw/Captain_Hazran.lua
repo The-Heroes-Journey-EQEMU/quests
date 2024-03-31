@@ -22,7 +22,7 @@ function event_trade(e)
 		e.other:AddEXP(28000); --14000 xp per belt
 		e.other:GiveCash(0,0,8,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freportw  ID:9109 -- Captain_Hazran

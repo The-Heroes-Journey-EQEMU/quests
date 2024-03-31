@@ -171,5 +171,5 @@ function event_trade(e)
     e.other:SummonItem(16623); -- Item: Spell: Electrical Charge
     eq.set_global("wiz_epic_pre","4",5,"F"); -- Test of Research complete
   end
-  --item_lib.return_items(e.self, e.other, e.trade);
+  item_lib.return_items(e.self, e.other, e.trade);
 end

@@ -42,5 +42,5 @@ sub EVENT_ITEM {
   }
   quest::emote("holds the canine in his palm."); #These next two lines are most likely if you don't turn in enough teeth.
   quest::say("Good work, but you will have to slay more than this to earn your wages.");
-  #plugin::return_items(\%itemcount)
+  plugin::return_items(\%itemcount)
 } 

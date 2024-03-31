@@ -42,7 +42,7 @@ function event_trade(e)
 		until Tumpy_Tonic == 0
 	end
 
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freportn -- Groflah_Steadirt

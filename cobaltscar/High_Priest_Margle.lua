@@ -17,5 +17,5 @@ function event_trade(e)
 		e.self:Say("Tiknonmanin awaits your challenge.");
 		eq.spawn2(117094,0,0,318,741,-22,180); --Tiknonmanin
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)	
+	item_lib.return_items(e.self, e.other, e.trade)	
 end

@@ -38,7 +38,7 @@ function event_trade(e)
 		e.other:AddEXP(750);
 		e.other:SummonItem(5376, 5); -- Item: Holy Partisan of Underfoot
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

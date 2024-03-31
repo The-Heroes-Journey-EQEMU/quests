@@ -53,5 +53,5 @@ function event_trade(e)
 		eq.set_global("shadowknight_epic","5",5,"F");
 		e.other:SummonItem(11407); -- first version of Sheathed Innoruuk's Voice
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end

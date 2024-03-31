@@ -33,5 +33,5 @@ sub EVENT_ITEM {
     quest::settimer(1,6);
     quest::summonitem(67018); # Item: Spectral Memory
     }
-    #plugin::return_items(\%itemcount); # return unused items
+    plugin::return_items(\%itemcount); # return unused items
 }

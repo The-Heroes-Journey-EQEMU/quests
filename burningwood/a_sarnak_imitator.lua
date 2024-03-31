@@ -69,5 +69,5 @@ function event_trade(e)
     e.other:SummonItem(57918); -- Item: Tattered Illegible Tome
     eq.set_global("EnchPre","2",5,"F");
   end
-  --item_lib.return_items(e.self, e.other, e.trade)
+  item_lib.return_items(e.self, e.other, e.trade)
 end

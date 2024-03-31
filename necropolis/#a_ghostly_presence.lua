@@ -11,7 +11,7 @@ function event_trade(e)
 		eq.spawn2(123194,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(),0):AddToHateList(e.other,1); --#Garzicor`s_Corpse (123194)
 		eq.depop();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_timer(e)

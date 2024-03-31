@@ -16,7 +16,7 @@ function event_trade(e)
 		eq.unique_spawn(85226,0,0,e.self:GetX() + 5,e.self:GetY(),e.self:GetZ(),e.self:GetHeading()); -- Bruiser Noz
 		eq.set_timer("emote", 10000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
+	item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
 end
 
 function event_timer(e)

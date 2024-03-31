@@ -26,7 +26,7 @@ function event_trade(e)
 		e.other:SummonItem(eq.ChooseRandom(2161, 2162, 2163, 2164, 2165, 2167, 2168, 2169, 2170, 2171, 2172)); -- Item(s): Large Raw-hide Skullcap (2161)
 	end
 
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:grobb  ID:2548 -- Hergor

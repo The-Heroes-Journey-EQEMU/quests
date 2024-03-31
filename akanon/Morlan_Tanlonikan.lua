@@ -50,5 +50,5 @@ function event_trade(e)
 		e.self:Say("Here is that dagger I promised you " .. e.other:GetName() .. "!");
 		e.other:SummonItem(9110); 	-- Gemmed Shadowwalkers Dagger
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

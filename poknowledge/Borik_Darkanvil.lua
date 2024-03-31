@@ -30,6 +30,6 @@ function event_trade(e)
 			e.self:Say("This is truly amazing. I've never seen a metal like this: it is almost alive. It appears similar to some of the alloys that we have seen from the Legion, but this is like nothing I have ever seen. It suggest that the leader has been through the portal. I am afraid it will not be of any use to you in its current state, the metal is attuned to a single person. I believe the resonance can be changed, so you may use it. Speak to Navtil. He will tell you what you need to do. I believe he has traveled through the portal for some metallurgical research in Discord.");
 			e.other:SummonItem(9954); -- Returns Aegis of Chaotic Worship to player
 		end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 			

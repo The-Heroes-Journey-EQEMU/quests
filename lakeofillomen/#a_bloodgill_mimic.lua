@@ -19,5 +19,5 @@ function event_trade(e)
 		e.self:Say("I thank you. How terrible it must be to still remain after such time. You must possess some measure of power to return this to me. I believe Aida could benefit from the help of one such as yourself.");
 		eq.set_global("EnchPre","1",5,"F");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

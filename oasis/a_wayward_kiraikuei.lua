@@ -24,7 +24,7 @@ function event_trade(e)
 			e.other:SummonItem(9599); -- Item: Pulsating Blue Metal Sphere
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------

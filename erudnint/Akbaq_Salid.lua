@@ -53,7 +53,7 @@ function event_trade(e)
 			e.other:SummonItem(2574); -- Item: Scaled Robe of the Elder Serpent
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
  
 -- END of FILE Zone:erudnint  ID:23077 -- Akbaq_Salid

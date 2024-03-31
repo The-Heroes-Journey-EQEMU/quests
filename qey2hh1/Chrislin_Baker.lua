@@ -20,7 +20,7 @@ function event_trade(e)
 		e.other:Ding();
 		eq.spawn2(12172,0,0,-11570,878,14,270); -- NPC: Thrackin_Griften
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF Zone: qey2hh1 ID: 12074 NPC: Chrislin_Baker

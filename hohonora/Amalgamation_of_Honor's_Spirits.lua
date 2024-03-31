@@ -23,5 +23,5 @@ function event_trade(e)
 		-- e.other:SummonItem(?????); need to summon Cloak of Ethereal Symbols when item imported
 		e.other:Message(15, "A warm breeze blows through your body, and the Amalgam glows in a warm light. The Amalgam echoes in your mind, 'You have done quite well. Their souls are now part of us. We thank you. This is a small token of our gratitude. Wear it with pride as you have earned it. The battle rages on, remember that your Honor is reflected in what you do as well as what you have done. Farewell " .. e.other:GetName() .. ".");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

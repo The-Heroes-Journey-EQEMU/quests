@@ -24,5 +24,5 @@ function event_trade(e)
 		e.other:Faction(441, 10); --Legion of Cabilis
 		e.other:QuestReward(e.self,{items = {17035,5143},exp =100000}); --Give the player the Iron Cudgel of the Mystic and  A Skull Chest (C.O.R.N. Chest) to combine Tiny Glowing Skulls in
 	end
-	--item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
+	item_lib.return_items(e.self, e.other, e.trade) --return items if not the ones required
 end

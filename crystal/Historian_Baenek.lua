@@ -39,5 +39,5 @@ function event_trade(e)
 		eq.spawn2(121088,0,0,-308,-151,-554,0); -- NPC: Ghost_of_Burdael
 		eq.depop_with_timer();
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

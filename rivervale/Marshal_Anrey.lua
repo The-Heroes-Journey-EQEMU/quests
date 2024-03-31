@@ -41,7 +41,7 @@ function event_trade(e)
 		e.other:Faction(292,7,0); -- Faction: Merchants of Rivervale
 		e.other:Faction(334,-7,0); -- Faction: Dreadguard Outer
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:rivervale  ID:19059 -- Marshal_Anrey

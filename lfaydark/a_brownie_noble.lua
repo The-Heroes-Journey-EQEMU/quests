@@ -23,5 +23,5 @@ function event_trade(e)
 		e.other:AddEXP(10000);
 		e.other:SummonItem(52957); -- Item: Purifying Crystal Fragment
 	end	
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

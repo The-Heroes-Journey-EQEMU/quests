@@ -16,7 +16,7 @@ function event_trade(e)
 		eq.set_global("invest_badge","second_suspect",3,"F");
 		eq.unique_spawn(1201,0,0,-414,-11,-25,0); -- NPC: #Willie_Garrote
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_signal(e)

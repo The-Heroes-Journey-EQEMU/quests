@@ -7,5 +7,5 @@ function event_trade(e)
 		e.other:Faction(458,10); -- Faction: Geonid Collective
 		e.other:QuestReward(e.self,0,0,0,0,1701,0);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

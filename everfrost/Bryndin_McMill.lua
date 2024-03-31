@@ -12,7 +12,7 @@ function event_trade(e)
 		e.other:Faction(320,1,0); -- Wolves of the North
 		e.other:AddEXP(150);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:everfrost  ID:30065, 30115 -- Bryndin_McMill

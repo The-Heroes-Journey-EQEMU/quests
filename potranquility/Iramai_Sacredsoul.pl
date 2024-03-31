@@ -53,5 +53,5 @@ sub EVENT_ITEM
       quest::summonitem(29302);#Purified Bubonian Bile
       quest::exp(50000);
    }
-   #plugin::return_items(\%itemcount); #return items if not the ones required
+   plugin::return_items(\%itemcount); #return items if not the ones required
 }#END of FILE Zone:potranquility ID:203432 --Iramai_Sacredsoul.pl 

@@ -27,7 +27,7 @@ function event_trade(e)
 			e.other:GiveCash(0,0,20,3);
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- End of FILE Zone:erudnext  ID:98046 -- Rarnan_Lapice

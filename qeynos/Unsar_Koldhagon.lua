@@ -18,5 +18,5 @@ function event_trade(e)
 		e.other:Faction(296,-5,0); -- Faction: Opal Darkbriar
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

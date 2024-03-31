@@ -35,5 +35,5 @@ function event_trade(e)
 		e.other:GiveCash(math.random(10),math.random(10),math.random(10),math.random(10));
 		eq.spawn2(12181,0,0,-8000,-3400,23,205.8); -- NPC: Draze_Slashyn
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

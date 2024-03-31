@@ -27,7 +27,7 @@ sub EVENT_ITEM {
     #$mobnpc->AddToHateList($npc,1); # she attacks Shmendrik
   }
 
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
 sub EVENT_SIGNAL {

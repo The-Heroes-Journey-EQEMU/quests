@@ -31,7 +31,7 @@ function event_trade(e)
 		e.other:Faction(281,10,0); -- Faction: Knights of Truth
 		e.other:AddEXP(2000);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 function event_signal(e)

@@ -24,7 +24,7 @@ function event_trade(e)
 		e.other:Faction(267,15,0);  --High Guard of Erudin		
 		e.other:AddEXP(100);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:erudnint  ID:24040 -- Ghanlin_Skyphire

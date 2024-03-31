@@ -38,7 +38,7 @@ sub EVENT_ITEM {
     quest::faction(1504,1); # Magus Conlegium
   }
 
-  #plugin::return_items(\%itemcount); # return unused items
+  plugin::return_items(\%itemcount); # return unused items
 }
 
 #End of File, Zone:sseru  NPC:159422 -- Euzan_Jurek

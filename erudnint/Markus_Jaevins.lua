@@ -48,7 +48,7 @@ function event_trade(e)
 		e.other:Faction(265,-30,0); -- heretics
 		e.other:AddEXP(2500);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- EOF zone: erudnint ID: 23037 npc: Markus_Jaevins

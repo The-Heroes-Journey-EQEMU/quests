@@ -38,7 +38,7 @@ function event_trade(e)
 		e.self:Say("Well I suppose I do owe you the information you had come here seeking. Unfortunately, I do not know much more than what is in this book already. The other references I have found do speak of another [" .. eq.say_link("disciple of Kaiaren") .. "].");	
 		eq.set_global("monk_epic","3",5,"F");		
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- End of File

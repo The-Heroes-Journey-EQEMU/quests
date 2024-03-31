@@ -18,5 +18,5 @@ function event_trade(e)
 			e.other:SummonItem(69954); --Token of Chivalry
 		end
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

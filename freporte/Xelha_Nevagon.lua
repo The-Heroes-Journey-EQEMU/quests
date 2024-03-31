@@ -47,7 +47,7 @@ function event_trade(e)
 	else
 		item_lib.return_items(e.self, e.other, e.trade);
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freporte -- Xelha_Nevagon.pl

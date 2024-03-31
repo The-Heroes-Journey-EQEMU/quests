@@ -31,5 +31,5 @@ function event_trade(e)
 	 	e.self:Say("Well dat be some of da eyeballses I askeded for. But I you needs ta give me three for da shiny.");
 		e.other:SummonItem(10307); -- Item: Fire Beetle Eye
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end

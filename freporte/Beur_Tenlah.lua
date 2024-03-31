@@ -21,7 +21,7 @@ function event_trade(e)
 		e.other:AddEXP(15);
 		eq.signal(10107,1); -- Signal to Harkin Duskfoot
 	end
-	--item_lib.return_items(e.self, e.other, e.trade);
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 -- END of FILE Zone:freporte  ID:10106 -- Beur_Tenlah

@@ -26,7 +26,7 @@ function event_trade(e)
 		eq.set_global("Fatestealer_pl","1",5,"F");
 		eq.set_global("Fatestealer_gem","1",5,"F");
 	end
-	--item_lib.return_items(e.self, e.other, e.trade)
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -------------------------------------------------------------------------------------------------
