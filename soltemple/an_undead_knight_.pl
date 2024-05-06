@@ -29,7 +29,7 @@ sub EVENT_ITEM {
     } elsif (plugin::check_handin(\%itemcount, 12288 => 1, 12287 => 1, 9023 => 1)) {
         quest::say("Well done, $name, here is your reward.");
         quest::summonitem(3142); # Darkforge Vambraces
-    } elseif (plugin::check_handin(\%itemcount, 12290 => 1, 12289 => 1, 19075 => 1)) {
+    } elsif (plugin::check_handin(\%itemcount, 12290 => 1, 12289 => 1, 19075 => 1)) {
         quest::say("Well done, $name, here is your reward.");
         quest::summonitem(3143); # Darkforge Bracer
     } else {
