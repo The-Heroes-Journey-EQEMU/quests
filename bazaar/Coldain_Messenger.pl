@@ -79,7 +79,7 @@ sub EVENT_SAY {
 sub EVENT_ITEM {
     if (plugin::check_handin_fixed(\%itemcount, $token_item => 1)) {
         foreach my $target (@target_list) {
-            plugin::set_subflag($client, $stage_key, $target, 1);
+            plugin::SetSubFlag($client, $stage_key, $target, 1);
         }
 
         plugin::NPCTell("You want to call in a favor? Fine. Going forward, you will be able to access the $stage_desc.");
@@ -124,7 +124,7 @@ sub EVENT_ITEM {
 
         if ($item1_flag && $item2_flag && $item3_flag && $item4_flag) {            
             foreach my $target (@target_list) {
-                plugin::set_subflag($client, $stage_key, $target, 1);
+                plugin::SetSubFlag($client, $stage_key, $target, 1);
             }
 
             plugin::NPCTell("Excellent, you have collected all of the items which I require. Going forward, you will be able to access the $stage_desc.");

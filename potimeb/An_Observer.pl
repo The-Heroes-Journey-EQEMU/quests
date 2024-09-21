@@ -9,15 +9,15 @@ sub EVENT_SAY {
             quest::say("I have been watching you... since the great before...");
             quest::emote("An Observer beams a smile at you.");
             quest::say("Did you know? Your great deeds are [" . quest::saylink("fabled") . "] even among my kind.");
-            plugin::set_subflag($client, 'FNagafen', 'Quarm', 1);
+            plugin::SetSubFlag($client, 'FNagafen', 'Quarm', 1);
         } else {
             quest::say("Did you know? Your great deeds are [" . quest::saylink("fabled") . "] even among my kind.");
         }
     }
 
     if ($text =~ /fabled/i) {
-        plugin::set_subflag($client, 'FNagafen', 'Quarm', 1);
-        plugin::set_subflag($client, 'GoD', 'Saryrn');
+        plugin::SetSubFlag($client, 'FNagafen', 'Quarm', 1);
+        plugin::SetSubFlag($client, 'GoD', 'Saryrn');
         quest::say("Indeed. I remember one particularly harrowing battle...");
     }
 }

@@ -224,7 +224,7 @@ sub list_stage_prereq {
         
         if ($prereqs && @$prereqs ne 'Disabled') {
             foreach my $objective (@$prereqs) {
-                my $completed = get_subflag($client, $target_stage, $objective) ? "Completed" : "Not Completed";
+                my $completed = GetSubflag($client, $target_stage, $objective) ? "Completed" : "Not Completed";
                 $objective =~ s/\b(\w)/\U$1/g;
                 plugin::YellowText("$objective: $completed");
             }
@@ -278,17 +278,14 @@ sub get_next_stage {
 # This is stored as a serialized hash using plugin::SerializeHash and plugin::DeserializeHash
 # set_subflag does all the heavy lifting of setting flags
 
-sub get_subflag {
+sub GetSubflag {
     my ($client, $stage, $objective) = @_;
     $objective = lc($objective);  # Normalize the objective to lowercase
 
-    my %original_flag;
+    my $progress_flag = GetProgressFlag($client, $stage);
 
-    if ($client->IsSeasonal()) {
-        %original_flag = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-seasonal-progress-flag-$stage"));
-    } else {
-        %original_flag = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-progress-flag-$stage"));
-    }
+    # Deserialize the flag into a hash
+    my %original_flag = plugin::DeserializeHash($progress_flag);
 
     # Create a new hash with all keys normalized to lowercase
     my %normalized_flag;
@@ -300,24 +297,25 @@ sub get_subflag {
     return $normalized_flag{$objective};
 }
 
-#usage plugin::set_subflag($client, 'Rok', 'Lord Nagafen', 1); flags $client for Lord Nagafen in RoK stage.
-sub set_subflag {
+sub SetSubflag {
     my ($client, $stage, $objective, $value) = @_;
-    $value //= 1; # Default value is 1 if not otherwise defined
+    $value //= 1;  # Default value is 1 if not otherwise defined
     $objective = lc($objective);  # Normalize the objective
 
     # Check if the stage is valid
     return 0 unless exists $VALID_STAGES{$stage};
 
+    # Get the current progress flag using the new getter
+    my $progress_flag = GetProgressFlag($client, $stage);
+
     # Deserialize the current account progress into a hash
-    my %account_progress   = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-progress-flag-$stage"));
-    my %character_progress = plugin::DeserializeHash($client->GetBucket("progress-flag-$stage"));
+    my %account_progress = plugin::DeserializeHash($progress_flag);
 
+    # Update the progress for the specific objective
     $account_progress{$objective} = $value;
-    $character_progress{$objective} = $value;
 
-    quest::set_data($client->AccountID() . "-progress-flag-$stage", plugin::SerializeHash(%account_progress));
-    $client->SetBucket("progress-flag-$stage", plugin::SerializeHash(%character_progress));
+    # Set the updated flag using the new setter
+    SetProgressFlag($client, plugin::SerializeHash(%account_progress));
 
     if ($stage eq 'RoK') {
         plugin::BlueText("Your mind flashes with recollections of savage lands; dense jungles, desolate swamps, and fiery wastes.");
@@ -332,7 +330,7 @@ sub set_subflag {
         plugin::BlueText("You sense a disturbance in the planes; a power grows near... again.");
     }
     elsif ($stage eq 'GoD') {
-        plugin::BlueText("You remember an island lost to the mists, conqurered and shattered, yet its people's will remains unbroken.");
+        plugin::BlueText("You remember an island lost to the mists, conquered and shattered, yet its people's will remains unbroken.");
     }
     elsif ($stage eq 'OoW') {
         plugin::BlueText("You recall the Overlord of the invasion, sitting in his throne as he surveys the worlds he regards as prey.");
@@ -342,8 +340,7 @@ sub set_subflag {
     }
 
     # Check if the objective value has changed
-    if ((!exists $account_progress{$objective} || $account_progress{$objective} != $value) ||
-        (plugin::IsSeasonal($client) && (!exists $character_progress{$objective} || $character_progress{$objective} != $value))) {
+    if ((!exists $account_progress{$objective} || $account_progress{$objective} != $value)) {
 
         # Send messages only if there was a change
         plugin::YellowText("You have gained a progression flag!");
@@ -373,17 +370,17 @@ sub set_subflag {
 
     if ($client->IsSeasonal() && is_stage_complete_2($client, $stage) && !$client->GetBucket("season-$stage-complete")) {      
         if ($stage eq 'RoK') {
-            plugin::AddTitleFlag(100); # , Hero of Antonica
+            plugin::AddTitleFlag(100); # Hero of Antonica
         }
         elsif ($stage eq 'SoV') {
-            plugin::AddTitleFlag(101); # , Hero of Kunark
+            plugin::AddTitleFlag(101); # Hero of Kunark
             $client->KeyRingAdd(20884);
         }
         elsif ($stage eq 'SoL') {
-            plugin::AddTitleFlag(102); # , Hero of Velious
+            plugin::AddTitleFlag(102); # Hero of Velious
         }
         elsif ($stage eq 'PoP') {
-            plugin::AddTitleFlag(103); # , Hero of Luclin            
+            plugin::AddTitleFlag(103); # Hero of Luclin            
             $client->KeyRingAdd(22198);
         }
 
@@ -408,26 +405,20 @@ sub is_stage_complete {
     }
 
     if (plugin::IsSeasonal($client) || plugin::MultiClassingEnabled()) {
-        #quest::debug("is_stage_complete going down seasonal bramch");
-        if (is_time_locked($stage)) {            
+        if (is_time_locked($stage)) {
             return 0;
         }
     }
 
+    # Get the current progress flag using the new getter
+    my $progress_flag = GetProgressFlag($client, $stage);
+
+    # Deserialize and then convert keys to lowercase
+    my %raw_objective_progress = plugin::DeserializeHash($progress_flag);
+    my %objective_progress = map { lc($_) => $raw_objective_progress{$_} } keys %raw_objective_progress;
+
     # Check prerequisites
     foreach my $prerequisite (@{$STAGE_PREREQUISITES{$stage}}) {
-        # Deserialize and then convert keys to lower-case
-        my %raw_objective_progress;
-
-        if (plugin::IsSeasonal($client)) {
-            %raw_objective_progress = plugin::DeserializeHash($client->GetBucket("progress-flag-$stage"));
-        } else {
-            %raw_objective_progress = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-progress-flag-$stage"));
-        }        
-
-        my %objective_progress = map { lc($_) => $raw_objective_progress{$_} } keys %raw_objective_progress;
-
-        # Convert prerequisite to lowercase
         my $lc_prerequisite = lc($prerequisite);
 
         unless ($objective_progress{$lc_prerequisite}) {
@@ -456,20 +447,15 @@ sub is_stage_complete_2 {
         return 0;
     }
 
+    # Get the current progress flag using the new getter
+    my $progress_flag = GetProgressFlag($client, $stage);
+
+    # Deserialize and then convert keys to lowercase
+    my %raw_objective_progress = plugin::DeserializeHash($progress_flag);
+    my %objective_progress = map { lc($_) => $raw_objective_progress{$_} } keys %raw_objective_progress;
+
     # Check prerequisites
     foreach my $prerequisite (@{$STAGE_PREREQUISITES{$stage}}) {
-        # Deserialize and then convert keys to lower-case
-        my %raw_objective_progress;
-
-        if (plugin::IsSeasonal($client)) {
-            %raw_objective_progress = plugin::DeserializeHash($client->GetBucket("progress-flag-$stage"));
-        } else {
-            %raw_objective_progress = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-progress-flag-$stage"));
-        }        
-
-        my %objective_progress = map { lc($_) => $raw_objective_progress{$_} } keys %raw_objective_progress;
-
-        # Convert prerequisite to lowercase
         my $lc_prerequisite = lc($prerequisite);
 
         unless ($objective_progress{$lc_prerequisite}) {
@@ -485,27 +471,6 @@ sub is_stage_complete_2 {
     # If all prerequisites are met
     #quest::debug("All prerequisites for stage $stage have been met");
     return 1;
-}
-
-sub delete_all_progress {
-    my ($client) = @_;
-
-    # Assuming you have a list of all valid stages stored in an array or directly in %VALID_STAGES
-    foreach my $stage (keys %VALID_STAGES) {
-        # Construct the key for the data store
-        my $key = $client->AccountID() . "-progress-flag-$stage";
-        
-        # Delete the data associated with this key
-        quest::delete_data($key);
-        
-        # Optional: Log or inform the operation
-        quest::debug("Deleted progress flag data for stage: $stage");
-    }
-
-    delete_all_flags($client);
-
-    # Notify client if necessary
-    $client->Message(15, "All your progression flags have been reset.");  # Message 15 is typically a yellow text in EQ
 }
 
 sub is_time_locked {
@@ -686,101 +651,101 @@ sub ConvertFlags {
         # Kunark
         if (!is_stage_complete($client, 'RoK')) {
             if ($expansion > 2 || quest::get_data($client->AccountID() . "nag")) {
-                set_subflag($client, 'RoK', 'Lord Nagafen', 1);
+                SetSubFlag($client, 'RoK', 'Lord Nagafen', 1);
             }
 
             if ($expansion > 2 || quest::get_data($client->AccountID() . "vox")) {
-                set_subflag($client, 'RoK', 'Lady Vox', 1);
+                SetSubFlag($client, 'RoK', 'Lady Vox', 1);
             }
         }
         
         # Velious
         if (!is_stage_complete($client, 'SoV')) {
             if ($expansion > 3 || quest::get_data($client->AccountID() . "trak")) {
-                set_subflag($client, 'SoV', 'Trakanon', 1);
+                SetSubFlag($client, 'SoV', 'Trakanon', 1);
             }
 
             if ($expansion > 3 || quest::get_data($client->AccountID() . "tal")) {
-                set_subflag($client, 'SoV', 'Talendor', 1);
+                SetSubFlag($client, 'SoV', 'Talendor', 1);
             }
 
             if ($expansion > 3 || quest::get_data($client->AccountID() . "goren")) {
-                set_subflag($client, 'SoV', 'Gorenaire', 1);
+                SetSubFlag($client, 'SoV', 'Gorenaire', 1);
             }
 
             if ($expansion > 3 || quest::get_data($client->AccountID() . "sev")) {
-                set_subflag($client, 'SoV', 'Severilous', 1);
+                SetSubFlag($client, 'SoV', 'Severilous', 1);
             }
         }
 
         # Luclin
         if (!is_stage_complete($client, 'SoL')) {
             if ($expansion > 14 || quest::get_data($client->AccountID() . "sky")) {
-                set_subflag($client, 'SoL', 'Lord Yelinak', 1);
+                SetSubFlag($client, 'SoL', 'Lord Yelinak', 1);
             }
 
             if ($expansion > 14 || quest::get_data($client->AccountID() . "sleepers")) {
-                set_subflag($client, 'SoL', 'Tukaarak the Warder', 1);
+                SetSubFlag($client, 'SoL', 'Tukaarak the Warder', 1);
             }
 
             if ($expansion > 14 || quest::get_data($client->AccountID() . "sle")) {
-                set_subflag($client, 'SoL', 'Nanzata the Warder', 1);
+                SetSubFlag($client, 'SoL', 'Nanzata the Warder', 1);
             }
 
             if ($expansion > 14 || quest::get_data($client->AccountID() . "slee")) {
-                set_subflag($client, 'SoL', 'Ventani the Warder', 1);
+                SetSubFlag($client, 'SoL', 'Ventani the Warder', 1);
             }
 
             if ($expansion > 14 || quest::get_data($client->AccountID() . "sleep")) {
-                set_subflag($client, 'SoL', 'Hraashna the Warder', 1);
+                SetSubFlag($client, 'SoL', 'Hraashna the Warder', 1);
             }
 
             if ($expansion > 14 || quest::get_data($client->AccountID() . "wuo")) {
-                set_subflag($client, 'SoL', 'Wuoshi', 1);
+                SetSubFlag($client, 'SoL', 'Wuoshi', 1);
             }
 
             if ($expansion > 14 || quest::get_data($client->AccountID() . "kla")) {
-                set_subflag($client, 'SoL', 'Klandicar', 1);
+                SetSubFlag($client, 'SoL', 'Klandicar', 1);
             }
 
             if ($expansion > 14 || quest::get_data($client->AccountID() . "zla")) {
-                set_subflag($client, 'SoL', 'Zlandicar', 1);
+                SetSubFlag($client, 'SoL', 'Zlandicar', 1);
             }
         }
 
         # Planes of Power
         if (!is_stage_complete($client, 'PoP')) {
             if ($expansion > 19 || quest::get_data($client->AccountID() . "deep")) {
-                set_subflag($client, 'PoP', 'Thought Horror Overfiend', 1);
+                SetSubFlag($client, 'PoP', 'Thought Horror Overfiend', 1);
             }
 
             if ($expansion > 19 || quest::get_data($client->AccountID() . "akh")) {
-                set_subflag($client, 'PoP', 'The Insanity Crawler', 1);
+                SetSubFlag($client, 'PoP', 'The Insanity Crawler', 1);
             }
 
             if ($expansion > 19 || quest::get_data($client->AccountID() . "griegs")) {
-                set_subflag($client, 'PoP', 'Grieg Veneficus', 1);
+                SetSubFlag($client, 'PoP', 'Grieg Veneficus', 1);
             }
 
             if ($expansion > 19 || quest::get_data($client->AccountID() . "ssraone")) {
-                set_subflag($client, 'PoP', 'Xerkizh the Creator', 1);
+                SetSubFlag($client, 'PoP', 'Xerkizh the Creator', 1);
             }
 
             if ($expansion > 19 || quest::get_data($client->AccountID() . "ssratwo")) {
-                set_subflag($client, 'PoP', 'Emperor Ssraeshza', 1);
+                SetSubFlag($client, 'PoP', 'Emperor Ssraeshza', 1);
             }
         }
 
         # Gates of Discord
         if (!is_stage_complete($client, 'GoD')) {
             if ($expansion >= 20 || quest::get_data($client->AccountID() . "-saryrn-flag") || quest::get_data($client->AccountID() . "-quarm-kill")) {
-                set_subflag($client, 'GoD', 'Saryrn', 1);
+                SetSubFlag($client, 'GoD', 'Saryrn', 1);
             }
         }
 
         # Fabled Nagafen
         if (!is_stage_complete($client, 'FNagafen') && $expansion >= 20) {
-            set_subflag($client, 'FNagafen', 'Quarm', 1);
+            SetSubFlag($client, 'FNagafen', 'Quarm', 1);
         }
 
         UpdateRaceClassLocks($client);
@@ -896,67 +861,45 @@ sub handle_killed_merit {
     # No-Op this. All flagging handled through hail mob (Gross tbh)
 }
 
-sub move_startzone {
-    my $client = plugin::val('$client');
-    my $s_zone = $client->GetStartZone();
-    if ($s_zone == 9) {
-        quest::movepc(9, -60.9, -61.5, -24.9); # Zone: freportw
+sub GetProgressFlag {
+    my $client    = shift || plugin::val('$client');
+    my $stage     = shift;
+    my $season_id = plugin::GetSeasonID();
+    my $seasonal  = plugin::IsSeasonal($client);
+
+    if ($seaonal && $season_id) {
+        # Get the Serialized account flag
+        my $account_flag = quest::get_data($client->AccountID() . "-season-$season_id-progress-flag-$stage");
+        my $character_flag = $client->GetBucket("progress-flag-$stage");
+
+        if (length($character_flag) > length($account_flag)) {
+            $account_flag = $character_flag;
+            quest::set_data($client->AccountID() . "-season-$season_id-progress-flag-$stage", $character_flag);           
+        }
+
+        return $account_flag;        
+    } else {
+        return quest::get_data($client->AccountID() . "-progress-flag-$stage");
     }
-    elsif ($s_zone == 19) {
-        quest::movepc(19, -98.4, 11.5, 3.1); # Zone: rivervale
+}
+
+sub SetProgressFlag {
+    my ($client, $flag_value) = @_;
+    my $season_id = plugin::GetSeasonID();
+    my $seasonal  = plugin::IsSeasonal($client);
+
+    if ($seasonal && $season_id) {
+        # Set the Serialized account flag for the current season
+        quest::set_data($client->AccountID() . "-season-$season_id-progress-flag-$stage", $flag_value);
+
+        my $regular_flag = quest::get_data($client->AccountID() . "-progress-flag-$stage");
+
+        if (length($flag_value) > length ($regular_flag)) {
+            # also set the regular flag
+            quest::set_data($client->AccountID() . "-progress-flag-$stage", $flag_value);
+        }
+    } else {
+        # Set the regular progress flag
+        quest::set_data($client->AccountID() . "-progress-flag-$stage", $flag_value);
     }
-    elsif ($s_zone == 24) {
-        quest::movepc(24, -309.8, 109.6, 23.1); # Zone: erudnext
-    }
-    elsif ($s_zone == 25) {
-        quest::movepc(25, -965.3, 2434.5, 5.6); # Zone: nektulos
-    }
-    elsif ($s_zone == 29) {
-        quest::movepc(29, 12.2, -32.9, 3.1); # Zone: halas
-    }
-    elsif ($s_zone == 40) {
-        quest::movepc(40, 156.9, -2.9, 31.1); # Zone: neriaka
-    }
-    elsif ($s_zone == 41) {
-        quest::movepc(41, -499, 2.9, -10.9); # Zone: neriakb
-    }
-    elsif ($s_zone == 42) {
-        quest::movepc(42, -968.9, 891.9, -52.8); # Zone: neriakc
-    }
-    elsif ($s_zone == 45) {
-        quest::movepc(45, -343, 189, -38.22); # Zone: qcat
-    }
-    elsif ($s_zone == 49) {
-        quest::movepc(49, 520.1, 235.4, 59.1); # Zone: oggok
-    }
-    elsif ($s_zone == 50) {
-        quest::movepc(50, 560, -2234, 3); # Zone: rathemtn
-    }
-    elsif ($s_zone == 52) {
-        quest::movepc(52, 1.1, 14.5, 3.1); # Zone: grobb
-    }
-    elsif ($s_zone == 54) {
-        quest::movepc(54, -197, 27, -0.7); # Zone: gfaydark
-    }
-    elsif ($s_zone == 55) {
-        quest::movepc(55, 7.6, 489.0, -24.9); # Zone: akanon
-    }
-    elsif ($s_zone == 61) {
-        quest::movepc(61, 26.3, 14.9, 3.1); # Zone: felwithea
-    }
-    elsif ($s_zone == 68) {
-        quest::movepc(68, -214.5, 2940.1, 0.1); # Zone: butcher
-    }
-    elsif ($s_zone == 75) {
-        quest::movepc(75, 200, 800, 3.39); # Zone: paineel
-    }
-    elsif ($s_zone == 106) {
-        quest::movepc(106, -415.7, 1276.6, 3.1); # Zone: cabeast
-    }
-    elsif ($s_zone == 155) {
-        quest::movepc(155, 105.6, -850.8, -190.4); # Zone: sharvahl
-    }
-    else {
-        quest::movepc(202, -55, 44, -158.81); # Zone: poknowledge
-    }  
 }

@@ -33,12 +33,12 @@ sub AwardSeasonalItems
 {
     my $client = shift;
 
-    # Set basic account reward entitlement
-    if (!quest::get_data($client->AccountID() . "-season-1-entitlement")) {
-        quest::set_data($client->AccountID() . "-season-1-entitlement", "1");
-    }
-
     if (IsSeasonal($client)) {
+        # Set basic account reward entitlement
+        if (!quest::get_data($client->AccountID() . "-season-1-entitlement")) {
+            quest::set_data($client->AccountID() . "-season-1-entitlement", "1");
+        }
+
         if (!plugin::check_hasitem($client, $portable_hole)) {
             $client->SummonItem($portable_hole);
         }
