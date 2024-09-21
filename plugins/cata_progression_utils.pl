@@ -39,7 +39,6 @@ my %atlas = (
     'veksar'         => 'RoK', # Out of Era
     'chardokb'       => 'RoK', # Out of Era
     'veeshan'        => 'RoK', # Out of Era
-
     'cobaltscar'     => 'SoV',
     'crystal'        => 'SoV',
     'necropolis'     => 'SoV',
@@ -56,8 +55,7 @@ my %atlas = (
     'frozenshadow'   => 'SoV',
     'wakening'       => 'SoV',
     'westwastes'     => 'SoV',
-    'stonebrunt'     => 'RoK',
-    
+    'stonebrunt'     => 'RoK',    
     'gunthak'        => 'RoK',
     'nadox'          => 'RoK',
     'dulak'          => 'RoK',
@@ -87,8 +85,7 @@ my %atlas = (
     'umbral'         => 'SoL',
     'vexthal'        => 'SoL',
     'nexus'          => 'SoL',
-    'jaggedpine'     => 'RoK',
-    
+    'jaggedpine'     => 'RoK',    
     'soldungc'       => 'PoP', # Out of Era
     'poknowledge'    => 'PoP',
     'potranquility'  => 'PoP',
@@ -288,7 +285,7 @@ sub get_subflag {
     my %original_flag;
 
     if ($client->IsSeasonal()) {
-        %original_flag = plugin::DeserializeHash($client->GetBucket("progress-flag-$stage"));
+        %original_flag = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-seasonal-progress-flag-$stage"));
     } else {
         %original_flag = plugin::DeserializeHash(quest::get_data($client->AccountID() . "-progress-flag-$stage"));
     }
