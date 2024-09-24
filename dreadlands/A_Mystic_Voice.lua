@@ -3,7 +3,7 @@ function event_spawn(e)
 	minute = 0
 end
 
-/*
+--[[
 function event_timer(e)
 	if (e.timer == "dreadlands_timer") then
 		minute = minute + 1;
@@ -38,4 +38,4 @@ function event_timer(e)
 		e.self:SetGlobal("nexus_dre", "0", 3, "F");
 	end
 end
-*/
+]]
