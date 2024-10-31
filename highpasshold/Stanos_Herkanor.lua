@@ -53,23 +53,23 @@ function event_trade(e)
 		e.other:Faction(330,5,0); -- Faction: The Freeport Militia
 		e.other:AddEXP(500);
 		eq.depop();
+	-- elseif(item_lib.check_turn_in(e.trade, {item1 = 28013,item2 = 7506,item3 = 7505})) then
+	-- 	e.self:Say(string.format("Very well done. I leave now to confront Hanns with this evidence. Even so, it will not be easy to regain his trust. That is why I need those daggers, in case all else fails. Bristlebane grant me luck - I can no longer live like a hunted dog. In any case, I am grateful for your aid. Take this wretched blade, I can bear it no longer. I must warn you, I feel it carries Innoruuk's curse; all who are near it learn the meaning of hate. Ironic, isn't it? You went to all that work to redeem yourself for a rapier, yet the true reward came when you redeemed another..Good luck, %s, for much as I, you will need it.",e.other:GetName()));
+	-- 	e.other:SummonFixedItem(2011057); -- Item: Ragebringer
+	-- 	e.other:Ding();
+	-- 	e.other:Faction(332,5,0); -- Faction: Highpass Guards
+	-- 	e.other:Faction(329,10,0); -- Faction: Carson McCabe
+	-- 	e.other:Faction(331,5,0); -- Faction: Merchants of Highpass
+	-- 	e.other:Faction(230,5,0); -- Faction: Corrupt Qeynos Guards
+	-- 	e.other:Faction(330,5,0); -- Faction: The Freeport Militia
+	-- 	e.other:AddEXP(10000);
+	-- 	eq.depop();
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 28013,item2 = 7506,item3 = 7505})) then
-		e.self:Say(string.format("Very well done. I leave now to confront Hanns with this evidence. Even so, it will not be easy to regain his trust. That is why I need those daggers, in case all else fails. Bristlebane grant me luck - I can no longer live like a hunted dog. In any case, I am grateful for your aid. Take this wretched blade, I can bear it no longer. I must warn you, I feel it carries Innoruuk's curse; all who are near it learn the meaning of hate. Ironic, isn't it? You went to all that work to redeem yourself for a rapier, yet the true reward came when you redeemed another..Good luck, %s, for much as I, you will need it.",e.other:GetName()));
-		e.other:SummonFixedItem(2011057); -- Item: Ragebringer
-		e.other:Ding();
-		e.other:Faction(332,5,0); -- Faction: Highpass Guards
-		e.other:Faction(329,10,0); -- Faction: Carson McCabe
-		e.other:Faction(331,5,0); -- Faction: Merchants of Highpass
-		e.other:Faction(230,5,0); -- Faction: Corrupt Qeynos Guards
-		e.other:Faction(330,5,0); -- Faction: The Freeport Militia
-		e.other:AddEXP(10000);
+		e.self:Say("My my... I acknowledge your work, but I cannot give you what you deserve yet. Come back when Kunark launches.");
+		e.other:SummonFixedItem(28013);
+		e.other:SummonFixedItem(7506);
+		e.other:SummonFixedItem(7505);
 		eq.depop();
-	--elseif(item_lib.check_turn_in(e.trade, {item1 = 28013,item2 = 7506,item3 = 7505})) then
-	--	e.self:Say("My my... I acknowledge your work, but I cannot give you what you deserve yet. Come back when Kunark launches.");
-	--	e.other:SummonFixedItem(28013);
-	--	e.other:SummonFixedItem(7506);
-	--	e.other:SummonFixedItem(7505);
-	--	eq.depop();
 	elseif(item_lib.check_turn_in(e.trade, {item1 = 18961})) then
 		e.self:Say("Let me see what you have here. Aha, so that's who.. yes, yes! There is one more thing I need you to do. This document tells me who the originator of the plot really was. His name is General V'ghera, which is interesting, as Anson's men have spotted him in Kithicor recently. He will not be easy to get to, but if you give this box to one of his many aides, the General will HAVE to come to investigate. You see, this box used to contain the tools crafted for the assassination. When he arrives, kill him! I need any documents you find on him - with luck it will be enough evidence to convince Hanns that what I say is true. Bring any documents or dispatch cases you find, along with those blades Vilnius made you work so hard for, and we will make a trade.");
 		e.other:SummonItem(28057); -- Item: Sealed Box
