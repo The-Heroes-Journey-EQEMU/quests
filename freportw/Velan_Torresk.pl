@@ -9,8 +9,8 @@ sub EVENT_SAY {
 		quest::say("The Sashes of Order are given out by the various trainers of our clan. I give out the [white training sash] and the [yellow Sash of Order], and Reyia is in charge of the orange and red sashes.");
 	}
 	elsif ($text=~/white training/i) {
-		#:: Match if faction with Ashen Order is Kindly or better
-		if ($faction <= 3) {
+		#:: Match if faction with Ashen Order is Indifferent or better
+		if ($faction <= 5) {
 			quest::say("The white training sash of the Ashen Order is awarded to our new members for completing a few simple tasks to prove their devotion to our clan. As you know, Freeport is a very hostile place, under constant attack from [orcs], wild beasts, and even the undead. To help keep this city and its citizens relatively safe, we must help the Militia protect the main gates. Bring me two Deathfist pawn scalps from those vile [Deathfist orcs], a snake fang, and some bone chips from a skeleton. Good luck, $name, represent us well!");
 		}
 		else {
@@ -18,8 +18,8 @@ sub EVENT_SAY {
 		}
 	}
 	elsif ($text=~/yellow/i) {
-		#:: Match if faction with Ashen Order is Kindly or better
-		if ($faction <= 3) {
+		#:: Match if faction with Ashen Order is Indifferent or better
+		if ($faction <= 5) {
 			quest::say("To earn the yellow sash, you must prove yourself to be very skilled in the art of fighting. The lands to the west and south of Freeport are filled with dangerous beasts that often prey upon innocent travelers. Help protect our merchant caravans and traveling citizens, while at the same time practicing your defensive skills, and eliminating these deadly creatures from the surrounding landscape. Bring me a giant snake rattle, a Deathfist slashed belt, the chitin of a desert tarantula, and turn in your white training sash, and I shall reward your noble work with our yellow Sash of Order. Good luck, $name!");
 		}
 		else {
@@ -32,8 +32,8 @@ sub EVENT_SAY {
 sub EVENT_ITEM {
 	#:: Match two 13794 - Deathfist Pawn Scalp, a 13067 - Snake Fang, and a 13073 - Bone Chips
 	if (plugin::check_handin(\%itemcount, 13794 => 2, 13067 => 1, 13073 => 1)) {
-		#:: Match if faction with Ashen Order is Kindly or better
-		if ($faction <= 3) {
+		#:: Match if faction with Ashen Order is Indifferent or better
+		if ($faction <= 5) {
 			quest::say("Good work, $name, you've worked hard and proven yourself a valuable addition to the Ashen Order. Here's your white sash, wear it with pride.");
 			#:: Give a 10130 - White Training Sash
 			quest::summonitem(10130);
@@ -58,8 +58,8 @@ sub EVENT_ITEM {
 	}
 	#:: Match a 10130 - White Training Sash, a 13058 - Giant Snake Rattle, a 13916 - Deathfist Slashed Belt, and a 20901 - Desert Tarantula Chitin
 	if (plugin::check_handin(\%itemcount, 10130 => 1, 13058 => 1, 13916 => 1,  20901 => 1)) {
-		#:: Match if faction with Ashen Order is Kindly or better
-		if ($faction <= 3) {
+		#:: Match if faction with Ashen Order is Indifferent or better
+		if ($faction <= 5) {
 			quest::say("Ah, well done, $name. You have proven that you are a very skillful fighter and it is a honor to have you as a member of the Ashen Order. On behalf of Master Closk, and under the watchful eyes of Quellious, I present you, $name, with this, the yellow Sash of Order. Go out and make us proud.");
 			#:: Give a 10131 - Yellow Sash of Order
 			quest::summonitem(10131);
