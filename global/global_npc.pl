@@ -152,20 +152,20 @@ sub EVENT_DAMAGE_GIVEN
 sub EVENT_KILLED_MERIT {
     #plugin::ProcessSlayerCredit($client, $npc, $entity_list);
 
-    #if (plugin::IsTHJ()) {
-    #    my $con_color = $client->GetConsiderColor($npc);
-    #    my $rare_scale = quest::get_data($client->AccountID() . "-eom-event-scale") || 1;
-    #
-    #    if ($con_color eq "Red" || $con_color eq "Yellow" || $con_color eq "White") {
-    #        my $eom_drop_chance = (quest::get_rule("Cutom:EventEOMDropChance") || 1000) * $rare_scale;
-    #        my $eom_loot_amount = 1;
-    #        
-    #        if (int(rand($eom_drop_chance)) == 0) {
-    #            plugin::LootEOM($client, $eom_loot_amount);
-    #            $client->SendSound();
-    #
-    #            quest::set_data($client->AccountID() . "-eom-event-scale", $rare_scale + 1);
-    #        }
-    #    }
-    #}
+    if (plugin::IsTHJ()) {
+        my $con_color = $client->GetConsiderColor($npc);
+        my $rare_scale = quest::get_data($client->AccountID() . "-eom-event-scale") || 1;
+    
+        if ($con_color eq "Red" || $con_color eq "Yellow" || $con_color eq "White") {
+            my $eom_drop_chance = (quest::get_rule("Cutom:EventEOMDropChance") || 1000) * $rare_scale;
+            my $eom_loot_amount = 1;
+            
+            if (int(rand($eom_drop_chance)) == 0) {
+                plugin::LootEOM($client, $eom_loot_amount);
+                $client->SendSound();
+    
+                quest::set_data($client->AccountID() . "-eom-event-scale", $rare_scale + 1);
+            }
+        }
+    }
 }
