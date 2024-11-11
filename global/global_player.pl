@@ -114,9 +114,10 @@ sub EVENT_CONNECT {
 }
 
 sub EVENT_POPUPRESPONSE {
-    plugin::check_tutorial_popup_response($popupid, $client);
+    plugin::check_tutorial_popup_response($popupid, $client);    
 
     if ($popupid == 58240 && $zone != 151) {
+        my $bind_loc = $client->GetBucket("baz_and_back_bind") || 'bazaar';
         my $x = $client->GetEntityVariable("bazaar_x") + int(rand(11)) - 5;
         my $y = $client->GetEntityVariable("bazaar_y") + int(rand(11)) - 5;
         my $z = $client->GetEntityVariable("bazaar_z");
@@ -130,7 +131,7 @@ sub EVENT_POPUPRESPONSE {
         $client->SetBucket("Return-Instance", $instanceid);
 
         $client->SpellEffect(218,1);
-        $client->MovePC(151, $x, $y, $z, rand(512));
+        $client->MovePC($bind_loc, $x, $y, $z, rand(512));
     }
 }
 
