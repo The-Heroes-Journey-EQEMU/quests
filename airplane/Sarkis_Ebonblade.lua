@@ -1,6 +1,6 @@
 function event_say(e)
 	if(e.message:findi("Hail")) then
-		e.self:Say("Greetings. " .. e.other:GetName() .. ".  Have you come here to test your dark powers of skill and spell casting?");
+		e.self:Say("Greetings. " .. e.other:GetName() .. ".  Have you come here to test your dark powers of skill and spell casting? You will be tested by either Gragrot or Tynicon. Choose one!");
 	elseif(e.message:findi("dark powers of skill")) then
 		e.self:Say("You will be tested by either Gragrot or Tynicon.  Choose one!");
 	elseif((e.message:findi("Gragrot")) and (e.other:HasClass(Class.SHADOWKNIGHT))) then
