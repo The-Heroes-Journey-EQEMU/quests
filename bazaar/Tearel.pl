@@ -170,64 +170,56 @@ sub EVENT_ITEM {
 }
 
 sub EVENT_TICK {
-    my @clientlist = $entity_list->GetClientList();
-    my $clientcount = @clientlist;
+  return; # Disable this Feature
+  my @clientlist = $entity_list->GetClientList();
+  my $clientcount = @clientlist;
 
-    my $bazaar_data = quest::get_data("bazaar_full");
-    if ($clientcount >= 300 && !$bazaar_data) {
-      quest::set_data("bazaar_full", 1);
+  my $max_idle_seconds = 60 * 15; # Set your max idle threshold here (e.g., 60 seconds)
+  my $idle_ticks = $max_idle_seconds / 6;
+
+  my $warning_50_percent = int($idle_ticks * 0.5);
+  my $warning_80_percent = int($idle_ticks * 0.8);
+
+
+  foreach my $client (@clientlist) {
+    if (!$client || $client->IsTrader() || $client->GetGM()) {        
+      next;
     }
 
-    if ($clientcount < 300 && $bazaar_data) {
-      quest::delete_data("bazaar_full");
+    my $last_x = int($client->GetEntityVariable("last_x") || 0);
+    my $last_y = int($client->GetEntityVariable("last_y") || 0);
+    my $last_h = int($client->GetEntityVariable("last_h") || 0);
+
+
+    my $cur_x = int($client->GetX());
+    my $cur_y = int($client->GetY());
+    my $cur_h = int($client->GetHeading());
+
+    if (defined $last_x && defined $last_y && defined $last_h) {
+        if ($last_x == $cur_x && $last_y == $cur_y && $last_h == $cur_h) {
+            my $idle_counter = $client->GetEntityVariable("idle_counter") // 0;
+            $idle_counter++;
+
+            my $idle_seconds = $idle_counter * 6;
+            my $idle_minutes = sprintf("%.1f", $idle_seconds / 60);
+            my $max_idle_minutes = sprintf("%.1f", $max_idle_seconds / 60);
+
+            if ($idle_counter == $warning_50_percent || $idle_counter == $warning_80_percent) {
+                $client->Message(15, "Warning: You have been idle for $idle_minutes minutes. You will be returned to character select in ". sprintf("%.1f", (($max_idle_seconds - $idle_seconds) / 60) ) . " minutes,");
+            }
+
+            if ($idle_counter >= $idle_ticks) {
+                $client->Kick();                  
+            }
+
+            $client->SetEntityVariable("idle_counter", $idle_counter);
+        } else {
+            $client->SetEntityVariable("idle_counter", 0);
+        }
     }
 
-    my $max_idle_seconds = 60 * 15; # Set your max idle threshold here (e.g., 60 seconds)
-    my $idle_ticks = $max_idle_seconds / 6;
-
-    my $warning_50_percent = int($idle_ticks * 0.5);
-    my $warning_80_percent = int($idle_ticks * 0.8);
-
-    
-    foreach my $client (@clientlist) {
-      if (!$client || $client->IsTrader() || $client->GetGM()) {        
-        next;
-      }
-
-      my $last_x = int($client->GetEntityVariable("last_x") || 0);
-      my $last_y = int($client->GetEntityVariable("last_y") || 0);
-      my $last_h = int($client->GetEntityVariable("last_h") || 0);
-
-
-      my $cur_x = int($client->GetX());
-      my $cur_y = int($client->GetY());
-      my $cur_h = int($client->GetHeading());
-
-      if (defined $last_x && defined $last_y && defined $last_h) {
-          if ($last_x == $cur_x && $last_y == $cur_y && $last_h == $cur_h) {
-              my $idle_counter = $client->GetEntityVariable("idle_counter") // 0;
-              $idle_counter++;
-
-              my $idle_seconds = $idle_counter * 6;
-              my $idle_minutes = sprintf("%.1f", $idle_seconds / 60);
-              my $max_idle_minutes = sprintf("%.1f", $max_idle_seconds / 60);
-
-              if ($idle_counter == $warning_50_percent || $idle_counter == $warning_80_percent) {
-                  $client->Message(15, "Warning: You have been idle for $idle_minutes minutes. You will be returned to character select in ". sprintf("%.1f", (($max_idle_seconds - $idle_seconds) / 60) ) . " minutes,");
-              }
-
-              if ($idle_counter >= $idle_ticks) {
-                  $client->Kick();                  
-              }
-
-              $client->SetEntityVariable("idle_counter", $idle_counter);
-          } else {
-              $client->SetEntityVariable("idle_counter", 0);
-          }
-      }
-
-      $client->SetEntityVariable("last_x", $cur_x);
-      $client->SetEntityVariable("last_y", $cur_y);
-      $client->SetEntityVariable("last_h", $cur_h);
+    $client->SetEntityVariable("last_x", $cur_x);
+    $client->SetEntityVariable("last_y", $cur_y);
+    $client->SetEntityVariable("last_h", $cur_h);
   }
 }
