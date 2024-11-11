@@ -171,6 +171,7 @@ sub EVENT_ITEM {
 
 sub EVENT_TICK {
   return; # Disable this Feature
+  quest::debug("How did we get here?");
   my @clientlist = $entity_list->GetClientList();
   my $clientcount = @clientlist;
 
