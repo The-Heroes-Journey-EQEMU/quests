@@ -1,38 +1,48 @@
 name: Deploy Quests to Production
- 
+
 on:
   push:
     branches:
       - main
+      - retribution
 
 jobs:
-  Deploy_Quests:
+  Deploy_Main:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Tailscale
-      uses: tailscale/github-action@v2
-      with:
-        oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-        oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-        tags: tag:ci
-
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.9.0
       with:
         ssh-private-key: ${{ secrets.REMOTE_DEPLOY_KEY }}
 
-    - name: Pull latest changes on remote server
+    - name: Pull latest changes on THJ host
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_DEPLOY_USER }}@${{ secrets.THJ_HOST_ADDR }} '
            cd /opt/thj/eqemu/server/quests &&
            git fetch origin &&
            git reset --hard origin/main'
 
+  Deploy_Retribution:
+    if: github.ref == 'refs/heads/retribution'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.REMOTE_DEPLOY_KEY }}
+
+    - name: Pull latest changes on RET host
+      run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_DEPLOY_USER }}@${{ secrets.RET_HOST_ADDR }} '
            cd /opt/retribution/eqemu/server/quests &&
            git fetch origin &&
-           git reset --hard origin/main'
+           git reset --hard origin/retribution'
