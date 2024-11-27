@@ -18,6 +18,8 @@ sub EVENT_SIGNAL {
     } 
 }
 
+#trivial change to test deploy
+
 sub EVENT_ENTERZONE {
 	plugin::CommonCharacterUpdate($client);
 
