@@ -19,6 +19,7 @@ sub EVENT_SIGNAL {
 }
 
 #trivial change to test deploy
+#test commit please ignore
 
 sub EVENT_ENTERZONE {
 	plugin::CommonCharacterUpdate($client);
