@@ -144,7 +144,7 @@ sub EVENT_LEVEL_UP {
     plugin::CommonCharacterUpdate($client);
 
     my $new_level = $client->GetLevel();
-    if (($new_level % 10 == 0) || $new_level == 5 || $new_level == $client->GetBucket("CharMaxLevel")) {
+    if ($new_level == $client->GetBucket("CharMaxLevel")) {
         my $name = $client->GetCleanName();
         my $full_class_name = plugin::GetPrettyClassString($client);
 
