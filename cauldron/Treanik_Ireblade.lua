@@ -3,20 +3,17 @@
 
 function event_say(e)
 
-	if(e.other:HasClass(Class.BERSERKER) or e.other:GetGM()) then -- Berserker and GM bypass
-		if e.other:GetLevel() >= 45 then
-				if e.message:findi("beast fights") then
-					e.self:Say("Da only way to learn is to fight. It called Praklion of the Cauldron or sometin. Me hear it live here very long time, but rarely come out. It feed at weird times. Course, dat when it most mad. McArik found it traveling through deep craggy lands. Dat is how he decided it was good beast to test his ability to beat a baddy dat had some [sense of strategy]. It even took him long time to defeat it.");
-				elseif e.message:findi("strategy") then
-					e.self:Say("It do have sense of stragegy. It a creature dat has got smartz wit da magic too. Da way it mixes its abilities is good stuffs. You gots to try to catch it when it eats. It usually comes out when it dark out. And when you kill it, can you get my axe back? Me lost it to dat beast. Plus me needs proof you killed it so me can give you sumtin to give to McArik.");
-				end
-				--e.self:Say("You berserker, but me have nothing for you!");	
-		else
-			e.self:Say("Me has nothing to do with you youngling.");
-		end
+	if e.other:GetLevel() >= 45 then
+			if e.message:findi("beast fights") then
+				e.self:Say("Da only way to learn is to fight. It called Praklion of the Cauldron or sometin. Me hear it live here very long time, but rarely come out. It feed at weird times. Course, dat when it most mad. McArik found it traveling through deep craggy lands. Dat is how he decided it was good beast to test his ability to beat a baddy dat had some [sense of strategy]. It even took him long time to defeat it.");
+			elseif e.message:findi("strategy") then
+				e.self:Say("It do have sense of stragegy. It a creature dat has got smartz wit da magic too. Da way it mixes its abilities is good stuffs. You gots to try to catch it when it eats. It usually comes out when it dark out. And when you kill it, can you get my axe back? Me lost it to dat beast. Plus me needs proof you killed it so me can give you sumtin to give to McArik.");
+			end
+			--e.self:Say("You berserker, but me have nothing for you!");	
 	else
-		e.self:Say("You not berserker, so you go away. Me no talk to you!");
+		e.self:Say("Me has nothing to do with you youngling.");
 	end
+	
 end
 
 function event_trade(e)

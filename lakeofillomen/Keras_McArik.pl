@@ -34,7 +34,7 @@ sub EVENT_SAY {
 	#epic 1.5
 #	elsif(defined $qglobals{berserk_epic} && $qglobals{berserk_epic} >=1) {
 		#have Raging Soul Shard
-#		if($text=~/hail/i && ($qglobals{berserk_epic} ==1 || $qglobals{berserk_epic} ==2)  && plugin::check_hasitem($client, 11999)) {
+#		if($text=~/hail/i && ($qglobals{berserk_epic} ==1 || $qglobals{berserk_epic} ==2) && plugin::check_hasitem($client, 11999)) {
 #			quest::emote("appears to be lost in this own thoughts, mumbling to himself occasionally, and barely acknowledging your existence. Just as you're about to speak again, he says, 'Ach, ya have to forgive me absentmindedness, friend. I've been rather busy pondering [" . quest::saylink("matters") . "] at hand.");
 #						quest::setglobal("berserk_epic",3, 5, "F");
 #		}
@@ -68,24 +68,24 @@ sub EVENT_SAY {
 #	  }
   #epic 1.0
   else {
-	  if($text=~/hail/i && plugin::HasClassName($client, "Berserker") && plugin::check_hasitem($client, 68299) && $qglobals{"berserk_epic"} == undef) {
+	  if($text=~/hail/i && plugin::check_hasitem($client, 68299) && $qglobals{"berserk_epic"} == undef) {
 		quest::say("Its good to see you again, friend. It seems my axe has fared well thus far, aye? Indeed it has. Have you spoke with your guildmaster yet? They will be glad to see that you are on your path towards controlling your rage.");
 		quest::setglobal("berserk_epic", 1, 5, "F");
 	  }
-	  if($text=~/hail/i && plugin::HasClassName($client, "Berserker") && $ulevel > 45 && $dragon == undef && $imp == undef  && !plugin::check_hasitem($client, 68299)) {
+	  if($text=~/hail/i && $ulevel > 45 && $dragon == undef && $imp == undef && !plugin::check_hasitem($client, 68299)) {
 		quest::say("Aye, I see a familiar look in yer eye. Ye are much like me, friend. If ye truly wish to [master the fires] within ye and become a true berserker, ye must learn many lessons.");
 	  }
-	  if($text=~/master the fires/i && plugin::HasClassName($client, "Berserker") && $ulevel > 45 && $dragon == undef && $imp == undef) {
+	  if($text=~/master the fires/i && $ulevel > 45 && $dragon == undef && $imp == undef) {
 		quest::say("Much as ye are now, I was once saddled with unbridled rage, and now with age and experience, I have learned to master the power that comes with my anger.");
 		quest::say("Once ye have mastered yer abilities, ye will be rewarded with a gift that only a true berserker can control. It is a gift that will harness yer rage and use it to yer advantage. This is why ye must walk the same path I did in me youth. Do ye wish to take this [great stride]?");
 	  }
-	  if($text=~/great stride/i && plugin::HasClassName($client, "Berserker") && $ulevel > 45) { #&& $dragon == undef && $imp == undef #removed this so can be repeated
+	  if($text=~/great stride/i && $ulevel > 45) { #&& $dragon == undef && $imp == undef #removed this so can be repeated
 		quest::say("Ye do understand there is no turning back? I hope so. This is a journey -- and sometimes a long one -- depending on what ye've leared so far. Yer skills and wisdom in battle will be tested. Go talk to an old, fallen friend of mine, Lingering Axefall. We call him that because he reguses to let his spirit rest. He failed his task and remains bound here to lead others into the trial he lost. Be wary, though. He is elusive.");
 		quest::say("The foe he stood against and lost to still wishes to extinguish his spirit. Take this axe and give it to him so he will know that ye are ready for the test and that I sent ye. Also, take this medal with you. It will help me keep track of your progress. Best of luck, friend.");
 		quest::summonitem(60189); # Item: Throwing Axe of the Spirit
 		quest::summonitem(60190); # Item: Medal of Blood
 	  }
-	  if($text=~/hail/i && $ulevel < 46 && plugin::HasClassName($client, "Berserker")) {
+	  if($text=~/hail/i && $ulevel < 46 ) {
 		quest::say("Return once you have trained more, young Berserker.");
 	  }
 	  if($text=~/challenge/i && plugin::check_hasitem($client, 60194)) { #Check for Medal of Mirages
@@ -97,16 +97,16 @@ sub EVENT_SAY {
 		quest::summonitem(60199); # Note for Treanik
 		$dragon=undef;
 	  }
-	  if($text=~/ready/i && $ulevel > 45 && plugin::HasClassName($client, "Berserker") && $imp == 1) {
+	  if($text=~/ready/i && $ulevel > 45 && $imp == 1) {
 		quest::say("Eager one, aren't ye? Good to see, but do not underestimate how volatile our rage is. In me youth, it snuck up on me and in a blind rage, I had slain me sparring partner. It was then that I knew I was different and shouldn't keep close friends until I'ad my rage under control. There are some, though, that will [never control the rage].");
 	  }
-	  if($text=~/never control the rage/i && $ulevel > 45 && plugin::HasClassName($client, "Berserker") && $imp == 1) {
+	  if($text=~/never control the rage/i && $ulevel > 45 && $imp == 1) {
 		quest::say("Well, you see, the fire that drives the rage through us and into our muscles and minds can burn out of control in come creatures. I have encountered several in my travels, aye. They are merciless and blind to the rage, which makes 'em poor at strategy, but deadly in combat. Ye will have to [face one] of 'em so that ye may learn how dangerous ye can truly become if ye do not complete these trials and master the rage. I do 'ope ye appreciate this lesson.");
 	  }
-	  if($text=~/face one/i && $ulevel > 45 && plugin::HasClassName($client, "Berserker") && $imp == 1) {
+	  if($text=~/face one/i && $ulevel > 45 && $imp == 1) {
 		quest::say("This creature is unlike any you have seen wandering the lands. this beast is fearsome and ethereal. It strikes out with its rage without thought or care. Ye must learn to recognize this type of beast if ye are to learn how to master it and yer own abilities. It will try to disguise itself so ye don't recognize the fury it holds within it -- it has an [enraged essence] within it and I want ye to bring it to me. Remember, $name, do not be fooled and always be aware.");
 	  }
-	  if($text=~/enraged essence/i && $ulevel > 45 && plugin::HasClassName($client, "Berserker") && $imp == 1) {
+	  if($text=~/enraged essence/i && $ulevel > 45 && $imp == 1) {
 		quest::say("I will give ye no more hints. Ye must seek this creature out alone. Look far and use your mind and brawn to beat it. Yer noggin will give ye an advantage o'er this un.");
 		$imp=undef;
 	  }
