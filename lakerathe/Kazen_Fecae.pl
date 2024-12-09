@@ -18,7 +18,7 @@ sub EVENT_SAY {
     }
   }
   if($text=~/dark arts/i) {
-    if(plugin::HasClassName($client, "Necromancer") && $ulevel >= 50) {
+    if($ulevel >= 50) {
       quest::emote("looks you up and down, his eyes glowing with a soft red light. After a moment he begins to speak though his lips do not move. 'You wish to study under me? Perhaps, if you prove yourself to follow the twisted path. If you prove to be as coldhearted as I then I will let you become my servant.'");
     }
     else {
