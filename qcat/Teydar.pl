@@ -3,7 +3,7 @@
 
 sub EVENT_SAY {
   $faction = $client->GetCharacterFactionLevel(404); # Faction: Truespirit
-  if ($text=~/hail/i && plugin::HasClassName($client, "Shadowknight"))  {
+  if ($text=~/hail/i)  {
     quest::say("Hello $name, it's good to see another shadowknight around here. I'm Teydar. I've made it my life to fashion suitable scabbards and sheaths for our order.");
   }
   if ($text=~/decrepit sheath/i && $faction >= 28) {
