@@ -6,7 +6,7 @@ function event_say(e)
 	if(fac <= 5) then
 		if(e.message:findi("hail")) then
 			e.self:Emote("looks at you suspiciously. 'Yeah? Whacha want?'");
-		elseif(e.message:findi("see stanos") and e.other:HasClass(Class.ROGUE) and level >= 50) then
+		elseif(e.message:findi("see stanos") and level >= 50) then
 			e.self:Say("This better be important.");
 			eq.spawn2(5088,0,0,336,10,45,450); -- NPC: Stanos_Herkanor
 		end
@@ -17,7 +17,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 28014}) and e.other:HasClass(Class.ROGUE) and e.other:GetLevel() >= 50) then
+	if(item_lib.check_turn_in(e.trade, {item1 = 28014}) and e.other:GetLevel() >= 50) then
 		--e.self:Say("Ah, we have been expecting this. Let me get Stanos, he will want to inspect it first, but here are your coins.");
 		e.self:Say("Ah, we have been expecting this. Let me get Stanos, he will want to inspect it.");
 		e.other:Ding();
