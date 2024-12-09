@@ -1,21 +1,20 @@
 -- items: 20668, 10037, 10036, 10053, 20671, 20669, 20666, 20677, 20672
 function event_say(e)
-	if(e.other:HasClass(Class.WARRIOR)) then
-		if(e.message:findi("hail")) then
-			e.self:Say("What do you need?  Be specific. I'm busy right now!");
-		elseif(e.message:findi("hilt")) then
-			e.self:Say("What is it you need to be knowing about hilts?  Do you need one made or [repaired]?");
-		elseif(e.message:findi("repaired")) then
-			e.self:Say("Well, tell me the name of the hilt you need repaired and I'll see what I can do.");
-		elseif(e.message:findi("unjeweled dragon head hilt")) then
-			e.self:Say("That just looks like it's missing some gems. I'm not quite sure what type of gems either but I can tell you two things about them just by the settings.  They were all different. and they all were very. very expensive. If I try to put the wrong kind of gems in these slots. it may be ruined forever.  I'll do whatever you want though. Just bring me the three gems you want me to try and put in the hilt.");
-		elseif(e.message:findi("Severely Damaged Dragon Head Hilt")) then
-			e.self:Say("Unfortunately, this hilt can only be reforged with the proper components. You might have a rough time finding the correct ore types needed for this hilt. I'll do whatever you want though. Just bring me the two components you want me to use to try and reforge this hilt with and I'll do it.");
-		elseif(e.message:findi("golem")) then
-			e.self:Say("That metal is used as the 'soul' of powerful magical constructions like golems. I do not know any place in this world where you could find a golem with a living center as powerful as this once was.");
-		elseif(e.message:findi("rejesiam")) then
-			e.self:Say("Rejesiam ore is from the lands of Kunark. The mountain giants in the frontier mountains control the only known mine of this great ore. They have built a vast fortress around the mine to protect it. The giants don't particularly like to trade with us smaller folks, but there is one old miner  named Mentrax Mountainbone who has traded with me in the past. Go find him and tell him Wenden sent you.");
-		end
+	
+	if(e.message:findi("hail")) then
+		e.self:Say("What do you need?  Be specific. I'm busy right now!");
+	elseif(e.message:findi("hilt")) then
+		e.self:Say("What is it you need to be knowing about hilts?  Do you need one made or [repaired]?");
+	elseif(e.message:findi("repaired")) then
+		e.self:Say("Well, tell me the name of the hilt you need repaired and I'll see what I can do.");
+	elseif(e.message:findi("unjeweled dragon head hilt")) then
+		e.self:Say("That just looks like it's missing some gems. I'm not quite sure what type of gems either but I can tell you two things about them just by the settings.  They were all different. and they all were very. very expensive. If I try to put the wrong kind of gems in these slots. it may be ruined forever.  I'll do whatever you want though. Just bring me the three gems you want me to try and put in the hilt.");
+	elseif(e.message:findi("Severely Damaged Dragon Head Hilt")) then
+		e.self:Say("Unfortunately, this hilt can only be reforged with the proper components. You might have a rough time finding the correct ore types needed for this hilt. I'll do whatever you want though. Just bring me the two components you want me to use to try and reforge this hilt with and I'll do it.");
+	elseif(e.message:findi("golem")) then
+		e.self:Say("That metal is used as the 'soul' of powerful magical constructions like golems. I do not know any place in this world where you could find a golem with a living center as powerful as this once was.");
+	elseif(e.message:findi("rejesiam")) then
+		e.self:Say("Rejesiam ore is from the lands of Kunark. The mountain giants in the frontier mountains control the only known mine of this great ore. They have built a vast fortress around the mine to protect it. The giants don't particularly like to trade with us smaller folks, but there is one old miner  named Mentrax Mountainbone who has traded with me in the past. Go find him and tell him Wenden sent you.");
 	end
 end
 
