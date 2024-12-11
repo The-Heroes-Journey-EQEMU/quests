@@ -33,10 +33,10 @@ sub GetRandomResult {
     # Format here is chance => weight for reward entry to be chosen (if weights sum to 100, this is a percentage), 
     # $items => potential items to be rewarded for this option, $message => flavor text for winning
     my @rewards = (
-        { chance => 25, items => [56064], message => "Happy Thanksgiving!" }, #Thanksgiving
-        # { chance => 25, items => [36995, 57825, 64489, 57819, 57818, 37538, 32557], message => "Better luck next time! Here, have some food. A loss is better on a full stomach!" },
-        { chance => 25, items => [36013], message => "Cheers!" }, #Thanksgiving
-        # { chance => 25, items => [56942, 56940, 56938, 56934, 56935, 56944, 56937, 32557], message => "Better luck next time! Here, drink this down, it should cheer you up!" },
+        # { chance => 25, items => [56064], message => "Happy Thanksgiving!" }, #Thanksgiving
+        { chance => 25, items => [36995, 57825, 64489, 57819, 57818, 37538, 32557], message => "Better luck next time! Here, have some food. A loss is better on a full stomach!" },
+        # { chance => 25, items => [36013], message => "Cheers!" }, #Thanksgiving
+        { chance => 25, items => [56942, 56940, 56938, 56934, 56935, 56944, 56937, 32557], message => "Better luck next time! Here, drink this down, it should cheer you up!" },
         { chance => 20, items => [41961, 48083], message => "Let the experience flow!" },
         { chance => 10, items => [67923, 56052, 61036, 62774, 66783, 64711, 66431, 66449, 67953, 67883, 52193, 66598, 61979, 67145, 66564], message => "Nicely done! Pets love a facelift every now and then $name!" },
         { chance => 5, items => [37954, 67008, 43993, 37999, 40638, 40714, 40686, 50854, 40656, 31861], message => "An illusion?! In case I don't recognize you next time, congratulations $name!" },
@@ -44,7 +44,7 @@ sub GetRandomResult {
         { chance => 2, items => [52024], message => "Urthron's... what?! How'd that get in there?! Congratulations $name!" },
         { chance => 2, items => [976008], message => "Oooo! Your very own Clockwork Banker $name!" },
         { chance => 2, items => [976009], message => "Your friends will be SO jealous! Congratulations on your Clockwork Merchant $name!" },
-        { chance => 2, items => [56051], message => "TURKEYS $name! TURKEYS ALL THE TIME!" }, #Thanksgiving
+        # { chance => 2, items => [56051], message => "TURKEYS $name! TURKEYS ALL THE TIME!" }, #Thanksgiving
         { chance => 2, items => [36995, 57825, 64489, 57819, 57818, 37538], message => "Better luck next time! Here, have some food. A loss is better on a full stomach!" }
     );
 

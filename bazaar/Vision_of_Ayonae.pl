@@ -82,7 +82,7 @@ sub EVENT_SAY {
         if (plugin::GetClassesCount > 1) {
             my $classes_string = GetClassLinkString();
 
-            plugin::NPCTell("Which class would you have me strip from you; $classes_string?");
+            plugin::NPCTell("Which class would you have me strip from you; $classes_string? Be aware, you will lose all alternate advancement you have made down this path, permanently.");
         }
     }
 

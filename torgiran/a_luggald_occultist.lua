@@ -10,7 +10,7 @@ local tzobodinroom_sp2  = {
 
 function event_death_complete(e)
     if has_value(spirit_sp2, e.self:CastToNPC():GetSp2()) then --spawn groups inside the water spirit room
-        eq.signal(226097,1); -- signal An_ancient_spirit (226097) to add to wave counter
+        eq.signal(226213,1); -- signal An_ancient_spirit (226213) to add to wave counter
     elseif has_value(tzobodinroom_sp2, e.self:CastToNPC():GetSp2()) then --spawn groups inside Ritualist Tzobodin room
         eq.signal(226218,1); -- signal A_hate (226218) to add to wave counter
     end

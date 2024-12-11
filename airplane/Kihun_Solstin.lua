@@ -6,7 +6,7 @@ function event_say(e)
 		e.self:Say("I will test you then. In this wondrous plane of Sky, find the Crown of Elemental Mastery. Then, search the world below for an Elemental Binder and a cloak fashioned from the feathers of a Pegusus. Return them to me and I shall give you the Element of Wind.");
 	elseif(e.message:findi("see the master")) then
 		e.self:Say("Very well."); 					--Text made up
-		eq.spawn2(71040,0,0,604.5,1346.3,-766,0); 	--spawn the master of elements
+		eq.unique_spawn(71040,0,0,604.5,1346.3,-766,0); 	--spawn the master of elements
 	end
 end
 
@@ -16,7 +16,7 @@ function event_trade(e)
 		e.self:Say("If you have obtained the other, lesser Elements, go speak with The Master of Elements, who is now waiting for you. I wish you luck. If you have not completed all the tasks set for you, let me know, and I shall let you see the Master.");
 		e.other:SummonItem(28033); -- Item: Element of Wind
 		e.other:AddEXP(5000);
-		eq.spawn2(71040,0,0,604.5,1346.3,-766,0); 	--spawn the master of elements
+		eq.unique_spawn(71040,0,0,604.5,1346.3,-766,0); 	--spawn the master of elements
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

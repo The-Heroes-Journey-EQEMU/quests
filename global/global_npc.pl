@@ -98,16 +98,16 @@ sub EVENT_DEATH_COMPLETE {
                     'min_level'   => 35, # Minimum level to drop from
                     'max_level'   => 99, # Maximum level to drop from
                 },
-                56064 => { 
-                    'drop_chance' => 0.0005, # 5/1000% chance to drop
-                    'min_level'   => 1, # Minimum level to drop from
-                    'max_level'   => 99, # Maximum level to drop from
-                },
-                36013 => { 
-                    'drop_chance' => 0.0005, # 5/1000% chance to drop
-                    'min_level'   => 1, # Minimum level to drop from
-                    'max_level'   => 99, # Maximum level to drop from
-                }
+                #56064 => { 
+                #    'drop_chance' => 0.0005, # 5/1000% chance to drop
+                #    'min_level'   => 1, # Minimum level to drop from
+                #    'max_level'   => 99, # Maximum level to drop from
+                #},
+                #36013 => { 
+                #    'drop_chance' => 0.0005, # 5/1000% chance to drop
+                #    'min_level'   => 1, # Minimum level to drop from
+                #    'max_level'   => 99, # Maximum level to drop from
+                #}
                 # ... more items and their attributes
             );
 

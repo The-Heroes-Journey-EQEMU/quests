@@ -446,4 +446,3 @@ sub EVENT_SAY {
         }
     }
 }
-

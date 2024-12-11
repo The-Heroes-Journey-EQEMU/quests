@@ -4,7 +4,7 @@
 function event_say(e)
 	local fac = e.other:GetFaction(e.self);
 
-	if(fac < 4) then
+	if (fac < 4) then
 		if(e.message:findi("hail")) then
 			e.self:Emote("looks at you serenely. 'Hello, wanderer.'");
 		elseif(e.message:findi("what are you doing")) then

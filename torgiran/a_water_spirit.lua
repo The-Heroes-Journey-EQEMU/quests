@@ -7,8 +7,7 @@ function event_timer(e)
         eq.depop();
     end
 end
-    
-    
+
 function event_say(e)
     if e.message:findi("hail") then
         e.self:Say("I sense a young spirit of flesh and blood nearby.  Those that wish to corrupt it have trapped the spirits of four fearsome beasts within this magical pool. They are known as the frenzy, berserk, fury, and rage spirits.  Tell me which of these do you choose to cleanse from the pool?  Be forewarned these are powerful creatures that can rarely be matched in battle.");
