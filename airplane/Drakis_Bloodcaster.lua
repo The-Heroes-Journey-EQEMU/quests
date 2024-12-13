@@ -2,7 +2,7 @@
 function event_say(e)
 	if e.message:findi("hail") then
 		e.self:Say("Greetings, " .. e.other:Race() .. ". Are you ready to begin?");
-	elseif e.message:findi("ready") and e.other:HasClass(Class.NECROMANCER) then
+	elseif e.message:findi("ready")  then
 		e.self:Say("Then choose, necromancer. Do you wish to be tested by Dugaas or Jzil?");
 	elseif e.message:findi("ready") then
 		e.self:Say("Do you take me for a fresh lich! Go away!");
