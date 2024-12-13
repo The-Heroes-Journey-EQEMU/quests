@@ -6,7 +6,7 @@ function event_say(e)
 		e.self:Say("Then choose, necromancer. Do you wish to be tested by Dugaas or Jzil?");
 	elseif e.message:findi("ready") then
 		e.self:Say("Do you take me for a fresh lich! Go away!");
-	elseif e.message:findi("jzil") and e.other:HasClass(Class.NECROMANCER) then
+	elseif e.message:findi("jzil") then
 		e.self:Say("Take this tome and read it.  When you are finished, return it to me and I will summon Jzil.");
 		e.other:SummonFixedItem(18536); -- Shadowy Thoughts
 	elseif e.message:findi("Dugaas") and e.other:HasClass(Class.NECROMANCER) then
