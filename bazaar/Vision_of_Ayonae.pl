@@ -11,6 +11,12 @@ sub EVENT_SAY {
     my $remove_class_cost = 10;
     my $remove_class_lockout_scale = ($client->GetBucket("remove_class_lockout_scale") || 1);
     my $remove_class_lockout = 7 * $remove_class_lockout_scale;
+    my $reset_aa_lockout_scale = ($client->GetBucket("reset_aa_lockout_scale") || 1);
+    my $reset_aa_lockout = 7 * $reset_aa_lockout_scale;
+
+    if ($client->GetGM() && $text=~/resetaa/i) {
+        $client->ResetAA();
+    }
 
     if ($text=~/hail/i) {   
         if (plugin::GetClassesCount($client) <= 1) {
@@ -24,24 +30,24 @@ sub EVENT_SAY {
             plugin::YellowText("You have a free class removal available. You will be given the option to use it by proceeding with the menu.");
         }
 
-        #my $free_aa_reset_used = ($client->GetBucket("free_aa_reset_used") || 0);
-        #if (!$free_aa_reset_used) {
-        #    plugin::YellowText("You have a free AA Reset available. Would you like to [".quest::saylink("reset_aa", 1, "use it")."]?");
-        #}
+        my $free_aa_reset_used = ($client->GetBucket("free_aa_reset_used") || 0);
+        if (!$free_aa_reset_used) {
+            plugin::YellowText("You have a free AA Reset available. You will be given the option to use it by proceeding with the menu.");
+        }
 
         return;
     }
 
-#    if ($text=~/reset_aa/i) {
-#        my $free_aa_reset_used = ($client->GetBucket("free_aa_reset_used") || 0);
-#        if (!$free_aa_reset_used) {
-#            plugin::YellowText("All of your AA have been refunded.");
-#            $client->SetBucket("free_aa_reset_used", 1);
-#            $client->ResetAA();
-#            $client->Save(1);
-#            plugin::CommonCharacterUpdate($client);
-#        }
-#    }
+    if ($text=~/free_reset_aa/i) {
+        my $free_aa_reset_used = ($client->GetBucket("free_aa_reset_used") || 0);
+        if (!$free_aa_reset_used) {
+            plugin::YellowText("All of your AA have been refunded.");
+            $client->SetBucket("free_aa_reset_used", 1);
+            $client->ResetAA();
+            $client->Save(1);
+            plugin::CommonCharacterUpdate($client);
+        }
+    }
 
     if ($text=~/blind fate/i) {
         if (plugin::GetClassesCount($client) == 1) {
@@ -78,11 +84,59 @@ sub EVENT_SAY {
         return;
     }
 
+    if ($text=~/free_reset_aa/i) {
+        my $free_aa_reset_used = ($client->GetBucket("free_aa_reset_used") || 0);
+        if (!$free_aa_reset_used) {
+            plugin::YellowText("All of your AA have been refunded.");
+            $client->SetBucket("free_aa_reset_used", 1);
+            $client->ResetAA();
+            plugin::CommonCharacterUpdate($client);
+            $client->Save(1);
+        }
+    }
+
     if ($text=~/reforge your path/i) {
         if (plugin::GetClassesCount > 1) {
             my $classes_string = GetClassLinkString();
 
-            plugin::NPCTell("Which class would you have me strip from you; $classes_string? Be aware, you will lose all alternate advancement you have made down this path, permanently.");
+            plugin::NPCTell("Which class would you have me strip from you; $classes_string? Be aware, you will lose all alternate advancement you have made down this path, permanently.
+                            I can also allow you [".quest::saylink("reset_aa", 1, "reselect your alternate advancement abilities")."], should you desire.");
+        }
+    }
+
+    if ($text eq 'reset_aa') {
+        my $free_aa_reset_used = ($client->GetBucket("free_aa_reset_used") || 0);
+        if (!$free_aa_reset_used) {
+            plugin::YellowText("You have a free AA Reset available. Would you like to [".quest::saylink("free_reset_aa", 1, "use it")."]?");
+        } else {
+            if ($client->HasExpeditionLockout("AA Reset Lockout", "")) {
+                plugin::YellowText("You cannot reset your AA at this time, you still are under cooldown from a previous reset.");
+                return 0;
+            }
+        }
+
+       
+        if (plugin::GetEOM($client) >= $remove_class_cost) {
+                plugin::YellowText("It will cost $remove_class_cost Echo of Memory in order to reset your AA. Additionally, 
+                                there is a $reset_aa_lockout-day cooldown after performing this reset before you can remove another.
+                                Each time you do this, your cooldown for this avatar will permanently increase. Would you like to ["
+                                .quest::saylink("confirm_reset_aa", 1, "Proceed")."]?");
+        
+        } else {
+                plugin::YellowText("It costs $remove_class_cost Echo of Memory in order to reset your AA. You can obtain
+                                Echo of Memory through contributions to the sever or purchase from other players in the Bazaar.");
+        }  
+    }
+
+    if ($text eq 'confirm_reset_aa') {
+        if (!$client->HasExpeditionLockout("AA Reset Lockout", "") && plugin::SpendEOM($client, $remove_class_cost)) {
+            plugin::YellowText("All of your AA have been refunded.");
+            $client->ResetAA();
+            plugin::CommonCharacterUpdate($client);
+            $client->Save(1);
+
+            $client->AddExpeditionLockout("AA Reset Lockout", "", $reset_aa_lockout * 24 * 60 * 60);
+            $client->SetBucket("reset_aa_lockout_scale", $reset_aa_lockout_scale + 1);
         }
     }
 
@@ -121,7 +175,7 @@ sub EVENT_SAY {
             return 0;
         }
 
-        if (plugin::SpendEOM($client, $remove_class_cost) && plugin::HasClass($client, $class_id)) {
+        if (!$client->HasExpeditionLockout("Class Removal Lockout", "") && plugin::HasClass($client, $class_id) && plugin::SpendEOM($client, $remove_class_cost)) {
             plugin::RemoveClass($class_id, $client);
             $client->AddExpeditionLockout("Class Removal Lockout", "", $remove_class_lockout * 24 * 60 * 60);
             $client->SetBucket("remove_class_lockout_scale", $remove_class_lockout_scale + 1);
