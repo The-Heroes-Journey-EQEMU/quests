@@ -8,7 +8,11 @@ sub EVENT_DEATH_COMPLETE {
     if (!$nanzata && !$tukaarak && !$hraashna) {
         quest::shout("Warders, I have fallen. Prepare yourselves, these fools are determined to unleash doom!");
     } else { 
-        quest::shout("Warders, I have fallen. Prepare yourselves, these fools are determined to unleash doom!");
+        quest::shout("FOOLS! You have unleashed your doom!");
+
+        quest::depop(128094);
+        quest::spawn(128089, 0, 0, -1481, -2373, -1034, 520);
+        quest::forcedooropen(46);
     }
 
     my $killer = $entity_list->GetClientByID($killer_id);   
