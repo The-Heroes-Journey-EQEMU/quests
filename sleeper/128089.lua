@@ -1,3 +1,5 @@
+-- If you found this, please don't spoil it for everyone else. This will be EPIC.
+
 local phase = 1;
 local current_target = nil;
 local ignore_reengage = false;
@@ -51,7 +53,6 @@ function event_timer(e)
 	elseif (e.timer == "AE") then
 		eq.stop_timer(e.timer);
 		--big bada boom time, once every 60 sec
-		--magama wave, 5k -800 FR damage, 300 range
 		eq.zone_emote(MT.Emote, "The dragon thrashes about!");
 		e.self:CameraEffect(1000,5);
 		e.self:CastSpell(23150,e.self:GetID())
