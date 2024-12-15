@@ -4,7 +4,7 @@ local killed                    = 0;
 local public_trigger_amount     = 26;
 local private_trigger_amount    = 12;
 local is_private_instance       = false;
-local controller_id             = 228112;
+local controller_id             = 228010; -- Attendant Mi`ta
 local drunken_sp2               = {29216,29215,29214,29213,29212,29211,29209,29210,29208,29160,29161,29162}
 local event_mobs                = {228002,228007,228008,228009,228026,228027,228028,228029,228030,228031,228032,228051,228085,228086,228087,228088,228093,228101};
 
