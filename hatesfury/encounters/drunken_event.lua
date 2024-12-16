@@ -25,7 +25,6 @@ function Controller_Signal(e)
 
         if is_private_instance and killed == private_trigger_amount then
             eq.unique_spawn(228111,0,0,431,1006,-607.4, 0); -- NPC: the_Drunken_Buccaneer
-            eq.depop(); -- No additional chance at respawn in private instance
         elseif not is_private_instance and killed == public_trigger_amount then
             eq.unique_spawn(228111,0,0,431,1006,-607.4, 0); -- NPC: the_Drunken_Buccaneer
             killed = 0; -- Reset
