@@ -4,7 +4,7 @@ my $icefang;
 
 sub EVENT_SIGNAL {
   if ($signal == 1161101) {
-    quest::moveto(3213, -8064, 146);
+    quest::moveto(3241, -7897, 146);
     $icefang = 10;
   }
   elsif ($signal == 1161102) {
