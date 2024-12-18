@@ -197,7 +197,8 @@ sub EVENT_ITEM {
 ###########################
 
   elsif (plugin::check_handin(\%itemcount, 1045 => 1, 18084 => 1, 30268 => 1)) {
-    quest::emote("lowers his head and mutters, 'At least there will be some closure for their families, thanks to you. The Ry`gorr will pay for this with their lives! I will ask you to help us in the invasion of Ry`gorr keep, but first I have a delicate [mission] I was hoping you'd handle.");
+    quest::emote("lowers his head and mutters");
+    quest::say("At least there will be some closure for their families, thanks to you. The Ry`gorr will pay for this with their lives! I will ask you to help us in the invasion of Ry`gorr keep, but first I have a delicate [mission] I was hoping you'd handle.");
     quest::summonitem(30162); # Item: Mithril Coldain Insignia Ring
 
 #   Factions: +Coldain, +Dain Frostreaver IV, -Kromrif, -Kromzek
