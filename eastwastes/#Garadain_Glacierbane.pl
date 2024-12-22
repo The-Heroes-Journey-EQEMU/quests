@@ -8,7 +8,7 @@ sub EVENT_SPAWN {
 sub EVENT_ITEM {
   if (plugin::check_handin(\%itemcount, 1092 => 1)) {
     quest::say("Good work friend! The Dain will hear of this right away. We couldn't have defeated the Ry'gorr without your help. Take this ring as proof that you have served the Coldain well. You may wish to show it to the Seneschal should you ever stop in our fine city. Farewell, $name, it has been my pleasure knowing you.");
-    quest::summonitem(30164); # Item: Velium Coldain Insignia Ring
+    quest::summonfixeditem(2030164); # Item: Velium Coldain Insignia Ring
 #Factions: +Coldain, +Dain Frostreaver IV, -Kromrif, -Kromzek
     quest::faction(406,30); # Faction: Coldain
     quest::faction(405,30); # Faction: Dain Frostreaver IV
@@ -87,6 +87,7 @@ sub EVENT_TIMER {
   }
   elsif($timer == 37) {
     quest::stoptimer(37);
+    quest::modifynpcstat("runspeed", 2.25);
     $npc->ResumeWandering();
   }
   elsif($timer == 27) {

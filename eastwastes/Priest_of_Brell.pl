@@ -1,10 +1,6 @@
-sub EVENT_SPAWN {
-  quest::modifynpcstat("runspeed", 0);
-  quest::pause(2);
-}
-
 sub EVENT_SIGNAL {
-  quest::debug("Priest received signal - " . $signal);
+  quest::debug("Priest of Brell received signal - " . $signal);
+  $npc->ResumeWandering();
   if ($signal == 1){
     # Fall into formation
     quest::modifynpcstat("runspeed", 2.25);
@@ -18,15 +14,11 @@ sub EVENT_SIGNAL {
 }
 
 sub EVENT_WAYPOINT_ARRIVE {
-  if ($wp == 1){
-    # Stop for Garadain's speech
-    quest::modifynpcstat("runspeed", 0);
-  } elsif ($wp == 2){
-    # Stop briefly for the call to charge
-    quest::modifynpcstat("runspeed", 0);
-  } elsif ($wp==3) {
+  # Pause our wandering at each of the waypoints
+  $npc->PauseWandering(0);
+
+  if ($wp==3) {
     # Arrived at final waypoint.  Stop navigation
-    $npc->SetGrid(0);
     quest::settimer(9,300);
   }
 }
