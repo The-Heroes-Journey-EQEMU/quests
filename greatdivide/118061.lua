@@ -17,7 +17,7 @@ function event_enter(e)
 		lapker = eq.get_entity_list():GetMobByNpcTypeID(118075);
 		laima = eq.get_entity_list():GetMobByNpcTypeID(118073);
 		fomgrut = eq.get_entity_list():GetMobByNpcTypeID(118072);
-		herga = eq.get_entity_list():GetMobByNpcTypeID(118072);
+		herga = eq.get_entity_list():GetMobByNpcTypeID(118074);
 		e.self:Say("Good day my friends, it is good to see you all are alive and well.");
 		eq.set_timer("one",8000);
 	end

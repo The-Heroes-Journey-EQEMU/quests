@@ -14,7 +14,10 @@ sub EVENT_ITEM {
     my $x = $npc->GetX(); 
     my $y = $npc->GetY(); 
     my $z = $npc->GetZ(); 
-    quest::spawn2(129063,0,0,$x,$y,$z,$h); # NPC: #Councilor_Juliah_Lockheart
+    $mymobid = quest::spawn2(129063,0,0,$x,$y,$z,$h); # NPC: #Councilor_Juliah_Lockheart
+    $mymob = $entity_list->GetMobID($mymobid);
+    $mymobNPC = $mymob->CastToNPC();
+    $mymobNPC->AddToHateList($client, 1);
     quest::depop_withtimer(); 
   } 
   plugin::return_items(\%itemcount); 

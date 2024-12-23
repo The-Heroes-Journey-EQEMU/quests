@@ -9,7 +9,7 @@ sub EVENT_SAY {
 
 sub EVENT_ITEM { 
   if (plugin::check_handin(\%itemcount, 30268 => 1)) {
-    quest::summonfixeditem("30268");
+    quest::summonfixeditem("2030268");
 
 
     my $mobid = $entity_list->GetMobByNpcTypeID(116110);

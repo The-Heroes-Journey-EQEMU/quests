@@ -5,7 +5,7 @@ sub EVENT_SIGNAL {
 		
 	}
 	if($signal==2) {
-		quest::moveto(4,690,69,256,1);
+		quest::moveto(5,692,69,256,1);
 		
 	}
 }
