@@ -17,8 +17,8 @@ sub EVENT_SAY {
 
 sub EVENT_ITEM 
 {    
-    if (plugin::check_handin_fixed(\%itemcount, 1002741 => 1)  || # Rose Colored Iksar Hide Mask
-        plugin::check_handin_fixed(\%itemcount, 2002741 => 1)) # Apocryphal Iksar Hide Mask
+    if (plugin::check_handin(\%itemcount, 1002741 => 1)  || # Rose Colored Iksar Hide Mask
+        plugin::check_handin(\%itemcount, 2002741 => 1)) # Apocryphal Iksar Hide Mask
     {
         quest::say("Mmmph!!.. *Pop!!* Ouch, my thumb!! Here you are.");
         quest::say("Cabilis welcomes you.");

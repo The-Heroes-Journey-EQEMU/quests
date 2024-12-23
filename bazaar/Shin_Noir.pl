@@ -24,10 +24,10 @@ sub EVENT_ITEM
     }
 
 
-    if (plugin::check_handin_fixed(\%itemcount, 1002469 => 1)  || # Rose Colored Guise of the Deceiver
-        plugin::check_handin_fixed(\%itemcount, 2002469 => 1) || # Apocryphal Guise of the Deceiver
-        plugin::check_handin_fixed(\%itemcount, 1002472 => 1) || # Rose Colored Mask of Deception
-        plugin::check_handin_fixed(\%itemcount, 2002472 => 1))   # Apocryphal Mask of Deception
+    if (plugin::check_handin(\%itemcount, 1002469 => 1)  || # Rose Colored Guise of the Deceiver
+        plugin::check_handin(\%itemcount, 2002469 => 1) || # Apocryphal Guise of the Deceiver
+        plugin::check_handin(\%itemcount, 1002472 => 1) || # Rose Colored Mask of Deception
+        plugin::check_handin(\%itemcount, 2002472 => 1))   # Apocryphal Mask of Deception
     {
         quest::say("Mmmph!!.. *Pop!!* Ouch, my thumb!! Here you are.");
         quest::say("(Log out to see your changes)");

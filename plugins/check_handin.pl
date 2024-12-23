@@ -1,98 +1,21 @@
 # plugin::check_handin($item1 => #required_amount,...);
 # autoreturns extra unused items on success
 sub check_handin {
-    use Scalar::Util qw(looks_like_number);
-    my $client  = plugin::val('client');
-    my $hashref = shift;
-
-    # Remove empty IDs
-    if ($hashref->{0}) {
-        delete $hashref->{0};
-    }
-
-    if (!$client->EntityVariableExists("HANDIN_ITEMS")) {
-        $client->SetEntityVariable("HANDIN_ITEMS", plugin::GetHandinItemsSerialized("Handin", %$hashref));
-    }
-
-    # Make a copy of the original hashref
-    my $original_hashref = { %$hashref };
-
-    # Normalize item IDs
-    foreach my $item (keys %$hashref) {
-        my $base_id = get_base_id($item);
-        if ($base_id && $base_id ne $item) {
-            $hashref->{$base_id} += $hashref->{$item} if exists $hashref->{$base_id};
-            $hashref->{$base_id} = $hashref->{$item} unless exists $hashref->{$base_id};
-            delete $hashref->{$item};
-        }
-    }
-
-    # Validate the hand-in
-    my %required = @_;
-    my $retval = 1;
-    foreach my $req (keys %required) {
-        if (!defined $hashref->{$req} || $hashref->{$req} < $required{$req}) {
-            $retval = 0;
-        }
-    }
-
-    # Adjust the counts in $hashref
-    foreach my $req (keys %required) {
-        if ($hashref->{$req} && $hashref->{$req} >= $required{$req}) {
-            $hashref->{$req} -= $required{$req};
-        } else {
-            delete $hashref->{$req};
-        }
-    }
-
-    if (!$retval) {
-        %$hashref = %$original_hashref;
-        return 0;
-    }
-
-    return $retval;
-}
-
-sub check_handin_fixed {
-    use Scalar::Util qw(looks_like_number);
-    my $client     = plugin::val('client');
-    my $hashref    = shift;
-
-	# These are the empty IDs
-	if ($hashref->{0}) {
-		delete $hashref->{0};
-	}
-
-	if (!$client->EntityVariableExists("HANDIN_ITEMS")) {
-		$client->SetEntityVariable("HANDIN_ITEMS", plugin::GetHandinItemsSerialized("Handin", %$hashref));
-	}	
-
-	# -----------------------------
-	# handin formatting examples
-	# -----------------------------
-	# item_id    => required_count eg (1001 => 1)
-	# -----------------------------
+	my $hashref = shift;
 	my %required = @_;
-	my $retval = 1;
-	foreach my $req (keys %required) {
-		if (!defined $hashref->{$req} || $hashref->{$req} != $required{$req}) {
-			$retval = 0;
+	my $client = plugin::val('client');
+	my $npc = plugin::val('npc');
+	my @currencies = ("platinum", "gold", "silver", "copper");
+
+	foreach my $currency (@currencies) {
+		my $value = plugin::val("\$$currency");
+		if ($value > 0) {
+			$hashref->{$currency} = $value;
 		}
 	}
 
-	foreach my $req (keys %required) {
-		if ($hashref->{$req} && $required{$req} < $hashref->{$req}) {
-			$hashref->{$req} -= $required{$req};
-		} else {
-			delete $hashref->{$req};
-		}
-	}
-	    
-    if (!$retval) {       
-        return 0;
-    }
-
-	return $retval;
+    my @item_insts = (plugin::val('item1_inst'), plugin::val('item2_inst'), plugin::val('item3_inst'), plugin::val('item4_inst'));
+    return $npc->CheckHandin($client, \%{$hashref}, \%required, @item_insts);
 }
 
 sub return_items {
