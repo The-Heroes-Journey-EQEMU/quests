@@ -1,4 +1,7 @@
 # items: 1567, 1500, 30164, 30369, 1465, 30516, 30502, 1199, 8895, 8896, 8886, 8898, 8897
+
+my $ring_9_bucket_key = "-dain-ring-9-box-status"; # we will set this back to 0 once the player hands in the box of traitor heads
+
 sub EVENT_SIGNAL {
 	if($signal==1) {
 		quest::moveto(6,777,66,256,1);
@@ -60,6 +63,7 @@ sub EVENT_ITEM {
     quest::faction(419,-50); #Kromrif
     quest::faction(448,-50); #Kromzek
     quest::exp(4000000);
+    quest::set_data($client->CharacterID() . $ring_9_bucket_key, "0"); # the player will no longer be able to get a box from Seneschal unless they show the 8th ring to him again.
   }
   #Tormax's head
   elsif($faction <= 4 && plugin::check_handin(\%itemcount, 30516 => 1)) {
