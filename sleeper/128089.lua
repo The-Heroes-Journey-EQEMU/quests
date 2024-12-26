@@ -1,4 +1,5 @@
 -- If you found this, please don't spoil it for everyone else. This will be EPIC.
+-- If I catch you spoiling this before velious release, you WILL be banned.
 
 local phase = 1;
 local current_target = nil;
