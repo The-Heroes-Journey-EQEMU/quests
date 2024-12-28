@@ -11,8 +11,10 @@ function event_spawn(e)
 	phase = 1;
 	e.self:Shout("Insolent lesser races, in thanks for freeing me from centuries of slumber, I shall grant you a quick death!");
 
+	
+
     eq.get_entity_list():FindDoor(46):ForceOpen(e.self);
-	eq.set_next_hp_event(90);	
+	eq.set_next_hp_event(90);
 end
 
 -- when combat starts/ends.  Joins = starts, else = ends
@@ -25,6 +27,22 @@ function event_combat(e)
 		end
 		phase = 1;
 		e.self:Emote(" ROARS!");
+
+		if eq.get_data("sleeper_awake") == nil or eq.get_data("sleeper_awake") == "" then
+			local target = e.self:GetTarget();
+			if target then
+				local tar_name = target:GetCleanName();
+				local message = string.format(
+					"The Sleeper has been awakened once more! %s dares to attempt what only Trylun has succeeded at!",
+					tar_name
+				);
+				
+				eq.world_wide_marquee(MT.Yellow, 510, 1, 100, 10000, message);
+				--eq.discord_send("ooc", message);
+				eq.set_data("sleeper_awake", tar_name);
+			end
+		end		
+
 		--lets get some pressure on the tank, and anyone who is stupid enough
 		--be in front of the mob :)
 		eq.set_timer("TankAEDMG", math.random(1000,3000));
