@@ -38,7 +38,7 @@ function event_combat(e)
 				);
 				
 				eq.world_wide_marquee(MT.Yellow, 510, 1, 100, 10000, message);
-				--eq.discord_send("ooc", message);
+				eq.discord_send("ooc", message);
 				eq.set_data("sleeper_awake", tar_name);
 			end
 		end		

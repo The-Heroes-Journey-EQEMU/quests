@@ -3,8 +3,6 @@ sub EVENT_DEATH_COMPLETE {
         return;
     }
     
-    plugin::handle_death($npc, $x, $y, $z, $entity_list);
-    
     my $nanzata = $entity_list->GetMobByNpcTypeID(128090);
     my $tukaarak = $entity_list->GetMobByNpcTypeID(128092);
     my $hraashna = $entity_list->GetMobByNpcTypeID(128093);
@@ -22,12 +20,4 @@ sub EVENT_DEATH_COMPLETE {
     if ($killer && int(rand(100)) == 0) {
         plugin::AddTitleFlag(200);
     }
-}
-
-sub EVENT_KILLED_MERIT {
-    if ($entity_list->GetMobByNpcTypeID(128090) || !$entity_list->GetMobByNpcTypeID(128094)) {
-        return;
-    }
-
-    plugin::handle_killed_merit($npc, $client, $entity_list);
 }
