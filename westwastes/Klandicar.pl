@@ -1,5 +1,5 @@
 sub EVENT_SAY {
-    if ($client->GetFaction($npc) <= 5) {
+    if ($faction <= 5) {
         if ($text=~/hail/i) {
             $client->Message(0, "Oi, what is this? A " . $client->GetRace() . ", if my tired old eyes are not mistaken...");
         }
