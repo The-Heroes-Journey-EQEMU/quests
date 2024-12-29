@@ -21,7 +21,7 @@ end
 function TunareSignal(e)
 	if e.signal == 1 then
 		eq.unique_spawn(tunare2,0,0,-247,1609,-40,424); -- NPC: #Tunare
-		eq.depop(127001);
+		eq.depop(tunare1);
 	elseif e.signal == 2 then
 		eq.unique_spawn(tunare1,0,0,-1632,1525,206,0); -- reset Tunare back in her tree.
 		eq.depop(tunare2);
