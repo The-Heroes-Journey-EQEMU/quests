@@ -4,10 +4,6 @@ local tunare1		= 127001;
 local tunare2		= 127098;
 local controller	= 127097;
 
--- do not aggro these mobs #_Tunare (127001), #Tunare (127098), a_warm_light (127004)
--- #BouncerMan (127097), Prince_Thirneg (127096), a_thifling_focuser (127006 and 127005)
-local exclude_npc_list = Set {127001,127004,127097,127098,127096,127006,127005};
-
 -- set to true to enable debug messages
 local show_debug = false;
 
@@ -78,6 +74,9 @@ function call_zone_to_assist(e_self,e_other)
 	-- grab the entity list
 	local entity_list = eq.get_entity_list();
 	-- aggro the zone onto whoever attacked me.
+	-- do not aggro these mobs #_Tunare (127001), #Tunare (127098), a_warm_light (127004)
+	-- #BouncerMan (127097), Prince_Thirneg (127096), a_thifling_focuser (127006 and 127005)
+	local exclude_npc_list = Set {127001,127004,127097,127098,127096,127006,127005};
 	local npc_list = entity_list:GetNPCList();
 	if npc_list ~= nil then
 		for npc in npc_list.entries do
