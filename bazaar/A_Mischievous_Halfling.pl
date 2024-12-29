@@ -75,6 +75,7 @@ sub EVENT_ITEM {
         }
     } else {
         quest::say("You'll need to give me exactly 5000 platinum pieces to play, dear friend. Come back when you have them!");
+    }
     plugin::return_items(\%itemcount);
 }
 
