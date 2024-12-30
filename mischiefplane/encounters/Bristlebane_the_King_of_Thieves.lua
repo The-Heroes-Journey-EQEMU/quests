@@ -1,6 +1,5 @@
 --- PoM 2.0 Bristlebane
 
-
 -- Variables
 local bristlebane_id		= 126373;
 local mischievous_jester_id	= 126012;
@@ -31,9 +30,11 @@ function evt_bristlebane_combat(e)
 	if e.joined then
 		eq.stop_timer("reset_event");
 		eq.pause_timer("despawn");
+		eq.set_timer("aggrolink", 3 * 1000);
 	else
-		eq.set_timer("reset_event", 5 * 60 * 1000); -- 5 Minute Reset
+		eq.set_timer("reset_event", 60 * 1000); -- 1 Minute Reset
 		eq.resume_timer("despawn");
+		eq.stop_timer("aggrolink");
 	end
 end
 
@@ -66,6 +67,13 @@ function evt_bristlebane_timer(e)
 		eq.depop();
 	elseif e.timer == "reset_event" then
 		reset_event(e);
+	elseif e.timer == "aggrolink" then
+		local npc_list =  eq.get_entity_list():GetNPCList();
+		for npc in npc_list.entries do
+			if npc.valid and not npc:IsEngaged() and (npc:GetNPCTypeID() == 126375 or npc:GetNPCTypeID() == 126376 or npc:GetNPCTypeID() == 126377 or npc:GetNPCTypeID() == 126378) then
+				npc:AddToHateList(e.self:GetHateRandom(),1);
+			end
+		end
 	end
 end
 
