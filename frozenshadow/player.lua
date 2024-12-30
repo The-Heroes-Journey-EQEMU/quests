@@ -56,7 +56,6 @@ function PortChars(e, distance, dest_x, dest_y, dest_z, dest_h)
 			if client_v.valid then --valid client
 				if client_v:CalculateDistance(e.self:GetX(), e.self:GetY(), e.self:GetZ()) <= distance then
 			        --check distance and port up
-					client_v:MovePC(111, dest_x, dest_y, dest_z, dest_h);
 					client_v:MovePCInstance(111, instance_id, dest_x, dest_y, dest_z, dest_h);
 				end
 			end
