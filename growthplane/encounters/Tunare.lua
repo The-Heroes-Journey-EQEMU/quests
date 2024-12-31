@@ -45,13 +45,13 @@ function Tunare2Timer(e)
 		eq.stop_timer(e.timer)
 		eq.signal(controller,2);
 	elseif e.timer == "assist_check" then
-		call_zone_to_assist();
+		call_zone_to_assist(e);
 	end
 end
 
 function Tunare2Combat(e)
 	if e.joined then
-		call_zone_to_assist();
+		call_zone_to_assist(e);
 		if not eq.is_paused_timer("depop") then
 			eq.pause_timer("depop");
 		end
@@ -74,7 +74,7 @@ function Tunare2Death(e)
 	eq.stop_timer("depop");
 end
 
-function call_zone_to_assist()
+function call_zone_to_assist(e)
 	-- grab the entity list
 	local entity_list = eq.get_entity_list();
 	-- aggro the zone onto whoever attacked me.
