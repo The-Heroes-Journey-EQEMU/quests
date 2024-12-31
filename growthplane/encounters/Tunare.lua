@@ -42,18 +42,22 @@ end
 
 function Tunare2Timer(e)
 	if e.timer == "depop" then
-		eq.stop_timer("depop")
+		eq.stop_timer(e.timer)
 		eq.signal(controller,2);
+	elseif e.timer == "assist_check" then
+		call_zone_to_assist();
 	end
 end
 
 function Tunare2Combat(e)
 	if e.joined then
-		call_zone_to_assist(e.self,e.other);
+		call_zone_to_assist();
 		if not eq.is_paused_timer("depop") then
 			eq.pause_timer("depop");
 		end
+		eq.set_timer("assist_check", 1 * 60 * 1000);
 	else
+		eq.stop_timer("assist_check");
 		eq.resume_timer("depop");
 	end
 end
@@ -70,7 +74,7 @@ function Tunare2Death(e)
 	eq.stop_timer("depop");
 end
 
-function call_zone_to_assist(e_self,e_other)
+function call_zone_to_assist()
 	-- grab the entity list
 	local entity_list = eq.get_entity_list();
 	-- aggro the zone onto whoever attacked me.
@@ -83,13 +87,13 @@ function call_zone_to_assist(e_self,e_other)
 			if exclude_npc_list[npc:GetNPCTypeID()] == nil then
 				-- npc.valid will be true if the NPC is actually spawned
 				if npc.valid then
-					npc:CastToNPC():MoveTo(e_self:GetX(),e_self:GetY(),e_self:GetZ(),0,false);
-					if show_debug then e_other:Message(MT.LightBlue,"NPCID: " .. npc:GetNPCTypeID() .. " is valid, adding hate on " .. npc:GetName() .. "."); end
+					npc:CastToNPC():AddToHateList(e.self:GetHateRandom(),1);
+					if show_debug then eq.debug("NPCID: " .. npc:GetNPCTypeID() .. " is valid, adding hate on " .. npc:GetName() .. "."); end
 				else
-					if show_debug then e_other:Message(MT.LightBlue,"NPCID: " .. npc:GetNPCTypeID() .. " is invalid, unable to add hate on " .. npc:GetName() .. "."); end
+					if show_debug then eq.debug("NPCID: " .. npc:GetNPCTypeID() .. " is invalid, unable to add hate on " .. npc:GetName() .. "."); end
 				end
 			else
-				if show_debug then e_other:Message(MT.LightBlue,"NPCID: " .. npc:GetNPCTypeID() .. " is excluded, not adding hate on " .. npc:GetName() .. "."); end
+				if show_debug then eq.debug("NPCID: " .. npc:GetNPCTypeID() .. " is excluded, not adding hate on " .. npc:GetName() .. "."); end
 			end
 		end
 	end
