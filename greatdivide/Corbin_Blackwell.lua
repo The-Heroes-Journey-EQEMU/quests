@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if ready and item_lib.check_turn_in(e.self, e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
+	if ready and item_lib.check_turn_in(e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
 		e.self:Emote(string.format("unhooks a glowing earring from Narandi's shorn head, 'Hmm, this looks like something special. Take it, %s, you've earned it! Be well.'",e.other:GetCleanName()));
 		e.other:Faction(49, 25); --Coldain
 		e.other:Faction(67, 10); --Dain

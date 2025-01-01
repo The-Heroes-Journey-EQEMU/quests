@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if ready and item_lib.check_turn_in(e.self, e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
+	if ready and item_lib.check_turn_in(e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
 		e.self:Emote("picks up a stick and hits the back of the dismembered head with all his might, knocking one of it's eyes out of the socket, 'Bastard killed my brother! Hope his ghost felt that one!'");
 		e.other:Faction(49, 25); --Coldain
 		e.other:Faction(67, 10); --Dain

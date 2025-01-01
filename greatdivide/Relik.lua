@@ -9,7 +9,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 30262,item2 = 30262,item3 = 30262, item4 = 30262 })) then
+	if(item_lib.check_turn_in(e.trade, {item1 = 30262,item2 = 30262,item3 = 30262, item4 = 30262 })) then
 		e.self:Say("Oh, yeah. That's strong, very strong. With these, we can make our shipment for this month. I gotta be thankin' ya properly. This be one of our best tools. Here, ya can swing a pick with us anytime, " .. e.other:GetCleanName() .. ".");
         e.other:QuestReward(e.self,0,0,0,0,30263,1000);
 	end

@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if ready and item_lib.check_turn_in(e.self, e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
+	if ready and item_lib.check_turn_in(e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
 		e.self:Emote(string.format("removes a choker from the severed head and returns both items to you, 'Congratulations on your victory, %s. I couldn't have done a better job myself. May Brell protect and watch over you and your friends. Farewell.'",e.other:GetCleanName()));
 		e.other:Faction(49, 25); --Coldain
 		e.other:Faction(67, 10); --Dain

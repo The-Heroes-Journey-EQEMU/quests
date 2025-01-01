@@ -15,7 +15,7 @@ end
 
 function event_trade(e)
     local item_lib = require("items");
-    if(item_lib.check_turn_in(e.self, e.trade, {item1 = 30061})) then -- Dissolving Liquid
+    if(item_lib.check_turn_in(e.trade, {item1 = 30061})) then -- Dissolving Liquid
         e.self:Emote("grins and pours the ooze on his hand and the box. You hear a burning sizzle and then the box thumps onto the ground. 'Ow! Ow! Take it! Hah. I never thought I would get rid of that piece of...");
         e.other:QuestReward(e.self,0,0,0,0,30039,10000); -- Locked Rum Box
     end

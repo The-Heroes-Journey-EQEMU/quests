@@ -14,14 +14,14 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if stage0 and item_lib.check_turn_in(e.self, e.trade, {item1 = 30369}) then -- 9th ring
+	if stage0 and item_lib.check_turn_in(e.trade, {item1 = 30369}) then -- 9th ring
 		e.other:SummonItem(30369); -- hands back ring
 		e.other:SummonItem(18511); -- orders for Zrelik
 		e.other:AddEXP(20000);
 		e.self:Say(string.format("Commit these orders to memory, %s, have them ready to speak at a moment's notice. Tell your soldiers to prepare themselves. When the orders are handed to Zrelik we will take up our positions.",e.other:GetCleanName()));
 		eq.set_timer("handin1", 300000); -- timer action is in encounter
 		stage0 = false;
-	elseif stage5 and item_lib.check_turn_in(e.self, e.trade, {item1 = 30369, item2 = 1739}) then -- Narandi's Head and 9th ring
+	elseif stage5 and item_lib.check_turn_in(e.trade, {item1 = 30369, item2 = 1739}) then -- Narandi's Head and 9th ring
 		e.self:Emote("unsheathes a knife and shaves the beard from Narandi's face and returns the head to you, 'The Dain will require the beard for his trophy room, please accept this ring on his behalf. May it's effect aid you as you have aided us. Be certain to present the ring to the Dain when you're in town. If you remain an ally he will be most gracious, but be warned, if you fall from his good graces he will keep the ring.'");
 		e.self:Say("Show the head to the surviving heroes quickly, we must report to the Dain and tend to the wounded.");
 		

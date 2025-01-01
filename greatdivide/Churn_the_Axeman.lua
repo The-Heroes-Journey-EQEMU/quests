@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if ready and item_lib.check_turn_in(e.self, e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
+	if ready and item_lib.check_turn_in(e.trade, {item1 = 1741}) then -- Shorn Head of Narandi
 		e.self:Emote("pries a crown from the head of Narandi, 'The halls of Thurgadin will echo with praises to you for as long as we grace the face of this land. May this crown serve you well. Honor through battle!'");
 		e.other:Faction(49, 25); --Coldain
 		e.other:Faction(67, 10); --Dain
