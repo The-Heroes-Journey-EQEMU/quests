@@ -89,9 +89,10 @@ end
 
 function SpawnWarder(e)
     local x,y,z,h = e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading();
-    local npc = eq.spawn2(eq.ChooseRandom(128090, 128091, 128092, 128093), 0, 0, x + 75, y + 25, z, h):AddToHateList(e.self:GetHateTop(),2000);
-	if npc.valid then
-        npc:Shout("I LIVE AGAIN! Master, your wish is my command!")
+    local warder_spawn = eq.spawn2(eq.ChooseRandom(128090, 128091, 128092, 128093), 0, 0, x + 75, y + 25, z, h);
+	if warder_spawn.valid then
+        warder_spawn:CastToNPC():Shout("I LIVE AGAIN! Master, your wish is my command!")
+		warder_spawn:CastToNPC():AddToHateList(e.self:GetHateTop(),2000);
 	end
 end
 
