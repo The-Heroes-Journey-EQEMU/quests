@@ -110,12 +110,30 @@ function depop_all_event_mobs(e)
 end
 
 function evt_bristlebane_death(e)
-	depop_all_event_mobs(e);
-
 	local killer = eq.get_entity_list():GetClientByID(e.killer_id);
     if killer and math.random(1, 100) == 1 then
         killer:CastToClient():SetBucket('flag-semaphore', '204');
         killer:Signal(100);
+    end
+end
+
+function evt_add_spawn(e)
+	eq.set_timer("depop", 2 * 60 * 60 * 1000);
+end
+
+function evt_add_combat(e)
+	if e.joined then
+        if not eq.is_paused_timer("depop") then
+            eq.pause_timer("depop");
+        end
+    else
+        eq.resume_timer("depop");
+    end
+end
+
+function evt_add_timer(e)
+	if e.timer == "depop" then
+        eq.depop();
     end
 end
 
@@ -130,6 +148,12 @@ function event_encounter_load(e)
 	eq.register_npc_event(Event.hp,				bristlebane_id, evt_bristlebane_hp);
 	eq.register_npc_event(Event.timer,			bristlebane_id, evt_bristlebane_timer);
 	eq.register_npc_event(Event.death_complete,	bristlebane_id, evt_bristlebane_death);
+
+	for i = 1, #event_adds do
+		eq.register_npc_event(Event.spawn,			event_adds[i], evt_add_spawn);
+		eq.register_npc_event(Event.combat,			event_adds[i], evt_add_combat);
+		eq.register_npc_event(Event.timer,			event_adds[i], evt_add_timer);
+	end
 
 	eq.register_npc_event(Event.death_complete,	mischievous_jester_id, evt_jester_death);
 end
