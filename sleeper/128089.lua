@@ -101,10 +101,21 @@ function event_hp(e)
 		e.self:CastSpell(6790,e.self:GetID()); --Spell: terrifying roar, -1k resist poison, 300 range
 		ignore_reengage		= true;
 		ignore_disengage	= true;
-		-- e.self:WipeHateList();
-		-- e.self:AddToHateList(current_target,2000); -- add 3k new threat to the random target
+
 		next_event_hp = next_event_hp - 5;
 		eq.set_next_hp_event(next_event_hp);
+
+		local hate_list = e.self:CountHateList();
+
+		if hate_list ~= nil and tonumber(hate_list) > 1 then
+			local top_hate = e.self:GetHateTop();
+			if top_hate.valid and top_hate:IsClient() then
+				local top_hate_v = top_hate:CastToClient()
+				if top_hate_v.valid then
+					e.self:SetHate(top_hate_v, 1, 1)
+				end
+			end
+		end
 	elseif e.hp_event == 75 then
 		e.self:Shout("YOU! WARDER! LIVE AGAIN AND SERVE ME!");
         SpawnWarder(e)
