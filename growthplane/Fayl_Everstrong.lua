@@ -1,5 +1,5 @@
 function event_combat(e)
-	if(e.joined) then
+	if e.joined then
 		call_zone_to_assist(e.self,e.other);
 		eq.set_timer("come",300000);
 	else
@@ -8,7 +8,7 @@ function event_combat(e)
 end
 
 function event_timer(e)
-	if(e.timer == "come") then
+	if e.timer == "come" then
 		e.self:Shout("Entoling hordes, come to me now!");
 		call_zone_to_assist(e.self,e.other);
 	end
@@ -45,16 +45,4 @@ function Set (list)
   local set = {}
   for _, l in ipairs(list) do set[l] = true end
   return set
-end
-
-function event_signal(e)
-	entity_list = eq.get_entity_list();
-
-	if(e.signal == 1) then
-		local mobtypeID =  entity_list:GetMobByNpcTypeID(127098);
-		local follow_mob = mobtypeID:GetID();
-		eq.follow(follow_mob);
-	elseif(e.signal == 2) then
-		eq.stop_follow();
-	end
 end
