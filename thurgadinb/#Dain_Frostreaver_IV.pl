@@ -54,7 +54,7 @@ sub EVENT_SAY {
 
 sub EVENT_ITEM {
   #Handin for the 9th ring. 
-  if(plugin::check_handin(\%itemcount, 1500 => 1, 30164 => 1)) {
+  if($faction <= 4 && plugin::check_handin(\%itemcount, 1500 => 1, 30164 => 1)) {
     quest::say("The people of Thurgadin are in your debt, $name. Please accept the Coldain Hero's Ring as a token of our gratitude. The curse has been removed from the blade as well. I hope you find it useful against our common foes. When you are interested in assisting me further please show me the blade. Until that day, may Brell bless and protect you.");
     quest::summonitem(30369); #9th ring
     quest::summonitem(1465); #dirk of the Dain
