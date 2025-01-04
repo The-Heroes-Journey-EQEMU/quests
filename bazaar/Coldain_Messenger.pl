@@ -77,8 +77,6 @@ sub EVENT_SAY {
 }
 
 sub EVENT_ITEM {
-    plugin::return_items(\%itemcount);
-    return;
     if (plugin::check_handin(\%itemcount, $token_item => 1)) {
         foreach my $target (@target_list) {
             plugin::SetSubflag($client, $stage_key, $target, 1);
