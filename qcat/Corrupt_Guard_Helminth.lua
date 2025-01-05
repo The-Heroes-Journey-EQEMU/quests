@@ -1,5 +1,14 @@
-function event_death(e)
-	eq.unique_spawn(45104,0,0,-130,425,-36,0); -- #a_sepsis_rat (45104)
-	eq.unique_spawn(45113,0,0,-130,455,-36,128); -- #sepsis_rat (45113)
-	eq.unique_spawn(45119,0,0,-270,441,-38,64); -- Azibelle_Spavin (45119)
+function event_spawn(e)
+	eq.set_timer("depop", 20 * 60 * 1000);  -- 20 min depop timer
+end
+
+function event_timer(e)
+	if e.timer == "depop" then
+		eq.depop();
+	end
+end
+
+function event_trade(e)
+	local item_lib = require("items");
+	item_lib.return_items(e.self, e.other, e.trade)
 end
