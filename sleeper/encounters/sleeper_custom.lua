@@ -184,8 +184,8 @@ function event_encounter_load(e)
 	eq.register_npc_event("sleeper_custom",     Event.death_complete,	    kerafrym_id,    evt_kera_death_complete);
 
 	for i = 1, #event_npcs do
-		eq.register_npc_event("sleeper_custom",     Event.spawn,			event_adds[i],  evt_add_spawn);
-		eq.register_npc_event("sleeper_custom",     Event.combat,			event_adds[i],  evt_add_combat);
-		eq.register_npc_event("sleeper_custom",     Event.timer,			event_adds[i],  evt_add_timer);
+		eq.register_npc_event("sleeper_custom",     Event.spawn,			event_npcs[i],  evt_add_spawn);
+		eq.register_npc_event("sleeper_custom",     Event.combat,			event_npcs[i],  evt_add_combat);
+		eq.register_npc_event("sleeper_custom",     Event.timer,			event_npcs[i],  evt_add_timer);
 	end
 end
