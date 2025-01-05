@@ -1,7 +1,7 @@
 -- If you found this, please don't spoil it for everyone else. This will be EPIC.
 -- If I catch you spoiling this before velious release, you WILL be banned.
 
-local event_npcs		= {128020, 128090, 128091, 128092, 128093}
+local event_npcs		= {128020, 128059, 128063, 128066, 128068}
 local next_event_hp		= 90;
 local kerafrym_id       = 128089;
 
@@ -54,7 +54,7 @@ function evt_kera_timer(e)
     elseif e.timer == "aggrolink" then
 		local npc_list =  eq.get_entity_list():GetNPCList();
 		for npc in npc_list.entries do
-			if npc.valid and not npc:IsEngaged() and (npc:GetNPCTypeID() == 128020 or npc:GetNPCTypeID() == 128090 or npc:GetNPCTypeID() == 128091 or npc:GetNPCTypeID() == 128092 or npc:GetNPCTypeID() == 128093) then
+			if npc.valid and not npc:IsEngaged() and (npc:GetNPCTypeID() == 128020 or npc:GetNPCTypeID() == 128059 or npc:GetNPCTypeID() == 128063 or npc:GetNPCTypeID() == 128066 or npc:GetNPCTypeID() == 128068) then
 				npc:AddToHateList(e.self:GetHateRandom(),1);
 			end
 		end
@@ -123,10 +123,9 @@ end
 
 function SpawnWarder(e)
     local x,y,z,h = e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading();
-    local warder_spawn = eq.spawn2(eq.ChooseRandom(128090, 128091, 128092, 128093), 0, 0, x + 75, y + 25, z, h);
+    local warder_spawn = eq.spawn2(eq.ChooseRandom(128059, 128063, 128066, 128068), 0, 0, x + 75, y + 25, z, h);
 	if warder_spawn.valid then
         warder_spawn:CastToNPC():Shout("I LIVE AGAIN! Master, your wish is my command!")
-        warder_spawn:CastToNPC():SetEntityVariable("warder_spawn", "true");
 		warder_spawn:CastToNPC():AddToHateList(e.self:GetHateTop(),2000);
 	end
 end
@@ -146,11 +145,6 @@ function reset_event(e)
 end
 
 function evt_add_spawn(e)
-    local scripted_warder = e.self:GetEntityVariable("warder_spawn") or false;
-
-    if not scripted_warder then
-        return;
-    end
 	eq.set_timer("depop", 5 * 60 * 1000);
 end
 
