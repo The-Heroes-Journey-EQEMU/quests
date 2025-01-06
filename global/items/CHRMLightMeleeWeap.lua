@@ -32,9 +32,21 @@ function event_scale_calc(e)
                              [22] = {15,51,180}
     }
 
+    local class_id  = 0;
+
+    if e.owner:HasClass(Class.RANGER) then
+        class_id = Class.RANGER;
+    elseif e.owner:HasClass(Class.MONK) then
+        class_id = Class.MONK;
+    elseif e.owner:HasClass(Class.ROGUE) then
+        class_id = Class.ROGUE;
+    elseif e.owner:HasClass(Class.BEASTLORD) then
+        class_id = Class.BEASTLORD;
+    end
+
     for id, v in pairs(skill_matrix) do
-        if ( e.owner:GetClass() == v[1]) then
-            if(e.owner:GetSkill(v[2]) >= v[3]) then
+        if class_id == v[1] then
+            if e.owner:GetSkill(v[2]) >= v[3] then
                 max_skills = max_skills + 1;
             end
             total_count = total_count + 1;
