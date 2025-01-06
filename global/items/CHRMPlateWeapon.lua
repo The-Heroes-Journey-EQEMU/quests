@@ -5,8 +5,8 @@
 
 function event_scale_calc(e)
 
-    local max_skills = 0;
-    local total_count = 0;
+    local max_skills    = 0;
+    local total_count   = 0;
 
     local skill_matrix = {   [1] = {1,0,250},
                              [2] = {1,1,250},
@@ -31,18 +31,30 @@ function event_scale_calc(e)
                              [21] = {8,1,270},
                              [22] = {8,36,270},
                              [23] = {8,51,120}
-    }
+    };
+
+    local class_id  = 0;
+
+    if e.owner:HasClass(Class.WARRIOR) then
+        class_id = Class.WARRIOR;
+    elseif e.owner:HasClass(Class.PALADIN) then
+        class_id = Class.PALADIN;
+    elseif e.owner:HasClass(Class.SHADOWKNIGHT) then
+        class_id = Class.SHADOWKNIGHT;
+    elseif e.owner:HasClass(Class.SHADOWKNIGHT) then
+        class_id = Class.SHADOWKNIGHT;
+    end
 
     for id, v in pairs(skill_matrix) do
-        if ( e.owner:GetClass() == v[1]) then
-            if(e.owner:GetSkill(v[2]) >= v[3]) then
+        if class_id == v[1] then
+            if e.owner:GetSkill(v[2]) >= v[3] then
                 max_skills = max_skills + 1;
             end
             total_count = total_count + 1;
         end
     end
 
-    if(total_count <= 0) then
+    if total_count <= 0 then
         total_count = 0.1; -- to avoid NAN
     end
 
