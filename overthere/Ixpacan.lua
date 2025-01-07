@@ -24,12 +24,12 @@ function event_trade(e)
 			e.self:Say("I see now that I lack the skill necessary to control the Dark Arts. Maybe it would be wiser to allow another such as yourself to continue forward. Please accept this token as a reward in your mastering of the Dark Arts.");
 			eq.delete_global("necskullquest");	-- Removed 8th cap and global, must do quest again from cap 1
 			e.other:SummonItem(48043);			-- Item: Demi Lich Skullcap
-		elseif tonumber(qglobals.necskullquest) == 9 and item_lib.check_turn_in(e.trade, {item1 = 48042}) then -- Item: Ixpacan's Tome (Tome-Full)
+		elseif item_lib.check_turn_in(e.trade, {item1 = 48042}) then -- Item: Ixpacan's Tome (Tome-Full)
 			e.self:Say("Wonderful! You have brought all of the items I have asked for. Your future seems very bright with the rest of the Sages. Step back now as I conjure the child of Charasis.");
 			eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, MT.LightGray, 150, "As Ixpacan starts his incantations, you can see an image begin to appear from the shadows.");
 			e.self:Say("It's out of my control! Defeat it before it destroys us both!");
 			eq.spawn2(93189,0,0,e.self:GetX() + 5,e.self:GetY(),e.self:GetZ(),e.self:GetHeading()); -- NPC: child_of_Charasis
-		elseif tonumber(qglobals.necskullquest) == 9 and item_lib.check_turn_in(e.trade, {item1 = 48044}) then -- Item: Child of Charasis Remains
+		elseif item_lib.check_turn_in(e.trade, {item1 = 48044}) then -- Item: Child of Charasis Remains
 			e.self:Say("I don't have the power to process these remains, aid me with your Necromancer Skullcap and provide me the remains and cap!")
 			e.other:SummonItem(48044);	-- Item: Child of Charasis Remains
 		end
