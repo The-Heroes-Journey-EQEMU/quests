@@ -1,10 +1,11 @@
 function event_say(e)
-	local faction = e.other:GetFaction(e.self) <= 4
+	local faction	= e.other:GetFaction(e.self) <= 4
+	local skull_cap	= tonumber(e.other:GetBucket("Skull_Cap")) or 0;
 
 	if e.message:findi("Hail") then
 		e.self:Emote("bows before you. His eyes are kept wide by the pins which distort his eyelids.");
 		e.self:Say("Greetings! You have stumbled upon the cave of the Keepers. We record the arcane secrets of the Brood of Kotiz. We have scribed many spells and make them available to all those who are deserving. Please, have a look.");
-	elseif faction and tonumber(e.other:GetBucket("Skull_Cap")) >= 5 then
+	elseif faction and skull_cap >= 5 then
 		if e.message:findi("chosen occultist") then
 			e.self:Emote("kneels before you abjectly.");
 			e.self:Say("Oh, great occultist! I am glad you have arrived, but I do not have the artifacts Kyvix seeks. You will have to seek out the sarnak revenants who still hold the precious stem and base. Get them and take them with your occultist skullcap back to Master Kyvix. Since you are headed in the general direction, I also have an [additional mission], if you do not mind.");
