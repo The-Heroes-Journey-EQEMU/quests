@@ -37,7 +37,10 @@ sub NPCTell {
 
 	my $NPCName = $npc->GetCleanName();
     my $tellColor = 257;
-	
+	if ($client->GetBucket("no-npc-tell") == 1) {
+        YellowText($message, $client);
+        return;
+    }
     $client->Message($tellColor, "$NPCName tells you, '" . $message . "'");
 }
 

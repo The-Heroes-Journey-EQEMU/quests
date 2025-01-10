@@ -20,8 +20,12 @@ sub EVENT_SAY {
       $rebind_text = "";
     }
 
+    my tell_msg = "[not use tells]";
+    if ($client->GetBucket("no-npc-tell") == 1) {
+      $tell_msg = "[use tells]";
+    }
     plugin::NPCTell("Greetings, $name. I am Tearel, the Keeper of the Map. I can [attune the map] to any rune circles you have previously discovered. If you are part of 
-                    [an expedition] I can also help you return to the heat of the battle.". $group_flg . $rebind_text);
+                    [an expedition] I can also help you return to the heat of the battle. I can also ". $tell_msg . ".". $group_flg . $rebind_text);
 
     return;
   }
@@ -31,6 +35,18 @@ sub EVENT_SAY {
     $client->SetBucket("baz_and_back_bind", $zonesn);
     return;
   }
+  if ($text =~ /not use tells/i) {
+    $client->SetBucket("no-npc-tell", 1);
+    plugin::NPCTell("Very well, I will not use tells with you.");
+    return;
+  }
+  if ($text =~ /use tells/i) {
+    $client->SetBucket("no-npc-tell", 0);
+    plugin::NPCTell("Very well, I will use tells with you.");
+    return;
+  }
+
+
 
   if ($text =~ /attune the map/i) {
       # Get eligible continent names
