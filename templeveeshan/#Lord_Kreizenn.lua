@@ -14,5 +14,10 @@ function event_timer(e)
 end
 
 function HelpMe(e)
-	eq.get_entity_list():GetMobByNpcTypeID(124010):CastToNPC():MoveTo(e.self:GetX(), e.self:GetY(), e.self:GetZ(), 0, false);
+	local entity_list = eq.get_entity_list();
+	local add_1	= entity_list:IsMobSpawnedByNpcTypeID(124010);
+
+	if add_1 then
+		entity_list:GetMobByNpcTypeID(124010):CastToNPC():MoveTo(e.self:GetX(), e.self:GetY(), e.self:GetZ(), 0, false);
+	end
 end
