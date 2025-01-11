@@ -21,14 +21,14 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if item_lib.check_turn_in(e.trade, {item1 = 14105}) then -- Item: Mundane Shield
-		e.self:Say("Wear this shield imbued with my very essence. Wear it in honor of your great services to our Lord Cazic-Thule!");
+	if item_lib.check_turn_in(e.trade, {item1 = 14106}) then -- Item: Mundane Mask
+		e.self:Say("Wear this mask imbued with my very essence. Wear it in honor of your great services to our Lord Cazic-Thule!");
 		e.other:Faction(265,50);	-- Faction: Heretics
 		e.other:Faction(254,-50);	-- Faction: Gate Callers
 		e.other:Faction(242,-50);	-- Faction: Deepwater Knights
 		e.other:Faction(231,-50);	-- Faction: Craftkeepers
 		e.other:Faction(233,-50);	-- Faction: Crimson Hands
-		e.other:SummonItem(14107);	-- Item: Dread Forged Shield
+		e.other:SummonItem(14108);	-- Item: Terror Forged Mask
 		e.other:QuestReward(e.self,{exp = 5000});
 		eq.depop();
 	end
