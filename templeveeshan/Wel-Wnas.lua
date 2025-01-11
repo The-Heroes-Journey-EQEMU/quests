@@ -8,7 +8,9 @@ function event_combat(e)
 
 		if add_1 then
 			entity_list:GetNPCByNPCTypeID(124077):CastToNPC():AddToHateList(e.other, 1);
-		elseif add_2 then
+		end
+		
+		if add_2 then
 			entity_list:GetNPCByNPCTypeID(124091):CastToNPC():AddToHateList(e.other, 1);
 		end
 	end
