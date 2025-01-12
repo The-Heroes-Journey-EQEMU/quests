@@ -165,7 +165,6 @@ helper.SKYSHRINE_SILK_TEXT = {
 	gloves		= "For this fine pair of gloves you must seek out and return to me a pair of tattered silk gloves and three crushed topaz.",
 	leggings	= "This pair of leggings will be yours provided you supply me with a pair of tattered silk pantaloons and three nephrite.",
 	boots		= "These supple boots shall be yours upon receipt of a pair of tattered silk boots and three crushed jaundice gems.",
-
 }
 
 helper.KAEL_SILK_TEXT = {
