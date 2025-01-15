@@ -188,8 +188,8 @@ function helper.quest_text(e, table, faction)
 		for trigger, text in pairs(table) do
 			if e.message:findi(trigger) then
 				text = text:gsub("(-name)", e.other:GetCleanName());
-				text = text:gsub("(-race)", e.other:Race());
-				text = text:gsub("(-class)", e.other:Class());
+				text = text:gsub("(-race)", e.other:GetRaceName());
+				text = text:gsub("(-class)", e.other:GetClassName());
 				e.self:Say(text);
 				return;
 			end
@@ -205,8 +205,8 @@ function helper.quest_text_skyshrine(e, table, faction)
 		for trigger, text in pairs(table) do
 			if e.message:findi(trigger) then
 				text = text:gsub("(-name)", e.other:GetCleanName());
-				text = text:gsub("(-race)", e.other:Race());
-				text = text:gsub("(-class)", e.other:Class());
+				text = text:gsub("(-race)", e.other:GetRaceName());
+				text = text:gsub("(-class)", e.other:GetClassName());
 				e.self:Say(text);
 				return;
 			end
