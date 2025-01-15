@@ -14,11 +14,9 @@ function event_signal(e)
 end
 
 function event_trade(e)
-	local fang = 0;
-	
 	local item_lib = require("items");
 
-	elseif item_lib.check_turn_in(e.trade, {item1 = 18815}) then -- Item: Tattered Note
+	if item_lib.check_turn_in(e.trade, {item1 = 18815}) then -- Item: Tattered Note
 		e.self:Say("I heard you were on your way.  I have called for the state [executioner].  She should be on her way now.  She will deal with our friend, McNeal Jocub.  Thank you for your help, citizen.");
 		e.other:Faction(262,40,0);	-- Faction: Guards of Qeynos
 		e.other:Faction(219,6,0);	-- Faction: Antonius Bayle
@@ -27,7 +25,7 @@ function event_trade(e)
 		e.other:Faction(291,4,0);	-- Faction: Merchants of Qeynos
 		e.other:QuestReward(e.self,math.random(10),math.random(9),math.random(5),0,13305,500); -- Item: Medal of Merit
 		eq.spawn2(1202,62,0,-412,75,-24,0);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 18912})) then -- Tattered Cloth Note
+	elseif item_lib.check_turn_in(e.trade, {item1 = 18912}) then -- Item: Tattered Cloth Note
 		e.self:Say("So, an assassin has been sent to Qeynos! I shall have my guards keep an eye out for any suspicious looking visitors. As for you... you should speak with the Surefall Glade ambassador. Ambassador Gash is staying at the Lion's Mane Inn here in South Qeynos. Inform him that [an assassin has been sent to kill] him. Do not let the assassin near him!");
 		e.other:Faction(262,5,0);	-- Faction: Guards of Qeynos
 		e.other:Faction(219,1,0);	-- Faction: Antonius Bayle
@@ -40,7 +38,7 @@ function event_trade(e)
 		e.other:QuestReward(e.self,{exp = 1000});
 		e.other:SummonItem(8287);	-- Item: Orders for Sergeant Caelin
 	end
-	
+
 	while item_lib.check_turn_in(e.trade, {item1 = 13915}) do
 		e.self:Say("Very good! One less gnoll the people of Qeynos need to fear. Here is your bounty as promised.");
 		e.other:QuestReward(e.self,{exp = 1000});
