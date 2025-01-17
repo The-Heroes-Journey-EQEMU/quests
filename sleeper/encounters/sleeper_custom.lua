@@ -1,9 +1,11 @@
 -- If you found this, please don't spoil it for everyone else. This will be EPIC.
 -- If I catch you spoiling this before velious release, you WILL be banned.
 
-local event_npcs		= {128020, 128090, 128091, 128092, 128093, 128041, 128043, 128042, 128044}
-local next_event_hp		= 90;
-local kerafrym_id       = 128089;
+local event_npcs				= {128020, 128259, 128291, 128292, 128293, 128241, 128043, 128042, 128044};
+local event_dragon_adds			= {128259, 128291, 128292, 128293, 128241, 128243, 128242, 128244}
+local next_event_hp				= 90;
+local kerafrym_id       		= 128089;
+local warder_instance_status	= 0;
 
 function evt_kera_spawn(e)
 	e.self:Shout("Insolent lesser races, in thanks for freeing me from centuries of slumber, I shall grant you a quick death!");
@@ -54,7 +56,7 @@ function evt_kera_timer(e)
     elseif e.timer == "aggrolink" then
 		local npc_list =  eq.get_entity_list():GetNPCList();
 		for npc in npc_list.entries do
-			if npc.valid and not npc:IsEngaged() and (npc:GetNPCTypeID() == 128020 or npc:GetNPCTypeID() == 128059 or npc:GetNPCTypeID() == 128063 or npc:GetNPCTypeID() == 128066 or npc:GetNPCTypeID() == 128068) then
+			if npc.valid and not npc:IsEngaged() and (npc:GetNPCTypeID() == 128020 or npc:GetNPCTypeID() == 128259 or npc:GetNPCTypeID() == 128291 or npc:GetNPCTypeID() == 128292 or npc:GetNPCTypeID() == 128293 or npc:GetNPCTypeID() == 128241 or npc:GetNPCTypeID() == 128243 or npc:GetNPCTypeID() == 128242 or npc:GetNPCTypeID() == 128244) then
 				npc:AddToHateList(e.self:GetHateRandom(),1);
 			end
 		end
@@ -123,7 +125,8 @@ end
 
 function SpawnWarder(e)
     local x,y,z,h = e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading();
-    local warder_spawn = eq.spawn2(eq.ChooseRandom(128090, 128091, 128092, 128093, 128041, 128043, 128042, 128044), 0, 0, x + 75, y + 25, z, h);
+    local warder_spawn = eq.spawn2(event_dragon_adds[math.random(1,#event_dragon_adds)], 0, 0, x + 75, y + 25, z, h);
+
 	if warder_spawn.valid then
         warder_spawn:CastToNPC():Shout("I LIVE AGAIN! Master, your wish is my command!")
 		warder_spawn:CastToNPC():AddToHateList(e.self:GetHateTop(),2000);
@@ -145,6 +148,11 @@ function reset_event(e)
 end
 
 function evt_add_spawn(e)
+	warder_instance_status	= tonumber(eq.get_data("Sleeper_Warder_Status-"..eq.get_zone_instance_id())) or 0;
+
+	if warder_instance_status == 1 then -- Clear item list if mob was previously spawned and killed in this instance to prevent exploit farming.
+		e.self:ClearItemList();
+	end
 	eq.set_timer("depop", 5 * 60 * 1000);
 end
 
@@ -170,16 +178,26 @@ function evt_add_timer(e)
     end
 end
 
+function evt_warder_death(e)
+	eq.set_data("Sleeper_Warder_Status-"..eq.get_zone_instance_id(), "1");
+end
+
 function event_encounter_load(e)
-	eq.register_npc_event("sleeper_custom",     Event.spawn,			    kerafrym_id,    evt_kera_spawn);
-	eq.register_npc_event("sleeper_custom",     Event.combat,			    kerafrym_id,    evt_kera_combat);
-	eq.register_npc_event("sleeper_custom",     Event.hp,				    kerafrym_id,    evt_kera_hp);
-	eq.register_npc_event("sleeper_custom",     Event.timer,			    kerafrym_id,    evt_kera_timer);
-	eq.register_npc_event("sleeper_custom",     Event.death_complete,	    kerafrym_id,    evt_kera_death_complete);
+	eq.register_npc_event("sleeper_custom",     Event.spawn,			    kerafrym_id,    		evt_kera_spawn);
+	eq.register_npc_event("sleeper_custom",     Event.combat,			    kerafrym_id,    		evt_kera_combat);
+	eq.register_npc_event("sleeper_custom",     Event.hp,				    kerafrym_id,    		evt_kera_hp);
+	eq.register_npc_event("sleeper_custom",     Event.timer,			    kerafrym_id,    		evt_kera_timer);
+	eq.register_npc_event("sleeper_custom",     Event.death_complete,	    kerafrym_id,    		evt_kera_death_complete);
 
 	for i = 1, #event_npcs do
-		eq.register_npc_event("sleeper_custom",     Event.spawn,			event_npcs[i],  evt_add_spawn);
-		eq.register_npc_event("sleeper_custom",     Event.combat,			event_npcs[i],  evt_add_combat);
-		eq.register_npc_event("sleeper_custom",     Event.timer,			event_npcs[i],  evt_add_timer);
+		eq.register_npc_event("sleeper_custom",     Event.spawn,			event_npcs[i],  		evt_add_spawn);
+		eq.register_npc_event("sleeper_custom",     Event.combat,			event_npcs[i],  		evt_add_combat);
+		eq.register_npc_event("sleeper_custom",     Event.timer,			event_npcs[i],			evt_add_timer);
 	end
+
+	for i = 1, #event_dragon_adds do
+		eq.register_npc_event("sleeper_custom",     Event.death_complete,	event_dragon_adds[i],	evt_warder_death);
+	end
+
+	warder_instance_status	= tonumber(eq.get_data("Sleeper_Warder_Status-"..eq.get_zone_instance_id())) or 0
 end
