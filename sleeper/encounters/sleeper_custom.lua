@@ -179,7 +179,8 @@ function evt_add_timer(e)
 end
 
 function evt_warder_death(e)
-	eq.set_data("Sleeper_Warder_Status-"..eq.get_zone_instance_id(), "1",H6);
+	eq.set_data("Sleeper_Warder_Status-"..eq.get_zone_instance_id(), "1","H6");
+
 end
 
 function event_encounter_load(e)
