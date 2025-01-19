@@ -62,7 +62,7 @@ function event_timer(e)
 		e.self:Say("So our goal is to pry the information we need from Theodore Exanthem so that we may bring these two fugitives to justice. After getting him to comply, you are to collect a confession from Theodore and have him lead us to the two fugitives. Give me Theodore's confession and the heads of these two fugitives and you shall have your badge");
 	elseif brief == 8 then
 		e.self:Say(string.format("Follow me, %s",name));
-		eq.start(4); -- start the grid (one way repop)
+		eq.start(110); -- start the grid (one way repop)
 		eq.stop_timer("brief");
 		eq.set_timer("depop", 20 * 60 * 1000);  --20 min to complete event upon start
 	end
@@ -118,7 +118,6 @@ function event_signal(e)
 		eq.depop_with_timer();
 	end
 end
-
 
 function event_death_complete(e)
 	eq.set_global("qeynos_badge2","1",5,"F"); -- Badge Globals
