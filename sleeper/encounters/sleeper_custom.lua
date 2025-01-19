@@ -23,6 +23,11 @@ function evt_kera_combat(e)
         eq.set_timer("aggrolink", 3 * 1000);
 		eq.set_timer("TankAEDMG", math.random(1000,3000));
 		eq.stop_timer("reset");
+
+		-- Sanity Depop incase a warder is left up from a previous wipe and zone idled.
+		for i = 1, #event_npcs do
+			eq.depop_all(event_npcs[i])
+		end
 	else -- He should never be completely off aggro, if so someone is trying to cheese or is wiping and trying to get away.
         e.self:Shout("Flee puny mortal, Flee for your life, I will be waiting here for you, more powerful than ever!");
         eq.debug("[Sleeper Event] - Event reset due to empty aggro table")
