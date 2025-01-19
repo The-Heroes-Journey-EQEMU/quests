@@ -162,11 +162,14 @@ function evt_add_spawn(e)
 end
 
 function evt_add_combat(e)
-    local scripted_warder = e.self:GetEntityVariable("warder_spawn") or false;
+	local kerafrym = eq.get_entity_list():GetMobByNpcTypeID(kerafrym_id);
 
-    if not scripted_warder then
-        return;
-    end
+	-- Sanity Check, if Kerafrym is up and is >= 95% hp then depop the add in question
+	if kerafrym.valid then
+		if kerafrym:CastToNPC():GetHPRatio() >= 95 then
+			eq.depop();
+		end
+	end
 
 	if e.joined then
         if not eq.is_paused_timer("depop") then
@@ -185,7 +188,6 @@ end
 
 function evt_warder_death(e)
 	eq.set_data("Sleeper_Warder_Status-"..eq.get_zone_instance_id(), "1","H6");
-
 end
 
 function event_encounter_load(e)
