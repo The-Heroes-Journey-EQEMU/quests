@@ -15,10 +15,10 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.self,e.other);
 
-	if tonumber(qglobals.qeynos_badge4) == 1 and item_lib.check_turn_in(e.trade, {item1 = 2694}) then -- Item: Vegalys Seal
+	if (tonumber(qglobals.qeynos_badge4) == 1 or tonumber(qglobals.qeynos_badge4) == 2) and item_lib.check_turn_in(e.trade, {item1 = 2694}) then -- Item: Vegalys Seal
 		e.self:Say("Vegalys sent you. I'm done for. Guard Helminth found a false wall. We stepped through it. We were ambushed. I didn't see where Helminth went. He disappeared. I knew we were overwhelmed. I ran and feigned death but I knew [it was too late]");
 		e.other:SummonItem(2694);						-- Item: Vegalys Seal to Player
-		eq.spawn2(45206, 0, 0, -49, 379, -38, 256);		-- NPC: Guard Helminth
+		eq.spawn2(45131, 0, 0, -49, 379, -38, 256);		-- NPC: Guard Helminth
 		eq.set_global("qeynos_badge4","2",5,"F");		-- QGlobal: Badge Globals
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

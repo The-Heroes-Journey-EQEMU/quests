@@ -11,10 +11,9 @@ function event_timer(e)
 	end
 end
 
-
 function event_say(e)
 	local qglobals = eq.get_qglobals(e.self,e.other);
-	
+
 	if e.message:findi("hail") then
 		e.self:Say("Who are you and what are you doing here? This place is not safe. You are to leave here immediately! You do not belong here!");
 	elseif e.message:findi("investigator") and e.message:findi("dead") and tonumber(qglobals.qeynos_badge4) >= 2 then
