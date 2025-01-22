@@ -11,7 +11,7 @@ sub OfferStandardInstance {
   my $dz_duration     = 14 * 60 * 60; # 18 hours
   my $dz_duration_sta = 2 * 60 * 60; # 18 hours
   my $dz_lifetime     = 604800;
-  my ($expedition_name, $min_players, $max_players, $dz_zone, $x, $y, $z, $heading) = @_;
+  my ($expedition_name, $min_players, $max_players, $dz_zone, $x, $y, $z, $heading, $include_event) = @_;
 
   if ($client->IsTaskActivityActive(4, 4)) {
     $client->UpdateTaskActivity(4, 4, 1);
@@ -23,7 +23,7 @@ sub OfferStandardInstance {
 
   if ($text =~ /hail/i) {
     my $dz = $client->GetExpedition();
-    if ($dz && ($dz->GetName() eq ($expedition_name . " (Respawning)") || $dz->GetName() eq ($expedition_name . " (Non-Respawning)"))) {
+    if ($dz && ($dz->GetName() eq ($expedition_name . " (Respawning)") || $dz->GetName() eq ($expedition_name . " (Non-Respawning)") || $dz->GetName() eq ($expedition_name . " (Event)"))) {
       quest::say("When you are [" . quest::saylink("ready", 1) . "], proceed into the portal.");
     }
     else {
@@ -32,26 +32,32 @@ sub OfferStandardInstance {
         plugin::YellowText("Notice: Instances will become more difficult for each player in your group beyond the second.");
         plugin::YellowText("[". quest::saylink('Non-Respawning',1). "] will not repopulate over time, and the most powerful enemies may be found within.");
         plugin::YellowText("[". quest::saylink('Respawning', 1). "] will repopulate over time, but many rare enemies may not be found inside.");
+	if(defined $include_event) {
+        	plugin::YellowText("[". quest::saylink('Event', 1). "] offers special event to challenge brave adventurers.");
+	}
       } else {
         plugin::YellowText("You can select from [". quest::saylink('Respawning', 1). "] or [".quest::saylink('Non-Respawning',1). "] versions.");
       }
     }
   }
 
-  elsif ($text eq 'Respawning' || $text eq 'Non-Respawning') {
+  elsif ($text eq 'Respawning' || $text eq 'Non-Respawning' || $text eq 'Event') {
     if ($text eq 'Non-Respawning') {
       $dz_version = quest::get_rule("Custom:StaticInstanceVersion") || 100;
       $expedition_name = $expedition_name . " (Non-Respawning)";
-    } else {
+    } elsif($text eq 'Respawning') {
       $dz_version = quest::get_rule("Custom:FarmingInstanceVersion") || 100;
       $expedition_name = $expedition_name . " (Respawning)";
+    } else {
+      $dz_version = quest::get_rule("Custom:EventInstanceVersion") || 100;
+      $expedition_name = $expedition_name . " (Event)";
     }
     
     my $dz = $client->CreateExpedition($dz_zone, $dz_version, $dz_lifetime, $expedition_name, $min_players, $max_players);
     if ($dz) {
       $dz->SetCompass($zonesn, $npc->GetX(), $npc->GetY(), $npc->GetZ());
       $dz->SetSafeReturn($zonesn, $client->GetX(), $client->GetY(), $client->GetZ(), $client->GetHeading());
-      if ($text eq 'Respawning') {
+      if ($text eq 'Respawning' || $text eq 'Event') {
         $dz->AddReplayLockout($dz_duration_sta);
       }
       if ($text eq 'Non-Respawning') {
@@ -65,7 +71,7 @@ sub OfferStandardInstance {
 
   elsif ($text =~ /ready/i) {
     my $dz = $client->GetExpedition();
-    if ($dz && ($dz->GetName() eq ($expedition_name . " (Respawning)") || $dz->GetName() eq ($expedition_name . " (Non-Respawning)"))) {
+    if ($dz && ($dz->GetName() eq ($expedition_name . " (Respawning)") || $dz->GetName() eq ($expedition_name . " (Non-Respawning)") || $dz->GetName() eq ($expedition_name . " (Event)"))) {
       
       # Fallback to safe zone coordinates if x, y, z, or heading are not defined
       my $final_x = defined $x ? $x : quest::GetZoneSafeX($dz->GetZoneID());
@@ -76,6 +82,11 @@ sub OfferStandardInstance {
       $client->MovePCInstance($dz->GetZoneID(), $dz->GetInstanceID(), $final_x, $final_y, $final_z, $final_heading);
     }
   }  
+}
+
+sub OfferStandardAndEvent {
+  my ($expedition_name, $min_players, $max_players, $dz_zone, $x, $y, $z, $heading) = @_;
+  OfferStandardInstance($expedition_name, $min_players, $max_players, $dz_zone, $x, $y, $z, $heading, 1);
 }
 
 sub ScaleInstanceNPC {
