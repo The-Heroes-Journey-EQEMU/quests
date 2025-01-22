@@ -319,7 +319,7 @@ sub EVENT_COMBINE_SUCCESS {
 }
 
 sub EVENT_ITEM_CLICK_CAST_CLIENT {
-    plugin::swap_items($client, $item_id);
+    plugin::swap_items($client, $item_id, $slot_id);
 }  
 
 sub EVENT_CAST_ON {

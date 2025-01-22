@@ -189,7 +189,7 @@ sub get_slot_by_item {
 }
 
 sub swap_items {
-    my ($client, $item_id) = @_;
+    my ($client, $item_id, $slot_id) = @_;
 
     # Normalize item ID to its base form
     my $normalized_id = $item_id % 1000000;
