@@ -22,30 +22,30 @@ function event_trade(e)
 		if item_lib.check_turn_in(e.trade, {item1 = 13849, item2 = 13849, gold = 5}) then -- Items and Coin: 2x Scarab Carapace and 5 gold
 			e.self:Say("Excellent. Here is your helm. Wear it with pride! And be sure to occasionally wipe out the insulating mucus that tends to build up on its underside. It will make your hair fall out. One more thing, would you be interested in [scarab boots] to match your helm?");
 			e.other:QuestReward(e.self,{exp = 100});
-			e.other:Faction(314,5);		-- Faction: Storm Guard
-			e.other:Faction(169,1);		-- Faction: Kazon Stormhammer
-			e.other:Faction(219,1);		-- Faction: Miners Guild 249
-			e.other:Faction(215,1);		-- Faction: Merchants of Kaladim
-			e.other:Faction(57,-1);		-- Faction: Craknek Warrior
+			e.other:Faction(312,5);		-- Faction: Storm Guard
+			e.other:Faction(274,1);		-- Faction: Kazon Stormhammer
+			e.other:Faction(293,1);		-- Faction: Miners Guild 249
+			e.other:Faction(290,1);		-- Faction: Merchants of Kaladim
+			e.other:Faction(232,-1);	-- Faction: Craknek Warrior
 			e.other:SummonItem(2175);	-- Item: Small Scarab Helm
 		elseif item_lib.check_turn_in(e.trade, {item1 = 13132, item2 = 13848, item3 = 13848, gold = 17}) then -- Items and Coin: Cracked Giant Scarab Carapace, 2x Scarab Legs and 17 gold
 			e.self:Say("Very good! Let me see here. Thread the legs around like this and... There you go. Wear them with pride!");
 			e.other:QuestReward(e.self,{exp = 100});
-			e.other:Faction(314,3);		-- Faction: Storm Guard
-			e.other:Faction(169,1);		-- Faction: Kazon Stormhammer
-			e.other:Faction(219,1);		-- Faction: Miners Guild 249
-			e.other:Faction(215,1);		-- Faction: Merchants of Kaladim
-			e.other:Faction(57,-1);		-- Faction: Craknek Warrior
+			e.other:Faction(312,5);		-- Faction: Storm Guard
+			e.other:Faction(274,1);		-- Faction: Kazon Stormhammer
+			e.other:Faction(293,1);		-- Faction: Miners Guild 249
+			e.other:Faction(290,1);		-- Faction: Merchants of Kaladim
+			e.other:Faction(232,-1);	-- Faction: Craknek Warrior
 			e.other:SummonItem(2177);	-- Item: Small Scarab Boots			
 		elseif e.other:GetFaction(e.self) < 5 then --requires amiable faction
 			if item_lib.check_turn_in(e.trade, {item1 = 13133, gold = 23}) then -- Item and Coin: Pristine Giant Scarab Carapace and 23 gold
 				e.self:Say("'If I do say so myself, this is one of the finest breastplates in all of Norrath. I am truly a master at my craft. You might want to wipe out some of the excess scarab goo before wearing it, though.");
 				e.other:QuestReward(e.self,{exp = 100});
-				e.other:Faction(314,5);		-- Faction: Storm Guard
-				e.other:Faction(169,1);		-- Faction: Kazon Stormhammer
-				e.other:Faction(219,1);		-- Faction: Miners Guild 249
-				e.other:Faction(215,1);		-- Faction: Merchants of Kaladim
-				e.other:Faction(57,-1);		-- Faction: Craknek Warrior
+				e.other:Faction(312,5);		-- Faction: Storm Guard
+				e.other:Faction(274,1);		-- Faction: Kazon Stormhammer
+				e.other:Faction(293,1);		-- Faction: Miners Guild 249
+				e.other:Faction(290,1);		-- Faction: Merchants of Kaladim
+				e.other:Faction(232,-1);	-- Faction: Craknek Warrior
 				e.other:SummonItem(2176);	-- Item: Small Scarab Breastplate
 			end
 		end
