@@ -1,6 +1,6 @@
+-- Shaman Cudgel Quest 8
 function event_death_complete(e)
-	e.self:Say("All Iksar residents.. shall learn.. of my demise. Ungghh!!");
-	eq.signal(87101,1); -- NPC: Atheling_Plague
+	eq.unique_spawn(105187,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ()); -- NPC: the_spirit_of_Rile
 end
 
 function event_trade(e)
