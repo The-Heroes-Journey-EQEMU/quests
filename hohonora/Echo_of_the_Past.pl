@@ -1,8 +1,0 @@
-my $expedition_name = "Halls of Honor";
-my $min_players     = 1;
-my $max_players     = 72;
-my $dz_zone         = "hohonora";
-
-sub EVENT_SAY {
-  plugin::OfferStandardInstance($expedition_name, $min_players, $max_players, $dz_zone);
-}
