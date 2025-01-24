@@ -23,35 +23,16 @@ function event_trade(e)
 	local fac = e.other:GetFaction(e.self);
 	local qglobals = eq.get_qglobals(e.self,e.other);
 
-    if item_lib.check_turn_in(e.trade, {item1 = 8264, item2 = 8264, item3 = 8264, item4 = 8264}) then -- Items: 4x Gnoll Canine
-        e.self:Say("Good work, that is one less gnoll we need to worry about!");
-        e.other:QuestReward(e.self,{exp = 1000});
-        e.other:Faction(1597,4);    -- Faction: Residents of Jaggedpine
-        e.other:Faction(272,8);     -- Faction: Jaggedpine Treefolk
-        e.other:Faction(302,8);     -- Faction: Protectors of Pine
-        e.other:Faction(262,20);    -- Faction: Guards of Qeynos
-    elseif item_lib.check_turn_in(e.trade, {item1 = 8264, item2 = 8264, item3 = 8264}) then -- Items: 3x Gnoll Canine
-        e.self:Say("Good work, that is one less gnoll we need to worry about!");
-        e.other:QuestReward(e.self,{exp = 750});
-        e.other:Faction(1597,3);    -- Faction: Residents of Jaggedpine
-        e.other:Faction(272,6);     -- Faction: Jaggedpine Treefolk
-        e.other:Faction(302,6);     -- Faction: Protectors of Pine
-        e.other:Faction(262,15);    -- Faction: Guards of Qeynos
-    elseif item_lib.check_turn_in(e.trade, {item1 = 8264, item2 = 8264}) then -- Items: 2x Gnoll Canine
-        e.self:Say("Good work, that is one less gnoll we need to worry about!");
-        e.other:QuestReward(e.self,{exp = 500});
-        e.other:Faction(1597,2);    -- Faction: Residents of Jaggedpine
-        e.other:Faction(272,4);     -- Faction: Jaggedpine Treefolk
-        e.other:Faction(302,4);     -- Faction: Protectors of Pine
-        e.other:Faction(262,10);    -- Faction: Guards of Qeynos
-    elseif item_lib.check_turn_in(e.trade, {item1 = 8264}) then -- Items: Gnoll Canine
-        e.self:Say("Good work, that is one less gnoll we need to worry about!");
+    while item_lib.check_turn_in(e.trade, {item1 = 13068}) do
+		e.self:Say("Good work, that is one less gnoll we need to worry about!");
         e.other:QuestReward(e.self,{exp = 250});
         e.other:Faction(1597,1);    -- Faction: Residents of Jaggedpine
         e.other:Faction(272,2);     -- Faction: Jaggedpine Treefolk
         e.other:Faction(302,2);     -- Faction: Protectors of Pine
         e.other:Faction(262,5);     -- Faction: Guards of Qeynos
-    elseif(fac <= 4 and item_lib.check_turn_in(e.trade, {item1 = 2388})) then -- Item: Qeynos Badge of Honor
+	end
+
+    if fac <= 4 and item_lib.check_turn_in(e.trade, {item1 = 2388}) then -- Item: Qeynos Badge of Honor
         e.self:Emote("takes your badge and places his mark upon it.");
         e.self:Say("I see that I can fully trust you. Here is your badge back.");
         e.self:Say("Take this note to Guard Finewine. He is officially on notice...");
