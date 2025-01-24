@@ -27,6 +27,7 @@ if ($text=~/what tome/i) {
  if ($text=~/I will search/i) {
  quest::say("Luckily there are only four missing pages. The pages are known as the page of clay, the page of decay, the page of dust, and the page of stone. Once you have all four pages, hand them to me and I will reward you!");
  }
+ 
  sub EVENT_ITEM {
   if (plugin::check_handin(\%itemcount, 55189 => 1, 55187 => 1, 55190 =>1, 55188 =>1)) {#Pages Handin
    quest::say("I cannot believe you have found the pages! Let me examine them.' Silzok carefully places the tattered pages back into his tome. 'They are little damages, but mostly salvageable. Stand back, I will wait no longer to use the power of this tome!"); 

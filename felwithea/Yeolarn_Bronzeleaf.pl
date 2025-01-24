@@ -38,7 +38,7 @@ sub EVENT_SAY {
 	if ($text=~/warden of tunare/i) {
 		quest::say("The crate that the you recovered from the Courier contained this black candlestick that radiates an aura of great magical power. I request that you deliver the candlestick to Lady Trilani who is studying with the High Men in Erudin. Perhaps she can divine the nature of the candlestick and offer aid in defeating its power. The remaining contents of the crate have been given to Crusader Swiftmoon to be delivered to a gnome in steamfont that is purchasing them on behalf of the Eldrich Collective. When you return be sure to present your Disciple Symbol to me with anything that Trilani may ask you to deliver.");
 		#:: Give item 1598 - Black Stone Candlestick
-		quest::summonitem(11598);
+		quest::summonitem(1598);
 	}
 }
 
@@ -79,7 +79,7 @@ sub EVENT_ITEM {
 		#:: Give a small amount of xp
 		quest::exp(3250);
 		#:: Give item 1570 - Initiate Symbol of Tunare
-		quest::summonitem(11570);
+		quest::summonitem(1570);
 		#:: Set faction
 		quest::faction(226,15); 		#:: + Clerics of Tunare
 		quest::faction(279,15); 	#:: + King Tearis Thex
@@ -93,7 +93,7 @@ sub EVENT_ITEM {
 		#:: Give a small amount of xp
 		quest::exp(4000);
 		#:: Give item 1571 - Disciple Symbol of Tunare
-		quest::summonitem(11571);
+		quest::summonitem(1571);
 		#:: Set faction
 		quest::faction(226,15); 		#:: + Clerics of Tunare
 		quest::faction(279,15); 	#:: + King Tearis Thex
@@ -107,7 +107,7 @@ sub EVENT_ITEM {
 		#:: Give a small amount of xp
 		quest::exp(5000);
 		#:: Give item 1572 - Warden Symbol of Tunare
-		quest::summonitem(11572);
+		quest::summonitem(1572);
 		#:: Set faction
 		quest::faction(226,15); 		#:: + Clerics of Tunare
 		quest::faction(279,15); 	#:: + King Tearis Thex
