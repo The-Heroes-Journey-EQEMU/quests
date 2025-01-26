@@ -28,6 +28,8 @@ local dClericNPCID = 118135;
 local dAxemanNPCID = 118152;
 local dArcherNPCID = 118141;
 local controllerNPCID = 118173;
+
+local narandiGridNum = 62;
 -- paths for giants
 local PathInfo = {};
 local Giants = { gRecruitNPCID, gCaptainNPCID, gWarriorNPCID, zekPriestNPCID, gGeneralNPCID, gVeteranNPCID, zekHighPriestNPCID, gWarlordNPCID };
@@ -566,8 +568,7 @@ function WarTimers(e)
 		table.insert(combo, narandiNPCID);
 		depop_except(combo);
 		PostSetup();
-		eq.unique_spawn(narandiNPCID, 68, 0, 250, -2300, -80, 0);
-		--spawn_helper(next_spawn, 10, 1, 1, 10, 192);
+		eq.unique_spawn(narandiNPCID, narandiGridNum, 0, 250, -2300, -80, 0);
 		e.self:Shout("Outlander! Narandi is plotting his retreat! Don't let him escape alive!");
 		local Narandi = eq.get_entity_list():GetMobByNpcTypeID(narandiNPCID);
 		Narandi:SetRunning(true);
