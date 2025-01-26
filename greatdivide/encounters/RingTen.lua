@@ -305,8 +305,7 @@ function PostSetup()
 end
 
 function GiantSpawn()
-        local spawn_time = 30000 -- hard set this to 2 minutes
-	--local spawn_time = 300000 - math.random(285000); -- base time till next wave
+        local spawn_time = 120000 -- hard set this to 2 minutes
 
 	if first then -- checks for first execution
 		spawn_time = 1000; -- shorter time for first wave
@@ -318,7 +317,7 @@ function GiantSpawn()
 			eq.stop_timer("Spawn" .. i, Aldikar);
 		end
 		if stage < 3 then
-			spawn_time = 30000;--180000; -- longer pause before new stage
+			spawn_time = 180000; -- longer pause before new stage
 			boss_count = 0;
 			miss_count = 0;
 			stage = stage + 1;
