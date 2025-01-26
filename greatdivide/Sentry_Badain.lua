@@ -30,7 +30,7 @@ end
 function event_timer(e)
 	if e.timer == "smallPause" then
 		eq.stop_timer("smallPause")
-		eq.zone_emote(MT.DimGray, 'The sound of a mighty horn echoes through the area. All local inhabitants begin to scurry to take cover... then they realize nothing is coming for them. The tenth ring war is coming... but not yet! Check Discord for updates.');
-		eq.load_encounter("ring_war");
+		eq.zone_emote(1, 'The sound of a mighty horn echoes through the area. All local inhabitants scurry to take cover.');
+		eq.load_encounter("RingTen");
 	end
 end
