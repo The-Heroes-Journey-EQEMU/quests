@@ -31,7 +31,9 @@ sub OfferStandardInstance {
       if (plugin::IsTHJ()) {
         plugin::YellowText("Notice: Instances will become more difficult for each player in your group beyond the second.");
         plugin::YellowText("[". quest::saylink('Non-Respawning',1). "] will not repopulate over time, and the most powerful enemies may be found within.");
-        plugin::YellowText("[". quest::saylink('Respawning', 1). "] will repopulate over time, but many rare enemies may not be found inside.");
+        if ($disable_respawn eq "false") {
+          plugin::YellowText("[". quest::saylink('Respawning', 1). "] will repopulate over time, but many rare enemies may not be found inside.");
+        }
       } else {
         plugin::YellowText("You can select from [". quest::saylink('Respawning', 1). "] or [".quest::saylink('Non-Respawning',1). "] versions.");
       }
@@ -43,8 +45,13 @@ sub OfferStandardInstance {
       $dz_version = quest::get_rule("Custom:StaticInstanceVersion") || 100;
       $expedition_name = $expedition_name . " (Non-Respawning)";
     } else {
-      $dz_version = quest::get_rule("Custom:FarmingInstanceVersion") || 100;
-      $expedition_name = $expedition_name . " (Respawning)";
+      if ($disable_respawn eq "false") {
+        $dz_version = quest::get_rule("Custom:FarmingInstanceVersion") || 100;
+        $expedition_name = $expedition_name . " (Respawning)";
+      } else {
+        plugin::RedText("Notice: This zone is not approved for a respawning instance.");
+        return;
+      }
     }
     
     my $dz = $client->CreateExpedition($dz_zone, $dz_version, $dz_lifetime, $expedition_name, $min_players, $max_players);
