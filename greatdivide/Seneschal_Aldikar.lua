@@ -19,7 +19,6 @@ function event_trade(e)
 	if stage0 and item_lib.check_turn_in(e.trade, {item1 = 30369}) then -- 9th ring
 		e.other:SummonItem(30369); -- hands back ring
 		e.other:SummonItem(18511); -- orders for Zrelik
-		e.other:AddEXP(20000);
 		e.self:Say(string.format("Commit these orders to memory, %s, have them ready to speak at a moment's notice. Tell your soldiers to prepare themselves. When the orders are handed to Zrelik we will take up our positions.",e.other:GetCleanName()));
 		eq.set_timer("handin1", 300000); -- timer action is in encounter
 		stage0 = false;
