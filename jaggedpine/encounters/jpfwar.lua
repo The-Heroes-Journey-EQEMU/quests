@@ -1,86 +1,42 @@
-local	gnoll00 = nil;
-local	gnoll01 = nil;
-local	gnoll02 = nil;
-local	gnoll03 = nil;
-local	gnoll04 = nil;
-local	gnoll05 = nil;
-local	gnoll06 = nil;
-local	gnoll07 = nil;
-local	gnoll08 = nil;
-local	gnoll09 = nil;
-local	gnoll10 = nil;
-local	gnoll11 = nil;
-local	gnoll12 = nil;
-local	gnoll13 = nil;
-local	gnoll14 = nil;
-local	gnoll15 = nil;
-local	gnoll16 = nil;
-local	gnoll17 = nil;
-local	gnoll18 = nil;
-local	gnoll19 = nil;
-local	gnoll20 = nil;
-local	gnoll21 = nil;
-local	gnoll22 = nil;
-local	gnoll23 = nil;
-local	gnoll24 = nil;
-local	gnoll25 = nil;
-local	gnoll26 = nil;
-local	gnoll27 = nil;
-local	gnoll28 = nil;
-local	gnoll29 = nil;
-local	gnoll30 = nil;
-local	gnoll31 = nil;
-local	gnoll32 = nil;
-local	gnoll33 = nil;
-local	gnoll34 = nil;
-local	gnoll35 = nil;
-local	gnoll36 = nil;
-local	gnoll37 = nil;
-local	gnoll38 = nil;
-local	gnoll39 = nil;
-local	gnoll40 = nil;
-local	gnoll41 = nil;
-local	gnoll42 = nil;
-local	gnoll43 = nil;
-local	gnoll44 = nil;
-local	assassin1 = nil;
-local	assassin2 = nil;
-local	assassin3 = nil;
-local	assassin4 = nil;
-local	jardor = nil;
+-- Jaggedpine Forest War Encounter
 
-local	gnoll = 0;
-local 	gnollcount = 0;
-local	villagedeathcount = 0;
-
-local	setup_npc		= 181192;
-local	Sergeant_Caelin	= 181328;
-local	Jardor_Darkpaw	= 181349;
+local	gnoll_table			= {};
+local	jardor				= nil;
+local	gnoll				= 0;
+local 	gnollcount			= 0;
+local	villagedeathcount	= 0;
+local	setup_npc			= 181192;
+local	Sergeant_Caelin		= 181328;
+local	Sergeant_Trade		= 181348;
+local	Jardor_Darkpaw		= 181349;
+local	barduck				= 181070;
+local	gnoll_id			= 181316;
+local	assassin_id			= 181347;
 
 local	static_village_npcs	= {181175,181205,181166,181103,181085,181086,181173,181195,181206,181090,181160,181180,181182,181203,181210,181165,181179,181099,181183,181163,181161}
 
 -- (Faction 1474)
 local VILLAGE_WAR_SPAWN = {
-	181319, -- NPC: ##Shayna_Thunderhand
-	181320, -- NPC: ##Kaithys_Galestrider
-	181321, -- NPC: ##Annous_Pineshadow
-	181323, -- NPC: ##Lady_Deira
-	181324, -- NPC: ##Nolan_Greenwood
-	181325, -- NPC: ##Cheyloh_Greenwood
-	181326, -- NPC: ##Guard_Finewine
-	181327, -- NPC: ##Guard_Bossamir
-	181329, -- NPC: ##Jeremy_Leafrunner
-	181331, -- NPC: ##Derick_Goodroot
-	181333, -- NPC: ##Cathleen_Goodroot
-	181334, -- NPC: ##Selia_Wetstone
-	181335, -- NPC: ##Morgan_Wetstone
-	181336, -- NPC: ##Tallien_Brightflash
-	181338, -- NPC: ##Nerdala_Darkcloud
-	181340, -- NPC: ##Pergan_Darkcloud
-	181341, -- NPC: ##Banker_Mardalson
-	181342, -- NPC: ##Ralleford_Twothorns
-	181345, -- NPC: ##Donna_Twothorns
-	181346, -- NPC: ##Diedra_Twothorns
+	SHAYNA		= 181319, -- NPC: ##Shayna_Thunderhand
+	KAITHYS		= 181320, -- NPC: ##Kaithys_Galestrider
+	ANNOUS		= 181321, -- NPC: ##Annous_Pineshadow
+	DEIRA		= 181323, -- NPC: ##Lady_Deira
+	NOLAN		= 181324, -- NPC: ##Nolan_Greenwood
+	CHEYLOH		= 181325, -- NPC: ##Cheyloh_Greenwood
+	FINEWINE	= 181326, -- NPC: ##Guard_Finewine
+	BOSSAMIR	= 181327, -- NPC: ##Guard_Bossamir
+	JEREMY		= 181329, -- NPC: ##Jeremy_Leafrunner
+	DERICK		= 181331, -- NPC: ##Derick_Goodroot
+	CATHLEEN	= 181333, -- NPC: ##Cathleen_Goodroot
+	SELIA		= 181334, -- NPC: ##Selia_Wetstone
+	MORGAN		= 181335, -- NPC: ##Morgan_Wetstone
+	TALLIEN		= 181336, -- NPC: ##Tallien_Brightflash
+	NERDALA		= 181338, -- NPC: ##Nerdala_Darkcloud
+	PERGAN		= 181340, -- NPC: ##Pergan_Darkcloud
+	BANKER		= 181341, -- NPC: ##Banker_Mardalson
+	RALLEFORD	= 181342, -- NPC: ##Ralleford_Twothorns
+	DONNA		= 181345, -- NPC: ##Donna_Twothorns
+	DIEDRA		= 181346, -- NPC: ##Diedra_Twothorns
 };
 
 function BarducksDeath(e)
@@ -90,6 +46,14 @@ end
 function ResetSpawn(e)
 	gnollcount = 0;
 	villagedeathcount = 0;
+
+	for i = 0, 44 do
+		gnoll_table["gnoll"..i] = nil;
+	end
+
+	for i = 1, 4 do
+		gnoll_table["assassin"..i] = nil;
+	end
 end
 
 function WarSignal(e)
@@ -125,266 +89,266 @@ function WarTimer(e)
 		eq.stop_timer("WarEnd");
 		gnollcount = 0;
 		villagedeathcount = 0;
-		eq.depop_all(181316); -- NPC: #a_gnoll
-		eq.depop_all(181347); -- NPC: a_gnoll_assassin
+		eq.depop_all(gnoll_id); -- NPC: #a_gnoll
+		eq.depop_all(assassin_id); -- NPC: a_gnoll_assassin
 		for _, id in ipairs(VILLAGE_WAR_SPAWN) do
 			eq.depop(id);
 		end
 	elseif e.timer == "gnollspawn" then
 		gnollcount = gnollcount + 1;
-		gnoll = 181316; -- NPC: #a_gnoll
+		gnoll = gnoll_id;
 		if gnollcount == 1 then
 			VillageWarSpawn(e);
 			StaticVillageDepop(e);
 		elseif gnollcount == 2 then
-			gnoll00 = GnollSpawnLocation(spn);
+			gnoll_table["gnoll0"] = GnollSpawnLocation(spn);
 		elseif gnollcount == 3 then
-			gnoll01 = GnollSpawnLocation(spn);
-			if gnoll00 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll00:GetID()) then
-				gnoll00:CastToNPC():MoveTo(1878,1086,-10,0,true);
+			gnoll_table["gnoll1"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll0"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll0"]:GetID()) then
+				gnoll_table["gnoll0"]:CastToNPC():MoveTo(1878,1086,-10,0,true);
 			end
 		elseif gnollcount == 4 then
-			gnoll02 = GnollSpawnLocation(spn);
-			if gnoll01 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll01:GetID()) then
-				gnoll01:CastToNPC():MoveTo(1840,1078,-10,0,true);
+			gnoll_table["gnoll2"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll1"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll1"]:GetID()) then
+				gnoll_table["gnoll1"]:CastToNPC():MoveTo(1840,1078,-10,0,true);
 			end
 		elseif gnollcount == 5 then
-			gnoll03 = GnollSpawnLocation(spn);
-			if gnoll02 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll02:GetID()) then
-				gnoll02:CastToNPC():MoveTo(1892,1053,-10,0,true);
+			gnoll_table["gnoll3"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll2"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll2"]:GetID()) then
+				gnoll_table["gnoll2"]:CastToNPC():MoveTo(1892,1053,-10,0,true);
 			end
 		elseif gnollcount == 6 then
-			gnoll04 = GnollSpawnLocation(spn);
-			if gnoll03 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll03:GetID()) then
-				gnoll03:CastToNPC():MoveTo(2059,1055,-11,0,true);
+			gnoll_table["gnoll4"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll3"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll3"]:GetID()) then
+				gnoll_table["gnoll3"]:CastToNPC():MoveTo(2059,1055,-11,0,true);
 			end
 		elseif gnollcount == 7 then
-			gnoll05 = GnollSpawnLocation(spn);
-			if gnoll04 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll04:GetID()) then
-				gnoll04:CastToNPC():MoveTo(2096,1072,-11,0,true);
+			gnoll_table["gnoll5"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll4"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll4"]:GetID()) then
+				gnoll_table["gnoll4"]:CastToNPC():MoveTo(2096,1072,-11,0,true);
 			end
 		elseif gnollcount == 8 then
-			gnoll06 = GnollSpawnLocation(spn);
-			if gnoll05 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll05:GetID()) then
-				gnoll05:CastToNPC():MoveTo(2096,1079,-11,0,true);
+			gnoll_table["gnoll6"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll5"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll5"]:GetID()) then
+				gnoll_table["gnoll5"]:CastToNPC():MoveTo(2096,1079,-11,0,true);
 			end
 		elseif gnollcount == 9 then
-			gnoll07 = GnollSpawnLocation(spn);
-			if gnoll06 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll06:GetID()) then
-				gnoll06:CastToNPC():MoveTo(2013,1090,-11,0,true);
+			gnoll_table["gnoll7"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll6"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll6"]:GetID()) then
+				gnoll_table["gnoll6"]:CastToNPC():MoveTo(2013,1090,-11,0,true);
 			end
 		elseif gnollcount == 10 then
-			gnoll08 = GnollSpawnLocation(spn);
-			if gnoll07 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll07:GetID()) then
-				gnoll07:CastToNPC():MoveTo(2016,1108,-11,0,true);
+			gnoll_table["gnoll8"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll7"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll7"]:GetID()) then
+				gnoll_table["gnoll7"]:CastToNPC():MoveTo(2016,1108,-11,0,true);
 			end
 		elseif gnollcount == 11 then
-			gnoll09 = GnollSpawnLocation(spn);
-			if gnoll08 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll08:GetID()) then
-				gnoll08:CastToNPC():MoveTo(2049,1123,-11,0,true);
+			gnoll_table["gnoll9"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll8"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll8"]:GetID()) then
+				gnoll_table["gnoll8"]:CastToNPC():MoveTo(2049,1123,-11,0,true);
 			end
 		elseif gnollcount == 12 then
-			gnoll10 = GnollSpawnLocation(spn);
-			if gnoll09 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll09:GetID()) then
-				gnoll09:CastToNPC():MoveTo(1919,1259,-11,0,true);
+			gnoll_table["gnoll10"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll9"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll9"]:GetID()) then
+				gnoll_table["gnoll9"]:CastToNPC():MoveTo(1919,1259,-11,0,true);
 			end
 		elseif gnollcount == 13 then
-			gnoll11 = GnollSpawnLocation(spn);
-			if gnoll10 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll10:GetID()) then
-				gnoll10:CastToNPC():MoveTo(1953,1329,-11,0,true);
+			gnoll_table["gnoll11"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll10"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll10"]:GetID()) then
+				gnoll_table["gnoll10"]:CastToNPC():MoveTo(1953,1329,-11,0,true);
 			end
 		elseif gnollcount == 14 then
-			gnoll12 = GnollSpawnLocation(spn);
-			if gnoll11 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll11:GetID()) then
-				gnoll11:CastToNPC():MoveTo(2048,1211,-12,0,true);
+			gnoll_table["gnoll12"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll11"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll11"]:GetID()) then
+				gnoll_table["gnoll11"]:CastToNPC():MoveTo(2048,1211,-12,0,true);
 			end
 		elseif gnollcount == 15 then
-			gnoll13 = GnollSpawnLocation(spn);
-			if gnoll12 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll12:GetID()) then
-				gnoll12:CastToNPC():MoveTo(1981,957,-12,0,true);
+			gnoll_table["gnoll13"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll12"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll12"]:GetID()) then
+				gnoll_table["gnoll12"]:CastToNPC():MoveTo(1981,957,-12,0,true);
 			end
 		elseif gnollcount == 16 then
-			gnoll14 = GnollSpawnLocation(spn);
-			if gnoll13 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll13:GetID()) then
-				gnoll13:CastToNPC():MoveTo(1994,1084,-11,0,true);
+			gnoll_table["gnoll14"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll13"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll13"]:GetID()) then
+				gnoll_table["gnoll13"]:CastToNPC():MoveTo(1994,1084,-11,0,true);
 			end
 		elseif gnollcount == 17 then
-			if gnoll14 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll14:GetID()) then
-				gnoll14:CastToNPC():MoveTo(1994,1084,-11,0,true);
+			if gnoll_table["gnoll14"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll14"]:GetID()) then
+				gnoll_table["gnoll14"]:CastToNPC():MoveTo(1994,1084,-11,0,true);
 			end
 			eq.set_timer("gnollspawn",245000);
 		elseif gnollcount == 18 then
-			gnoll15 = GnollSpawnLocation(spn);
+			gnoll_table["gnoll15"] = GnollSpawnLocation(spn);
 		elseif gnollcount == 19 then
-			gnoll16 = GnollSpawnLocation(spn);
-			if gnoll15 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll15:GetID()) then
-				gnoll15:CastToNPC():MoveTo(1878,1086,-10,0,true);
+			gnoll_table["gnoll16"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll15"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll15"]:GetID()) then
+				gnoll_table["gnoll15"]:CastToNPC():MoveTo(1878,1086,-10,0,true);
 			end
 		elseif gnollcount == 20 then
-			gnoll17 = GnollSpawnLocation(spn);
-			if gnoll16 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll16:GetID()) then
-				gnoll16:CastToNPC():MoveTo(1840,1078,-10,0,true);
+			gnoll_table["gnoll17"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll16"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll16"]:GetID()) then
+				gnoll_table["gnoll16"]:CastToNPC():MoveTo(1840,1078,-10,0,true);
 			end
 		elseif gnollcount == 21 then
-			gnoll18 = GnollSpawnLocation(spn);
-			if gnoll17 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll17:GetID()) then
-				gnoll17:CastToNPC():MoveTo(1892,1053,-10,0,true);
+			gnoll_table["gnoll18"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll17"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll17"]:GetID()) then
+				gnoll_table["gnoll17"]:CastToNPC():MoveTo(1892,1053,-10,0,true);
 			end
 		elseif gnollcount == 22 then
-			gnoll19 = GnollSpawnLocation(spn);
-			if gnoll18 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll18:GetID()) then
-				gnoll18:CastToNPC():MoveTo(2059,1055,-11,0,true);
+			gnoll_table["gnoll19"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll18"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll18"]:GetID()) then
+				gnoll_table["gnoll18"]:CastToNPC():MoveTo(2059,1055,-11,0,true);
 			end
 		elseif gnollcount == 23 then
-			gnoll20 = GnollSpawnLocation(spn);
-			if gnoll19 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll19:GetID()) then
-				gnoll19:CastToNPC():MoveTo(2096,1072,-11,0,true);
+			gnoll_table["gnoll20"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll19"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll19"]:GetID()) then
+				gnoll_table["gnoll19"]:CastToNPC():MoveTo(2096,1072,-11,0,true);
 			end
 		elseif gnollcount == 24 then
-			gnoll21 = GnollSpawnLocation(spn);
-			if gnoll20 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll20:GetID()) then
-				gnoll20:CastToNPC():MoveTo(2096,1079,-11,0,true);
+			gnoll_table["gnoll21"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll20"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll20"]:GetID()) then
+				gnoll_table["gnoll20"]:CastToNPC():MoveTo(2096,1079,-11,0,true);
 			end
 		elseif gnollcount == 25 then
-			gnoll22 = GnollSpawnLocation(spn);
-			if gnoll21 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll21:GetID()) then
-				gnoll21:CastToNPC():MoveTo(2013,1090,-11,0,true);
+			gnoll_table["gnoll22"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll21"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll21"]:GetID()) then
+				gnoll_table["gnoll21"]:CastToNPC():MoveTo(2013,1090,-11,0,true);
 			end
 		elseif gnollcount == 26 then
-			gnoll23 = GnollSpawnLocation(spn);
-			if gnoll22 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll22:GetID()) then
-				gnoll22:CastToNPC():MoveTo(2016,1108,-11,0,true);
+			gnoll_table["gnoll23"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll22"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll22"]:GetID()) then
+				gnoll_table["gnoll22"]:CastToNPC():MoveTo(2016,1108,-11,0,true);
 			end
 		elseif gnollcount == 27 then
-			gnoll24 = GnollSpawnLocation(spn);
-			if gnoll23 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll23:GetID()) then
-				gnoll23:CastToNPC():MoveTo(2049,1123,-11,0,true);
+			gnoll_table["gnoll24"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll23"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll23"]:GetID()) then
+				gnoll_table["gnoll23"]:CastToNPC():MoveTo(2049,1123,-11,0,true);
 			end
 		elseif gnollcount == 28 then
-			gnoll25 = GnollSpawnLocation(spn);
-			if gnoll24 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll24:GetID()) then
-				gnoll24:CastToNPC():MoveTo(1919,1259,-11,0,true);
+			gnoll_table["gnoll25"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll24"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll24"]:GetID()) then
+				gnoll_table["gnoll24"]:CastToNPC():MoveTo(1919,1259,-11,0,true);
 			end
 		elseif gnollcount == 29 then
-			gnoll26 = GnollSpawnLocation(spn);
-			if gnoll25 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll25:GetID()) then
-				gnoll25:CastToNPC():MoveTo(1953,1329,-11,0,true);
+			gnoll_table["gnoll26"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll25"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll25"]:GetID()) then
+				gnoll_table["gnoll25"]:CastToNPC():MoveTo(1953,1329,-11,0,true);
 			end
 		elseif gnollcount == 30 then
-			gnoll27 = GnollSpawnLocation(spn);
-			if gnoll26 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll26:GetID()) then
-				gnoll26:CastToNPC():MoveTo(2048,1211,-12,0,true);
+			gnoll_table["gnoll27"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll26"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll26"]:GetID()) then
+				gnoll_table["gnoll26"]:CastToNPC():MoveTo(2048,1211,-12,0,true);
 			end
 		elseif gnollcount == 31 then
-			gnoll28 = GnollSpawnLocation(spn);
-			if gnoll27 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll27:GetID()) then
-				gnoll27:CastToNPC():MoveTo(1981,957,-12,0,true);
+			gnoll_table["gnoll28"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll27"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll27"]:GetID()) then
+				gnoll_table["gnoll27"]:CastToNPC():MoveTo(1981,957,-12,0,true);
 			end
 		elseif gnollcount == 32 then
-			gnoll29 = GnollSpawnLocation(spn);
-			if gnoll28 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll28:GetID()) then
-				gnoll28:CastToNPC():MoveTo(1994,1084,-11,0,true);
+			gnoll_table["gnoll29"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll28"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll28"]:GetID()) then
+				gnoll_table["gnoll28"]:CastToNPC():MoveTo(1994,1084,-11,0,true);
 			end
 		elseif gnollcount == 33 then
-			if gnoll29 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll29:GetID()) then
-				gnoll29:CastToNPC():MoveTo(1994,1084,-11,0,true);
+			if gnoll_table["gnoll29"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll29"]:GetID()) then
+				gnoll_table["gnoll29"]:CastToNPC():MoveTo(1994,1084,-11,0,true);
 			end
 			eq.set_timer("gnollspawn",245000);
 		elseif gnollcount == 34 then
-			gnoll30 = GnollSpawnLocation(spn);
+			gnoll_table["gnoll30"] = GnollSpawnLocation(spn);
 		elseif gnollcount == 35 then
-			gnoll31 = GnollSpawnLocation(spn);
-			assassin1 =	eq.spawn2(181347,0,0,2027,1140,-12,0); -- NPC: a_gnoll_assassin
-			if gnoll30 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll30:GetID()) then
-				gnoll30:CastToNPC():MoveTo(1878,1086,-10,0,true);
+			gnoll_table["gnoll31"]		= GnollSpawnLocation(spn);
+			gnoll_table["assassin1"]	=	eq.spawn2(assassin_id,0,0,2027,1140,-12,0); -- NPC: a_gnoll_assassin
+			if gnoll_table["gnoll30"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll30"]:GetID()) then
+				gnoll_table["gnoll30"]:CastToNPC():MoveTo(1878,1086,-10,0,true);
 			end
 		elseif gnollcount == 36 then
-			gnoll32 = GnollSpawnLocation(spn);
-			assassin2 = eq.spawn2(181347,0,0,1852,1269,-12,0); -- NPC: a_gnoll_assassin
-			if gnoll31 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll31:GetID()) then
-				gnoll31:CastToNPC():MoveTo(1840,1078,-10,0,true);
+			gnoll_table["gnoll32"]		= GnollSpawnLocation(spn);
+			gnoll_table["assassin2"]	= eq.spawn2(assassin_id,0,0,1852,1269,-12,0); -- NPC: a_gnoll_assassin
+			if gnoll_table["gnoll31"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll31"]:GetID()) then
+				gnoll_table["gnoll31"]:CastToNPC():MoveTo(1840,1078,-10,0,true);
 			end
 
-			if assassin1 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(assassin1:GetID()) then
-				assassin1:CastToNPC():MoveTo(2013,1090,-11,0,true);
+			if gnoll_table["assassin1"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["assassin1"]:GetID()) then
+				gnoll_table["assassin1"]:CastToNPC():MoveTo(2013,1090,-11,0,true);
 			end
 		elseif gnollcount == 37 then
-			gnoll33 = GnollSpawnLocation(spn);
-			assassin3 = eq.spawn2(181347,0,0,1794,1042,-12,0); -- NPC: a_gnoll_assassin
-			if gnoll32 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll32:GetID()) then
-				gnoll32:CastToNPC():MoveTo(1892,1053,-10,0,true);
+			gnoll_table["gnoll33"]		= GnollSpawnLocation(spn);
+			gnoll_table["assassin3"]	= eq.spawn2(assassin_id,0,0,1794,1042,-12,0); -- NPC: a_gnoll_assassin
+			if gnoll_table["gnoll32"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll32"]:GetID()) then
+				gnoll_table["gnoll32"]:CastToNPC():MoveTo(1892,1053,-10,0,true);
 			end
 
-			if assassin2 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(assassin2:GetID()) then
-				assassin2:CastToNPC():MoveTo(1953,1329,-11,0,true);
+			if gnoll_table["assassin2"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["assassin2"]:GetID()) then
+				gnoll_table["assassin2"]:CastToNPC():MoveTo(1953,1329,-11,0,true);
 			end
 		elseif gnollcount == 38 then
-			gnoll34 = GnollSpawnLocation(spn);
-			assassin4 =	eq.spawn2(181347,0,0,2031,1148,-12,0); -- NPC: a_gnoll_assassin
-			if gnoll33 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll33:GetID()) then
-				gnoll33:CastToNPC():MoveTo(2059,1055,-11,0,true);
+			gnoll_table["gnoll34"]		= GnollSpawnLocation(spn);
+			gnoll_table["assassin4"]	=	eq.spawn2(assassin_id,0,0,2031,1148,-12,0); -- NPC: a_gnoll_assassin
+			if gnoll_table["gnoll33"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll33"]:GetID()) then
+				gnoll_table["gnoll33"]:CastToNPC():MoveTo(2059,1055,-11,0,true);
 			end
 
-			if assassin3 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(assassin3:GetID()) then
-				assassin3:CastToNPC():MoveTo(1892,-829,-10,0,true);
+			if gnoll_table["assassin3"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["assassin3"]:GetID()) then
+				gnoll_table["assassin3"]:CastToNPC():MoveTo(1892,-829,-10,0,true);
 			end
 		elseif gnollcount == 39 then
-			gnoll35 = GnollSpawnLocation(spn);
-			if gnoll34 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll34:GetID()) then
-				gnoll34:CastToNPC():MoveTo(2096,1072,-11,0,true);
+			gnoll_table["gnoll35"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll34"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll34"]:GetID()) then
+				gnoll_table["gnoll34"]:CastToNPC():MoveTo(2096,1072,-11,0,true);
 			end
 
-			if assassin4 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(assassin4:GetID()) then
-				assassin4:CastToNPC():MoveTo(2096,1072,-11,0,true);
+			if gnoll_table["assassin4"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["assassin4"]:GetID()) then
+				gnoll_table["assassin4"]:CastToNPC():MoveTo(2096,1072,-11,0,true);
 			end
 		elseif gnollcount == 40 then
-			gnoll36 = GnollSpawnLocation(spn);
-			if gnoll35 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll35:GetID()) then
-				gnoll35:CastToNPC():MoveTo(2096,1079,-11,0,true);
+			gnoll_table["gnoll36"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll35"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll35"]:GetID()) then
+				gnoll_table["gnoll35"]:CastToNPC():MoveTo(2096,1079,-11,0,true);
 			end
 		elseif gnollcount == 41 then
-			gnoll37 = GnollSpawnLocation(spn);
-			if gnoll36 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll36:GetID()) then
-				gnoll36:CastToNPC():MoveTo(2013,1090,-11,0,true);
+			gnoll_table["gnoll37"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll36"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll36"]:GetID()) then
+				gnoll_table["gnoll36"]:CastToNPC():MoveTo(2013,1090,-11,0,true);
 			end
 		elseif gnollcount == 42 then
-			gnoll38 = GnollSpawnLocation(spn);
-			if gnoll37 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll37:GetID()) then
-				gnoll37:CastToNPC():MoveTo(2016,1108,-11,0,true);
+			gnoll_table["gnoll38"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll37"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll37"]:GetID()) then
+				gnoll_table["gnoll37"]:CastToNPC():MoveTo(2016,1108,-11,0,true);
 			end
 		elseif gnollcount == 43 then
-			gnoll39 = GnollSpawnLocation(spn);
-			if gnoll38 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll38:GetID()) then
-				gnoll38:CastToNPC():MoveTo(2049,1123,-11,0,true);
+			gnoll_table["gnoll39"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll38"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll38"]:GetID()) then
+				gnoll_table["gnoll38"]:CastToNPC():MoveTo(2049,1123,-11,0,true);
 			end
 		elseif gnollcount == 44 then
-			gnoll40 = GnollSpawnLocation(spn);
-			if gnoll39 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll39:GetID()) then
-				gnoll39:CastToNPC():MoveTo(1919,1259,-11,0,true);
+			gnoll_table["gnoll40"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll39"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll39"]:GetID()) then
+				gnoll_table["gnoll39"]:CastToNPC():MoveTo(1919,1259,-11,0,true);
 			end
 		elseif gnollcount == 45 then
-			gnoll41 = GnollSpawnLocation(spn);
-			if gnoll40 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll40:GetID()) then
-				gnoll40:CastToNPC():MoveTo(1953,1329,-11,0,true);
+			gnoll_table["gnoll41"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll40"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll40"]:GetID()) then
+				gnoll_table["gnoll40"]:CastToNPC():MoveTo(1953,1329,-11,0,true);
 			end
 		elseif gnollcount == 46 then
-			gnoll42 = GnollSpawnLocation(spn);
-			if gnoll41 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll41:GetID()) then
-				gnoll41:CastToNPC():MoveTo(2048,1211,-12,0,true);
+			gnoll_table["gnoll42"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll41"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll41"]:GetID()) then
+				gnoll_table["gnoll41"]:CastToNPC():MoveTo(2048,1211,-12,0,true);
 			end
 		elseif gnollcount == 47 then
-			gnoll43 = GnollSpawnLocation(spn);
-			if gnoll42 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll42:GetID()) then
-				gnoll42:CastToNPC():MoveTo(1981,957,-12,0,true);
+			gnoll_table["gnoll43"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll42"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll42"]:GetID()) then
+				gnoll_table["gnoll42"]:CastToNPC():MoveTo(1981,957,-12,0,true);
 			end
 		elseif gnollcount == 48 then
-			gnoll44 = GnollSpawnLocation(spn);
-			if gnoll43 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll43:GetID()) then
-				gnoll43:CastToNPC():MoveTo(1994,1084,-11,0,true);
+			gnoll_table["gnoll44"] = GnollSpawnLocation(spn);
+			if gnoll_table["gnoll43"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll43"]:GetID()) then
+				gnoll_table["gnoll43"]:CastToNPC():MoveTo(1994,1084,-11,0,true);
 			end
 		elseif gnollcount == 49 then
-			if gnoll44 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll44:GetID()) then
-				gnoll44:CastToNPC():MoveTo(1994,1084,-11,0,true);
+			if gnoll_table["gnoll44"] ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll_table["gnoll44"]:GetID()) then
+				gnoll_table["gnoll44"]:CastToNPC():MoveTo(1994,1084,-11,0,true);
 			end
 			eq.set_timer("gnollspawn",245000);
 		elseif gnollcount == 50 then
@@ -407,20 +371,20 @@ function WarTimer(e)
 				elseif villagedeathcount == 0 then
 					eq.get_entity_list():GetMobByNpcTypeID(Sergeant_Caelin):Shout("It appears the gnolls have been routed with nary a casualty to report! My thanks to everyone, all that can prove they have assisted with this spectacular victory shall be richly rewarded!");
 				end
-				eq.depop_all(181316); -- NPC: #a_gnoll
-				eq.depop_all(181347); -- NPC: a_gnoll_assassin
-				eq.unique_spawn(181348,0,0,1988,1084,-11,196); -- NPC: Sergeant_Caelin 
+				eq.depop_all(gnoll_id); -- NPC: #a_gnoll
+				eq.depop_all(assassin_id); -- NPC: a_gnoll_assassin
+				eq.unique_spawn(Sergeant_Trade,0,0,1988,1084,-11,196); -- NPC: Sergeant_Caelin 
 				eq.depop(Sergeant_Caelin);
 			end
 		end
 	elseif e.timer == "FinalWarEnd" then
 		eq.stop_timer("FinalWarEnd");
-		if eq.get_entity_list():IsMobSpawnedByNpcTypeID(181348) then -- NPC: Sergeant_Caelin 
-			eq.get_entity_list():GetMobByNpcTypeID(181348):Say("What a day. I'm going to rest now. Thank you everyone.");
+		if eq.get_entity_list():IsMobSpawnedByNpcTypeID(Sergeant_Trade) then -- NPC: Sergeant_Caelin 
+			eq.get_entity_list():GetMobByNpcTypeID(Sergeant_Trade):Say("What a day. I'm going to rest now. Thank you everyone.");
 		end
 		gnollcount = 0;
 		villagedeathcount = 0;
-		eq.depop(181348); -- NPC: Sergeant_Caelin 
+		eq.depop(Sergeant_Trade); -- NPC: Sergeant_Caelin 
 		for _, id in ipairs(VILLAGE_WAR_SPAWN) do
 			eq.depop(id);
 		end
@@ -567,50 +531,50 @@ end
 
 function ThirdTier(e)
 	e.self:Say("You are brave and a valiant one, " .. e.other:GetCleanName() .. ". Alas, the people whom I have been sworn to protect have been mostly wiped out. Take this as a token of my gratitude for your assistance today.");
-	e.other:Faction(e.self,1597,10);  -- Residents of Jaggedpine
-	e.other:Faction(e.self,272,5);  -- Jaggedpine Treefolk
-	e.other:Faction(e.self,302,5);  -- Protectors of Pine
-	e.other:Faction(e.self,262,1);  -- Guards of Qeynos
+	e.other:Faction(1597,10);	-- Faction: Residents of Jaggedpine
+	e.other:Faction(272,5);		-- Faction: Jaggedpine Treefolk
+	e.other:Faction(302,5);		-- Faction: Protectors of Pine
+	e.other:Faction(262,1);		-- Faction: Guards of Qeynos
 end
 
 function SecondTier(e)
 	e.self:Say("Thank you for your help. Without you, things may have been much worse. Loss of life is a tragic thing indeed. Wear this in remembrance of this day.");
-	e.other:Faction(e.self,1597,25);  -- Residents of Jaggedpine
-	e.other:Faction(e.self,272,12);  -- Jaggedpine Treefolk
-	e.other:Faction(e.self,302,12);  -- Protectors of Pine
-	e.other:Faction(e.self,262,2);  -- Guards of Qeynos
+	e.other:Faction(1597,25);	-- Faction: Residents of Jaggedpine
+	e.other:Faction(272,12);	-- Faction: Jaggedpine Treefolk
+	e.other:Faction(302,12);	-- Faction: Protectors of Pine
+	e.other:Faction(262,2);		-- Faction: Guards of Qeynos
 end
 
 function FirstTier(e)
 	e.self:Say("That was excellent work on your part! Take this as your reward, we all owe you our lives!");
-	e.other:Faction(e.self,1597,50);  -- Residents of Jaggedpine
-	e.other:Faction(e.self,272,25);  -- Jaggedpine Treefolk
-	e.other:Faction(e.self,302,25);  -- Protectors of Pine
-	e.other:Faction(e.self,262,5);  -- Guards of Qeynos
+	e.other:Faction(1597,50);	-- Faction: Residents of Jaggedpine
+	e.other:Faction(272,25);	-- Faction: Jaggedpine Treefolk
+	e.other:Faction(302,25);	-- Faction: Protectors of Pine
+	e.other:Faction(262,5);		-- Faction: Guards of Qeynos
 end
 
 function VillageWarSpawn(e)
-	eq.spawn2(181319,0,0,2083,1120,-11,104); -- NPC: ##Shayna_Thunderhand
-	eq.spawn2(181320,0,0,1895,1007,-11,127); -- NPC: ##Kaithys_Galestrider
-	eq.spawn2(181321,0,0,2074,1206,-12,208); -- NPC: ##Annous_Pineshadow
-	eq.spawn2(181323,0,0,1970,1233,-11,126); -- NPC: ##Lady_Deira	
-	eq.spawn2(181324,0,0,1820,1064,-10,64);  -- NPC: ##Nolan_Greenwood
-	eq.spawn2(181325,0,0,1967,1267,-11,126); -- NPC: ##Cheyloh_Greenwood
-	eq.spawn2(181326,0,0,1931,1225,-11,131); -- NPC: ##Guard_Finewine
-	eq.spawn2(181327,0,0,1856,1000,-10,130); -- NPC: ##Guard_Bossamir
-	eq.spawn2(181328,0,0,1988,1084,-11,196); -- NPC: ##Sergeant_Caelin
-	eq.spawn2(181329,0,0,1981,957,-13,227);  -- NPC: ##Jeremy_Leafrunner
-	eq.spawn2(181331,0,0,1953,1329,-11,132); -- NPC: ##Derick_Goodroot
-	eq.spawn2(181333,0,0,1919,1259,-11,3);   -- NPC: ##Cathleen_Goodroot
-	eq.spawn2(181334,0,0,2049,1115,-11,137); -- NPC: ##Selia_Wetstone
-	eq.spawn2(181335,0,0,2020,1108,-11,72);  -- NPC: ##Morgan_Wetstone
-	eq.spawn2(181336,0,0,2020,1090,-11,72);  -- NPC: ##Tallien_Brightflash
-	eq.spawn2(181338,0,0,2088,1079,-11,197); -- NPC: ##Nerdala_Darkcloud
-	eq.spawn2(181340,0,0,2088,1072,-11,197); -- NPC: ##Pergan_Darkcloud
-	eq.spawn2(181341,0,0,2059,1055,-11,6);   -- NPC: ##Banker_Mardalson
-	eq.spawn2(181342,0,0,1892,1053,-10,194); -- NPC: ##Ralleford_Twothorns
-	eq.spawn2(181345,0,0,1840,1078,-10,10);  -- NPC: ##Donna_Twothorns
-	eq.spawn2(181346,0,0,1878,1086,-10,137); -- NPC: ##Diedra_Twothorns
+	eq.spawn2(VILLAGE_WAR_SPAWN.SHAYNA,0,0,2083,1120,-11,104);		-- NPC: ##Shayna_Thunderhand
+	eq.spawn2(VILLAGE_WAR_SPAWN.KAITHYS,0,0,1895,1007,-11,127);		-- NPC: ##Kaithys_Galestrider
+	eq.spawn2(VILLAGE_WAR_SPAWN.ANNOUS,0,0,2074,1206,-12,208);		-- NPC: ##Annous_Pineshadow
+	eq.spawn2(VILLAGE_WAR_SPAWN.DEIRA,0,0,1970,1233,-11,126);		-- NPC: ##Lady_Deira	
+	eq.spawn2(VILLAGE_WAR_SPAWN.NOLAN,0,0,1820,1064,-10,64);		-- NPC: ##Nolan_Greenwood
+	eq.spawn2(VILLAGE_WAR_SPAWN.CHEYLOH,0,0,1967,1267,-11,126);		-- NPC: ##Cheyloh_Greenwood
+	eq.spawn2(VILLAGE_WAR_SPAWN.FINEWINE,0,0,1931,1225,-11,131);	-- NPC: ##Guard_Finewine
+	eq.spawn2(VILLAGE_WAR_SPAWN.BOSSAMIR,0,0,1856,1000,-10,130);	-- NPC: ##Guard_Bossamir
+	eq.spawn2(VILLAGE_WAR_SPAWN.JEREMY,0,0,1981,957,-13,227);		-- NPC: ##Jeremy_Leafrunner
+	eq.spawn2(VILLAGE_WAR_SPAWN.DERICK,0,0,1953,1329,-11,132);		-- NPC: ##Derick_Goodroot
+	eq.spawn2(VILLAGE_WAR_SPAWN.CATHLEEN,0,0,1919,1259,-11,3);		-- NPC: ##Cathleen_Goodroot
+	eq.spawn2(VILLAGE_WAR_SPAWN.SELIA,0,0,2049,1115,-11,137);		-- NPC: ##Selia_Wetstone
+	eq.spawn2(VILLAGE_WAR_SPAWN.MORGAN,0,0,2020,1108,-11,72);		-- NPC: ##Morgan_Wetstone
+	eq.spawn2(VILLAGE_WAR_SPAWN.TALLIEN,0,0,2020,1090,-11,72);		-- NPC: ##Tallien_Brightflash
+	eq.spawn2(VILLAGE_WAR_SPAWN.NERDALA,0,0,2088,1079,-11,197);		-- NPC: ##Nerdala_Darkcloud
+	eq.spawn2(VILLAGE_WAR_SPAWN.PERGAN,0,0,2088,1072,-11,197);		-- NPC: ##Pergan_Darkcloud
+	eq.spawn2(VILLAGE_WAR_SPAWN.BANKER,0,0,2059,1055,-11,6);		-- NPC: ##Banker_Mardalson
+	eq.spawn2(VILLAGE_WAR_SPAWN.RALLEFORD,0,0,1892,1053,-10,194);	-- NPC: ##Ralleford_Twothorns
+	eq.spawn2(VILLAGE_WAR_SPAWN.DONNA,0,0,1840,1078,-10,10);		-- NPC: ##Donna_Twothorns
+	eq.spawn2(VILLAGE_WAR_SPAWN.DIEDRA,0,0,1878,1086,-10,137);		-- NPC: ##Diedra_Twothorns
+	eq.spawn2(Sergeant_Caelin,0,0,1988,1084,-11,196);				-- NPC: ##Sergeant_Caelin
 end
 
 function StaticVillageDepop(e)
@@ -708,14 +672,14 @@ function GnollSpawnLocation(spn)
 end
 
 function event_encounter_load(e)
-	eq.register_npc_event(Event.death,				181070,				BarducksDeath);
+	eq.register_npc_event(Event.death,				barduck,			BarducksDeath);
 	eq.register_npc_event(Event.spawn,				setup_npc,			ResetSpawn);
 	eq.register_npc_event(Event.signal,				setup_npc,			WarSignal);
 	eq.register_npc_event(Event.timer,				setup_npc,			WarTimer);
-	eq.register_npc_event(Event.spawn,				181316,				GnollSpawn);
+	eq.register_npc_event(Event.spawn,				gnoll_id,			GnollSpawn);
 	eq.register_npc_event(Event.death,				Sergeant_Caelin,	SergeantDeath);
 	eq.register_npc_event(Event.say,				Sergeant_Caelin,	SergeantSay);
-	eq.register_npc_event(Event.trade,				181348,				SergeantTrade);
+	eq.register_npc_event(Event.trade,				Sergeant_Trade,		SergeantTrade);
 	eq.register_npc_event(Event.spawn,				Jardor_Darkpaw,		JardorSpawn);
 	eq.register_npc_event(Event.waypoint_arrive,	Jardor_Darkpaw,		JardorWaypoint);
 	eq.register_npc_event(Event.death,				Jardor_Darkpaw,		JardorDeath);
