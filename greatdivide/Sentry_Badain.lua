@@ -14,7 +14,6 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if not war_started and item_lib.check_turn_in(e.trade, {item1 = 30369, item2= 1567}) then -- 9th ring and declaration of war
-		e.other:AddEXP(20000);
 		e.other:SummonItem(30369);
 		e.self:Say(string.format("I'll be right with you, %s.",e.other:GetCleanName()));
 		e.self:AddItem(30645, 0, true);
