@@ -69,7 +69,7 @@ function event_encounter_load(e)
 	eq.register_npc_event("RingTen", Event.say, zrelikNPCID, ScoutMove);
 	
 	-- Conversation coordination
-	eq.register_npc_event("RingTen", Event.waypoint_arrive, badainNPCID, ConversationStart);
+	eq.register_npc_event("RingTen", Event.waypoint_arrive, badainNPCID, Badain_Waypoint_Arrive);
 	eq.register_npc_event("RingTen", Event.waypoint_arrive, aldikarNPCID, ConversationStart);
 	
 	-- War win monitor
@@ -99,10 +99,10 @@ end
 
 function NarandiEscape(e)
 	--checks Narandi is set to run at each waypoint check.  Did not always seem to trigger on wp 0/1
-	if e.wp < 4 then  
+	if e.wp < 3 then  
 		e.self:SetRunning(true);
 	--Narandi depops and event is failed if he escapes to Eastern Wastes
-	elseif e.wp == 4 then
+	elseif e.wp == 3 then
 		if not e.self:IsEngaged() then
 			eq.stop_timer("NarDepop");
 			eq.set_timer("NarDepop",1000,Aldikar);
@@ -498,7 +498,7 @@ end
 
 function WarEnd(end_type)
 	-- endtypes: 0 - Loss (thurg dies, giants pop), 1 - Win (simple zone repop)
-	eq.repop_zone();
+	eq.repop_zone(false);
 	-- npc ID for controller was 118361 on p2002
 	local controller = eq.unique_spawn(controllerNPCID, 0, 0, -5000, -5000, 0, 0);
 	if end_type < 1 then
@@ -638,6 +638,8 @@ function AllSignal(e)
 		GroupSpawn(group_num);
 	elseif e.self:GetNPCTypeID() == aldikarNPCID and e.signal > 100 and e.signal <= 105 then
 		stage = e.signal - 100;
+	elseif e.self:GetNPCTypeID() == aldikarNPCID and e.signal == 999 and stage == -1 then
+		ConversationStart();
 	end
 	
 	issue_move(e.self:GetID(), e.self:GetNPCTypeID());
@@ -645,25 +647,31 @@ end
 
 function AllCombat(e)
 	if not e.joined then
-		local min_dist = 100000;  -- arbitrarily large value to start
-		local new_wp = entity_data[e.self:GetID()]['wp'];
+		if not e.self:GetNPCTypeID() == zrelikNPCID then
+			local min_dist = 100000;  -- arbitrarily large value to start
+			local new_wp = entity_data[e.self:GetID()]['wp'];
 		
-		for i, v in ipairs(entity_data[e.self:GetID()]['path']) do
-			distance = dist(e.self:GetX(), e.self:GetY(), v[1], v[2]);
-			if distance < min_dist and i >= new_wp then
-				min_dist = distance;
-				new_wp = i
+			for i, v in ipairs(entity_data[e.self:GetID()]['path']) do
+				distance = dist(e.self:GetX(), e.self:GetY(), v[1], v[2]);
+				if distance < min_dist and i >= new_wp then
+					min_dist = distance;
+					new_wp = i
+				end
 			end
-		end
 
-		entity_data[e.self:GetID()]['wp'] = new_wp;
-		-- ensures that mobs kited during walking phase get properly set to running when kited closer to end of path
-		if new_wp > 1 and e.self:GetNPCTypeID() ~= narandiNPCID then
-			e.self:SetRunning(true);
-		end
+			entity_data[e.self:GetID()]['wp'] = new_wp;
+			-- ensures that mobs kited during walking phase get properly set to running when kited closer to end of path
+			if new_wp > 1 and e.self:GetNPCTypeID() ~= narandiNPCID then
+				e.self:SetRunning(true);
+			end
 		
-		issue_move(e.self:GetID(), e.self:GetNPCTypeID())
+			issue_move(e.self:GetID(), e.self:GetNPCTypeID())
+		end
 	end
+end
+
+function Badain_Waypoint_Arrive(e)
+	eq.signal(aldikarNPCID,999);
 end
 
 function GMControl(e)
