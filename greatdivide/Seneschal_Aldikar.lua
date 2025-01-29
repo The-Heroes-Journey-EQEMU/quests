@@ -1,7 +1,6 @@
 -- Aldikar in Ring War event in GD
 
 local consolidateTurnIn=true;
-local questExpToGive=1000000;
 function event_spawn(e)
 	stage0 = false;
 	stage5 = false;
@@ -30,7 +29,6 @@ function event_trade(e)
 		e.other:Faction(405, 20); --Dain
 		e.other:Faction(419, -80); --Kromrif
 		e.other:Faction(448, -40); --Kromzek
-		e.other:AddEXP(questExpToGive);
 		e.other:SummonItem(30385); -- 10th ring
 		if not(consolidateTurnIn) then
 			e.other:SummonItem(1741); -- Shorn head
