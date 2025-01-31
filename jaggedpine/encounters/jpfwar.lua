@@ -59,6 +59,7 @@ local	Sergeant_Trade		= 181348;
 local	Jardor_Darkpaw		= 181349;
 local	barduck				= 181070;
 local	gnoll_id			= 181316;
+local	assassin_id			= 181347
 
 local	static_village_npcs	= {181175,181205,181166,181103,181085,181086,181173,181195,181206,181090,181160,181180,181182,181203,181210,181165,181179,181099,181183,181163,181161}
 
@@ -128,8 +129,8 @@ function WarTimer(e)
 		eq.stop_timer("WarEnd");
 		gnollcount = 0;
 		villagedeathcount = 0;
-		eq.depop_all(gnoll_id); -- NPC: #a_gnoll
-		eq.depop_all(181347); -- NPC: a_gnoll_assassin
+		eq.depop_all(gnoll_id);
+		eq.depop_all(assassin_id);
 		for _, id in ipairs(VILLAGE_WAR_SPAWN) do
 			eq.depop(id);
 		end
@@ -297,13 +298,13 @@ function WarTimer(e)
 			gnoll30 = GnollSpawnLocation(spn);
 		elseif gnollcount == 35 then
 			gnoll31 = GnollSpawnLocation(spn);
-			assassin1 =	eq.spawn2(181347,0,0,2027,1140,-12,0); -- NPC: a_gnoll_assassin
+			assassin1 =	eq.spawn2(assassin_id,0,0,2027,1140,-12,0);
 			if gnoll30 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll30:GetID()) then
 				gnoll30:CastToNPC():MoveTo(1878,1086,-10,0,true);
 			end
 		elseif gnollcount == 36 then
 			gnoll32 = GnollSpawnLocation(spn);
-			assassin2 = eq.spawn2(181347,0,0,1852,1269,-12,0); -- NPC: a_gnoll_assassin
+			assassin2 = eq.spawn2(assassin_id,0,0,1852,1269,-12,0);
 			if gnoll31 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll31:GetID()) then
 				gnoll31:CastToNPC():MoveTo(1840,1078,-10,0,true);
 			end
@@ -313,7 +314,7 @@ function WarTimer(e)
 			end
 		elseif gnollcount == 37 then
 			gnoll33 = GnollSpawnLocation(spn);
-			assassin3 = eq.spawn2(181347,0,0,1794,1042,-12,0); -- NPC: a_gnoll_assassin
+			assassin3 = eq.spawn2(,0,0,1794,1042,-12,0);
 			if gnoll32 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll32:GetID()) then
 				gnoll32:CastToNPC():MoveTo(1892,1053,-10,0,true);
 			end
@@ -323,7 +324,7 @@ function WarTimer(e)
 			end
 		elseif gnollcount == 38 then
 			gnoll34 = GnollSpawnLocation(spn);
-			assassin4 =	eq.spawn2(181347,0,0,2031,1148,-12,0); -- NPC: a_gnoll_assassin
+			assassin4 =	eq.spawn2(,0,0,2031,1148,-12,0);
 			if gnoll33 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll33:GetID()) then
 				gnoll33:CastToNPC():MoveTo(2059,1055,-11,0,true);
 			end
@@ -410,8 +411,8 @@ function WarTimer(e)
 				elseif villagedeathcount == 0 then
 					eq.get_entity_list():GetMobByNpcTypeID(Sergeant_Caelin):Shout("It appears the gnolls have been routed with nary a casualty to report! My thanks to everyone, all that can prove they have assisted with this spectacular victory shall be richly rewarded!");
 				end
-				eq.depop_all(gnoll_id); -- NPC: #a_gnoll
-				eq.depop_all(181347); -- NPC: a_gnoll_assassin
+				eq.depop_all(gnoll_id);
+				eq.depop_all(assassin_id);
 				eq.unique_spawn(Sergeant_Trade,0,0,1988,1084,-11,196); -- NPC: Sergeant_Caelin 
 				eq.depop(Sergeant_Caelin);
 			end
