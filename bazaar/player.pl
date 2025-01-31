@@ -34,10 +34,20 @@ sub EVENT_CLICKDOOR {
 sub EVENT_POPUPRESPONSE {
     if ($popupid == 1460 || $popupid == 1461) {
         my $group_flg           = quest::get_data($client->AccountID() ."-group-ports-enabled") || "";
+
         my $attuned_shortname   = $client->GetEntityVariable("magic_map_attune");
+        my $instance_id         = -1;
+        if($attuned_shortname =~ /(.+?)\s+(-*\d+)/) {
+            $attuned_shortname = $1;
+            $instance_id = $2;
+        }
+
         my $waypoint_data       = plugin::GetWaypoint($attuned_shortname, $client);
         my $group               = $client->GetGroup();
         my $dz                  = $client->GetExpedition();
+
+        # The zoneshard teleport options skip over interaction with Tearel that sets this.  Not typically an issue except for super-fresh characters.
+        plugin::AddDefaultAttunement($client);
 
         # Group option locked behind EoM
         if ($popupid == 1461 && !$group_flg) {
@@ -135,7 +145,11 @@ sub EVENT_POPUPRESPONSE {
             }
 
             $client->SpellEffect(218,1);
-            $client->MovePC(quest::GetZoneID($attuned_shortname), $x, $y, $z, $heading);
+            if($instance_id == -1) {
+                $client->MovePC(quest::GetZoneID($attuned_shortname), $x, $y, $z, $heading);
+            } else {
+                $client->MovePCInstance(quest::GetZoneID($attuned_shortname), $instance_id, $x, $y, $z, $heading);
+            }
         }
     }
 }
