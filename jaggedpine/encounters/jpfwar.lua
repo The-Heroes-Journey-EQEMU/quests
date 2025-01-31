@@ -314,7 +314,7 @@ function WarTimer(e)
 			end
 		elseif gnollcount == 37 then
 			gnoll33 = GnollSpawnLocation(spn);
-			assassin3 = eq.spawn2(,0,0,1794,1042,-12,0);
+			assassin3 = eq.spawn2(assassin_id,0,0,1794,1042,-12,0);
 			if gnoll32 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll32:GetID()) then
 				gnoll32:CastToNPC():MoveTo(1892,1053,-10,0,true);
 			end
@@ -324,7 +324,7 @@ function WarTimer(e)
 			end
 		elseif gnollcount == 38 then
 			gnoll34 = GnollSpawnLocation(spn);
-			assassin4 =	eq.spawn2(,0,0,2031,1148,-12,0);
+			assassin4 =	eq.spawn2(assassin_id,0,0,2031,1148,-12,0);
 			if gnoll33 ~= nil and eq.get_entity_list():IsMobSpawnedByEntityID(gnoll33:GetID()) then
 				gnoll33:CastToNPC():MoveTo(2059,1055,-11,0,true);
 			end
