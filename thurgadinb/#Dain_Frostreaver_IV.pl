@@ -44,10 +44,9 @@ sub EVENT_SAY {
     quest::say("I fear that spies lurk in every corner. You may need to help the General reach the gnomish camp if the Kromrif have gotten word of our efforts. You should call on any allies that you have to assist in case they ambush you. Brell bless you $name, good luck.");
   }
   if ($text=~/count/i && plugin::check_hasitem($client, 1465)) {
-    if ($faction <= 5 || $faction >= 8) { # ring 10 war has not been tested.  Blocking this functionality until it can be fully tested.
-	    #      quest::say("Several of our greatest officers, including a few veterans from the war of Yesterwinter are assembling just outside our city. Gather your army at once and give this parchment and the ninth ring to Sentry Badian. I will remain inside the city with a few of my troops to defend it against any who might penetrate your defense. May Brell be with you, $name.");
-	    #quest::summonitem(1567); #Declaration of War
-	    quest::say("We have much work to do before we can declare war upon the giants.  Come back later once we are prepared.");
+    if ($faction <= 5 || $faction >= 8) {
+      quest::say("Several of our greatest officers, including a few veterans from the war of Yesterwinter are assembling just outside our city. Gather your army at once and give this parchment and the ninth ring to Sentry Badian. I will remain inside the city with a few of my troops to defend it against any who might penetrate your defense. May Brell be with you, $name.");
+      quest::summonitem(1567); #Declaration of War
     }
   }
 }

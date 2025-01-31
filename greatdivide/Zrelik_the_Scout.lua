@@ -20,8 +20,8 @@ function event_trade(e)
 		e.self:Say(string.format("At yer service, %s. Remember now, before issuing me an order ya must disengage from any combat and be sure yer speakin to me. I advise you to avoid combat at all costs, your leadership is crucial.",e.other:GetCleanName()));
 		followID = e.other:GetID();
 		eq.follow(followID);
-		eq.signal(118351, 101); -- advance stage of encounter
-		eq.signal(118351, 61, 1000); -- send Aldikar walking to the waterfall
+		eq.signal(118166, 101); -- advance stage of encounter
+		eq.signal(118166, 61, 1000); -- send Aldikar walking to the waterfall
 		ready = false;
 	end
 
