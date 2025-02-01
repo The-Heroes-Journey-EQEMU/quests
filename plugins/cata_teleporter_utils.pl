@@ -1,6 +1,7 @@
 sub HandleTeleporterSay {
 	my $text = plugin::val('text');
 	my $client = plugin::val('client');
+	my $npc = plugin::val('npc');
 
 	my $group_flg = quest::get_data($client->AccountID() ."-group-ports-enabled") || "";
 	my $eom_link = quest::varlink(46779);
@@ -9,6 +10,9 @@ sub HandleTeleporterSay {
 	my $revind_text = "";
 
 	plugin::AddDefaultAttunement($client);
+ 
+	my ($continent_pattern, $continent_map) = plugin::GetContinentCapturePattern(); 
+	my ($waypoint_pattern, $eligible_waypoints) = plugin::GetWaypointCapturePattern(-1, $client);
 
 	if ($text=~/hail/i) {
 		my $name_string = $npc->GetCleanName() eq "Tearal" ? "Tearel, the Keeper of the Map" : "Timmy, Son of Tearel, the Keeper of the Other Map";
@@ -89,11 +93,7 @@ sub HandleTeleporterSay {
 			my $reagents_link = quest::silent_saylink("special reagents");
 			plugin::NPCTell("Unfortunately, I will need some [$reagents_link] in order to transport you in this way.");
 		}
-	}
- 
-	my ($continent_pattern, $continent_map) = plugin::GetContinentCapturePattern(); 
-
-	elsif ($text =~ $continent_pattern) {
+	} elsif ($text =~ $continent_pattern) {
 		my $matched_continent = $1;	# $1 contains the captured match
 		
 		if (exists $continent_map->{$matched_continent}) {
@@ -117,10 +117,7 @@ sub HandleTeleporterSay {
 				plugin::PurpleText("---$link");
 			}
 		}
-	}
-
-	my ($waypoint_pattern, $eligible_waypoints) = plugin::GetWaypointCapturePattern(-1, $client);
-	elsif ($text =~ $waypoint_pattern) {
+	} elsif ($text =~ $waypoint_pattern) {
 		my $matched_waypoint_key = $1;	# $1 contains the captured waypoint key (shortname), e.g., 'rivervale'
 
 		if ($matched_waypoint_key) {
