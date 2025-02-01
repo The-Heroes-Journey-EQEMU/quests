@@ -346,6 +346,12 @@ sub EVENT_CAST_ON {
     }
 }
 
+sub EVENT_CAST {
+    if (plugin::GetSoulmark($client) && int(rand(100)) == 0) {
+        $client->CastSpell(3087, $client->GetID());
+    }
+}
+
 sub EVENT_SAY {
     if ($client->GetGM()) {
         if ($text=~/#awardtitle\s*(.*)/i) {
