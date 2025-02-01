@@ -13,7 +13,7 @@ function event_trade(e)
 	if(item_lib.check_turn_in(e.trade, {item1 = 17900})) then	--Grandmaster's Satchel
 		e.self:Say("Here's a more permanent bag.");				--Text made up, no reference
 		e.other:Ding();
-		e.other:SummonItem(17138);								--Grandmaster's Carry-all
+		e.other:SummonFixedItem(2017138);								--Grandmaster's Carry-all
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
