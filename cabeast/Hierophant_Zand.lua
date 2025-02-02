@@ -46,7 +46,7 @@ function event_trade(e)
 			e.other:Message(MT.Yellow, "You have received a quest flag.");
 			e.other:Faction(445, 10);					-- Faction: Scaled Mystics
 			e.other:Faction(441, 10);					-- Faction: Legion of Cabilis
-			e.other:SummonItem(5140);					-- Item: The Bone Garrison
+			e.other:SummonItem(18054);					-- Item: The Bone Garrison
 			e.other:QuestReward(e.self,{exp = 80000, copper = math.random(9), silver = math.random(9), gold = math.random(9), platinum = math.random(5)});
 		elseif Shaman_Cudgel_Progress == "4" and e.other:GetLevel() >= 30 and item_lib.check_turn_in(e.trade, {item1 = 12741, item2 = 5144, item3 = 12740}) then -- Items: Iksar Skull Helm, Iron Cudgel of the Prophet and Iksar Skull
 			e.self:Emote("seems to black out, and then recover. He speaks with the voice of an ancient. 'We are Dai and Die and we await our skulls and your iron cudgel of the prophet. Become a channeler.'Hierophand Zand closes his eyes and reopens them. They have no pupils. He speaks and you hear his voice echo. 'We are Di Nozok. You have earned the weapon of a channeler. We hope to fill your thoughts with ours some day. Go and seek out Dexl. We send you to him. Farewell , Channeler of Cabilis.'");
