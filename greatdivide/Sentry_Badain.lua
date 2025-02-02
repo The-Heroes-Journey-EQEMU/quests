@@ -1,6 +1,9 @@
 local war_started = false
 
 function event_spawn(e)
+	if (eq.get_zone_instance_version() == 0) then -- Don't spawn Badain in open world
+		e.self:Depop();
+	end
 	war_started = false
 end
 
