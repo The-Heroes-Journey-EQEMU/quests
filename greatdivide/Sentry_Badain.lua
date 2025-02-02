@@ -1,7 +1,7 @@
 local war_started = false
 
 function event_spawn(e)
-	if (tostring(eq.get_zone_instance_version()) != eq.get_rule("Custom:StaticInstanceVersion")) then -- Don't spawn Badain in open world
+	if (tostring(eq.get_zone_instance_version()) != eq.get_rule("Custom:StaticInstanceVersion")) then -- Only spawn Badain in non-respawning dz
 		e.self:Depop();
 	end
 	war_started = false
