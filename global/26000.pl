@@ -4,7 +4,7 @@ sub EVENT_SPAWN {
 
   my $expedition = quest::get_expedition();
   if ($expedition && plugin::IsTHJ()) {
-    $expedition->SetLocked(true);
+    $expedition->SetLocked(1);
   }
 
   $npc->MoveTo($npc->GetX(), $npc->GetY(), $npc->FindGroundZ($npc->GetX(), $npc->GetY()));
