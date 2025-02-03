@@ -492,6 +492,10 @@ sub is_time_locked {
             return 0;
         }
 
+        if ($stage eq 'SoL') {       
+            return 0;
+        }
+
         return 1;
     }
 
