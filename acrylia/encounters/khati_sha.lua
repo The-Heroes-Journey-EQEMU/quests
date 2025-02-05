@@ -39,6 +39,7 @@ local a_deathguard				= 154358;
 local elite_deathguard			= 154059;
 local spiritwarder_true			= 154348;
 local spiritwarder_false		= 154349;
+local a_grimling_guard			= 154344;
 local arcanists					= {arcanist_true, arcanist_false};
 local grimling_spiritwarders	= {spiritwarder_true, spiritwarder_false};
 
@@ -769,10 +770,10 @@ function unique_check(e)
 end
 
 function SpawnMinions()
-	eq.depop_all(154054);
+	eq.depop_all(defiled_minion);
 
 	for n = 1,4 do
-		eq.spawn2(154054,0,0,table.unpack(khati_guard_locs[n])); -- NPC: Defiled Minion
+		eq.spawn2(defiled_minion,0,0,table.unpack(khati_guard_locs[n])); -- NPC: Defiled Minion
 	end
 end
 
@@ -888,7 +889,7 @@ function EventSetup()
 	eq.unique_spawn(spiritist_andro_shimi,0,0,344, -323.49, -7.94,512);	-- NPC: Spiritist_Andro_Shimi
 	eq.unique_spawn(spiritist_kama_resan,0,0,344, -232.48, -7.94,512);	-- NPC: Spiritist_Kama_Resan 
 	for n = 1,8 do
-		eq.spawn2(154344,0,0,table.unpack(guard_locs[n])); -- NPC: a_grimling_guard 
+		eq.spawn2(a_grimling_guard,0,0,table.unpack(guard_locs[n]));
 	end
 	life_seal		= false;
 	death_seal		= false;
