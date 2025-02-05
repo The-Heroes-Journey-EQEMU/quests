@@ -5,6 +5,7 @@ local as_event_failed			= false;
 local as_event_started			= false;
 local kr_event_failed			= false;
 local kr_event_started			= false;
+local arc_event_failed			= false;
 local boss						= false;
 local wol_activated				= false;
 local dialog_started			= false;
@@ -14,6 +15,7 @@ local ChantCounterA				= nil;
 local ChantCounterB				= nil;
 local chant_timer				= 60
 local fail_timer				= 10 --default value (in minutes)
+local scenario					= 1;
 local event_counter				= 0;
 local deathguard_counter		= 0;
 local arcanist_counter			= 0;
@@ -22,8 +24,6 @@ local as_chants					= 0;
 local kr_chants					= 0;
 
 -- Event NPCS
-local event_add					= 154358;
-
 local arcanist_trigger			= 154322;
 local khati_sha_npc				= 154138;
 local warder_of_life_npc		= 154154;
@@ -37,8 +37,12 @@ local defiled_minion			= 154054;
 local spiritist_andro_shimi		= 154053;
 local spiritist_kama_resan		= 154052;
 local WDTrpMn					= 154130;
-local arcanists					= {154151, 154152}; -- (1) True Arcanist (2) False Arcanist
-local grimling_spiritwarders	= {154348, 154349}; -- (1) True location (2) False Location (both NPCS are grimling_spiritwarders)
+local a_deathguard				= 154358;
+local elite_deathguard			= 154059;
+local spiritwarder_true			= 154348;
+local spiritwarder_false		= 154349;
+local arcanists					= {arcanist_true, arcanist_false};
+local grimling_spiritwarders	= {spiritwarder_true, spiritwarder_false};
 
 -- Event Locs
 local guard_locs				= {[1] = {361,-255,-8,384}, [2] = {326, -255, -8, 127}, [3] = {326, -215, -8, 127}, [4] = {361, -215, -8, 384}, [5] = {326, -295, -8, 127}, [6] = {326, -342, -8, 127}, [7] = {361, -295, -8, 384}, [8] = {361, -342, -8, 384}};
@@ -60,19 +64,19 @@ function evt_trigger_spawn(e)
 	eq.depop(spiritist_kama_resan);		-- NPC: Spiritist_Kama_Resan
 	eq.depop(spiritist_andro_shimi);	-- NPC: Spiritist_Andro_Shimi
 	eq.set_timer("fail", 60 * 60 * 1000);  --60 min
-	local scenario = math.random(1,2);
+	scenario = math.random(1,2);
 	if scenario == 1 then
-		eq.unique_spawn(arcanists[1],0,0,unpack(arcanist_locs[1]));	-- NPC: Spiritual Arcanist V1 (True Arcanist)
-		eq.unique_spawn(arcanists[2],0,0,unpack(arcanist_locs[2]));	-- NPC: Spiritual Arcanist V2 (False Arcanist)
+		eq.unique_spawn(arcanists[1],0,0,table.unpack(arcanist_locs[1]));	-- NPC: Spiritual Arcanist V1 (True Arcanist)
+		eq.unique_spawn(arcanists[2],0,0,table.unpack(arcanist_locs[2]));	-- NPC: Spiritual Arcanist V2 (False Arcanist)
 
-		SpawnMobs(grimling_spiritwarders[1],east_grimling_locs);
-		SpawnMobs(grimling_spiritwarders[2],west_grimling_locs);
+		SpawnMobs(spiritwarder_true,east_grimling_locs);
+		SpawnMobs(spiritwarder_false,west_grimling_locs);
 	else
-		eq.unique_spawn(arcanists[2],0,0,unpack(arcanist_locs[1]));	-- NPC: Spiritual Arcanist V1 (False Arcanist)
-		eq.unique_spawn(arcanists[1],0,0,unpack(arcanist_locs[2]));	-- NPC: Spiritual Arcanist V2 (True Arcanist)
+		eq.unique_spawn(arcanists[2],0,0,table.unpack(arcanist_locs[1]));	-- NPC: Spiritual Arcanist V1 (False Arcanist)
+		eq.unique_spawn(arcanists[1],0,0,table.unpack(arcanist_locs[2]));	-- NPC: Spiritual Arcanist V2 (True Arcanist)
 
-		SpawnMobs(grimling_spiritwarders[2],east_grimling_locs);
-		SpawnMobs(grimling_spiritwarders[1],west_grimling_locs);
+		SpawnMobs(spiritwarder_false,east_grimling_locs);
+		SpawnMobs(spiritwarder_true,west_grimling_locs);
 	end
 end
 
@@ -83,7 +87,7 @@ function evt_trigger_timer(e)
 			eq.depop(arcanists[n]);
 			eq.depop_all(grimling_spiritwarders[n]);
 		end
-		eq.depop(154153); -- NPC: A_Spiritual_Arcanist
+		eq.depop(arcanist_final);
 		eq.depop();
 	end
 end
@@ -91,20 +95,20 @@ end
 function evt_trigger_signal(e)
 	local instance_id	= eq.get_zone_instance_id();
 
-	if e.signal == 1 then
-		SpawnMobs(154358,deathguard_locs); -- NPC: #a_deathguard
-	elseif e.signal == 2 then
+	if e.signal == 2 then
 		boss = true;
 	elseif e.signal == 20 then
 		deathguard_counter = deathguard_counter + 1;
-		if deathguard_counter >= 4 and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(154153) and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(154358) then 	-- Success - opens last seal and progresses event to final stage (requires deathguards and false grimling arcanist dead (if triggered)
+		if deathguard_counter >= 4 and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(arcanist_final) and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(a_deathguard) then 	-- Success - opens last seal and progresses event to final stage (requires deathguards and false grimling arcanist dead (if triggered)
 			if eq.get_entity_list():IsMobSpawnedByNpcTypeID(khati_sha_npc) then -- NPC: Khati_Sha_the_Twisted
-				eq.signal(154151,1)	 -- signals True Arcanist (if correct scenario chosen otherwise he will not be up)
+				eq.signal(arcanist_true,1)	 -- signals True Arcanist (if correct scenario chosen otherwise he will not be up)
 				eq.set_global(instance_id.. "_IAC_Seal_2","1",3,"H2");	-- sets flag on 4 panel door to advance
 				eq.zone_emote(MT.DimGray,"The caverns rumble and shake violently as the third protective seal is broken. Khati Sha shouts, 'Who dares break the seals and defile the inner sanctum?! Come forth so that I may crush you!'");
-				eq.spawn2(154059,0,0,684,-379,-23,384); -- NPC: an_elite_grimling_deathguard
-				eq.spawn2(154059,0,0,684,-369,-23,384); -- NPC: an_elite_grimling_deathguard
-				eq.signal(khati_sha_npc,30); 			-- signal Khati`Sha to Activate (become targetable)
+				eq.spawn2(elite_deathguard,0,0,684,-389,-23,384);
+				eq.spawn2(elite_deathguard,0,0,684,-379,-23,384);
+				eq.spawn2(elite_deathguard,0,0,684,-369,-23,384);
+				eq.spawn2(elite_deathguard,0,0,684,-359,-23,384);
+				eq.signal(khati_sha_npc,30); -- signal Khati`Sha to Activate (become targetable)
 			elseif boss then	-- false arcanist dialogue
 				eq.zone_emote(MT.Red,"Despite the Arcanist's warning, the halls beyond the sealed door remain silent and empty. Khati Sha has no interest in holding audience with you on this day...");
 				eq.depop();
@@ -152,7 +156,7 @@ function evt_wod_timer(e)
 	if e.timer == "sacrifice" then
 		eq.stop_timer(e.timer);
 		eq.set_timer("sacrifice", math.random(30,45) * 1000);
-		eq.spawn2(a_sacrifice,0,0,unpack(sacrifice_locs[math.random(1,3)]));	-- NPC: a_sacrifice 
+		eq.spawn2(a_sacrifice,0,0,table.unpack(sacrifice_locs[math.random(1,3)]));	-- NPC: a_sacrifice 
 	end
 end
 
@@ -219,14 +223,28 @@ end
 
 function evt_arcanist_true_timer(e)
 	if e.timer == "warder_check" then
-		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(154348)	then -- NPC: #a_grimling_spiritwarder 
+		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(spiritwarder_true) then
 			eq.stop_timer("dialogue");
 			eq.stop_timer(e.timer);
-			eq.signal(arcanist_trigger,1); -- NPC: #arcanist_trigger
-			e.self:DoAnim(36);	--kneeling animation
+			eq.depop_all(spiritwarder_false);
+			eq.signal(arcanist_false,1);
+			eq.signal(arcanist_false,1);
+			if scenario == 1 then
+				SpawnMobs(a_deathguard,east_grimling_locs);
+			else
+				SpawnMobs(a_deathguard,west_grimling_locs);
+			end
+
+			e.self:DoAnim(36);	-- kneeling
 			e.self:Emote("collapses to his knees before you, the strain of the magical field about him obviously weakening him. After a moment, he stands, and says, 'You have chosen wisely, child, but this is only the first step, now you must vanquish this evil being, but beware, I will be unable to help you, as this seal has left me magically drained.");
-			eq.depop(154152);		-- NPC: a_spiritual_arcanist
-			eq.depop_all(154349);	-- NPC: #a_grimling_spiritwarder
+			eq.depop(arcanist_false);
+			eq.depop_all(spiritwarder_false);
+			eq.set_timer("deathguard_check", 1 * 1000);
+		end
+	elseif e.timer == "deathguard_check" then
+		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(a_deathguard) then
+			eq.stop_timer(e.timer);
+			eq.spawn2(arcanist_final,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(), e.self:GetHeading());
 		end
 	elseif e.timer == "depop" then
 		eq.depop();
@@ -256,7 +274,7 @@ function evt_arcanist_true_signal(e)
 	end
 end
 
--- Arcanist_True
+-- Arcanist_False
 function evt_arcanist_false_spawn(e)
 	eq.clear_proximity();
 	eq.set_proximity(510, 535, -335, -315);
@@ -266,15 +284,39 @@ end
 
 function evt_arcanist_false_timer(e)
 	if e.timer == "warder_check" then
-		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(154349)	then -- NPC: #a_grimling_spiritwarder
+		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(spiritwarder_false)	then
 			eq.stop_timer("dialogue");
 			eq.stop_timer(e.timer);
-			eq.signal(arcanist_trigger,2);	-- signal arcanist_trigger that false arcanist is up
-			eq.signal(arcanist_trigger,1);	-- signals arcanist_trigger to spawn deathguards
-			eq.signal(arcanist_true,10);	-- signal true arcanist for failure emote
-			eq.depop_all(154348);			-- depop other spiritwarders
-			eq.spawn2(154153,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(), e.self:GetHeading()); -- NPC: a_spiritual_arcanist 
-			eq.depop();
+
+			arc_event_failed = true;
+			if scenario == 1 then
+				SpawnMobs(a_deathguard,west_grimling_locs);
+			else
+				SpawnMobs(a_deathguard,east_grimling_locs);
+			end
+
+			eq.signal(arcanist_trigger,2);		-- signal arcanist_trigger that false arcanist is up
+			eq.signal(arcanist_true,10);		-- signal true arcanist for failure emote
+			eq.depop_all(spiritwarder_true);	-- depop other spiritwarders
+			eq.set_timer("deathguard_check", 1 * 1000);
+		end
+	elseif e.timer == "deathguard_check" then
+		if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(a_deathguard) then
+			eq.stop_timer(e.timer);
+
+			eq.set_global(instance_id.. "_IAC_Seal_2","1",3,"H2");	-- sets flag on 4 panel door to advance
+			eq.zone_emote(MT.DimGray,"The caverns rumble and shake violently as the third protective seal is broken. Khati Sha shouts, 'Who dares break the seals and defile the inner sanctum?! Come forth so that I may crush you!'");
+			eq.spawn2(elite_deathguard,0,0,684,-389,-23,384);
+			eq.spawn2(elite_deathguard,0,0,684,-379,-23,384);
+			eq.spawn2(elite_deathguard,0,0,684,-369,-23,384);
+			eq.spawn2(elite_deathguard,0,0,684,-359,-23,384);
+			eq.signal(khati_sha_npc,30); -- signal Khati`Sha to Activate (become targetable)
+
+			eq.depop_all(a_deathguard);
+			eq.depop_all(arcanist_true);
+			eq.depop_all(spiritwarder_true);
+			eq.depop_all(arcanist_false);
+			eq.depop_all(spiritwarder_false);
 		end
 	elseif e.timer == "dialogue" then
 		arcanist_counter = arcanist_counter + 1;
@@ -309,6 +351,12 @@ function evt_arcanist_false_enter(e)
 	if not dialog_started then
 		dialog_started = true;
 		eq.set_timer("dialogue", 1 * 1000);
+	end
+end
+
+function evt_arcanist_false_signal(e)
+	if e.signal == 1 then
+		e.self:SetAppearance(3);  -- Laydown
 	end
 end
 
@@ -365,7 +413,7 @@ end
 
 -- Spell Jammer
 function evt_spell_jammer_spawn(e)
-	if unique_check(e) then
+	if not unique_check(e) then
 		eq.depop();
 	end
 end
@@ -638,17 +686,17 @@ function evt_wdtrpmn_timer(e)
 end
 
 -- Adds
-function evt_add_spawn(e)
+function evt_deathguard_spawn(e)
 	eq.set_timer("depop", 60 * 60 * 1000);
 end
 
-function evt_add_timer(e)
+function evt_deathguard_timer(e)
 	if e.timer == "depop" then
 		eq.depop();
 	end
 end
 
-function evt_add_death_complete(e)
+function evt_deathguard_death_complete(e)
 	eq.signal(arcanist_trigger,20);
 end
 
@@ -666,7 +714,7 @@ end
 
 function SpawnMobs(npc, locs)	-- Used to spawn both spiritwarders and deathguards since both are in packs of 4
 	for n = 1,4 do
-		eq.spawn2(npc,0,0,unpack(locs[n]));
+		eq.spawn2(npc,0,0,table.unpack(locs[n]));
 	end
 end
 
@@ -730,7 +778,7 @@ function SpawnMinions()
 	eq.depop_all(154054);
 
 	for n = 1,4 do
-		eq.spawn2(154054,0,0,unpack(khati_guard_locs[n])); -- NPC: Defiled Minion
+		eq.spawn2(154054,0,0,table.unpack(khati_guard_locs[n])); -- NPC: Defiled Minion
 	end
 end
 
@@ -824,7 +872,7 @@ end
 
 function SpawnJammers(total,cell)
 	for n = 1,total do
-		eq.spawn2(spell_jammer,0,0,unpack(cell[n]));
+		eq.spawn2(spell_jammer,0,0,table.unpack(cell[n]));
 	end
 end
 
@@ -846,7 +894,7 @@ function EventSetup()
 	eq.unique_spawn(spiritist_andro_shimi,0,0,344, -323.49, -7.94,512);	-- NPC: Spiritist_Andro_Shimi
 	eq.unique_spawn(spiritist_kama_resan,0,0,344, -232.48, -7.94,512);	-- NPC: Spiritist_Kama_Resan 
 	for n = 1,8 do
-		eq.spawn2(154344,0,0,unpack(guard_locs[n])); -- NPC: a_grimling_guard 
+		eq.spawn2(154344,0,0,table.unpack(guard_locs[n])); -- NPC: a_grimling_guard 
 	end
 	event_counter	= 0;
 	life_seal		= false;
@@ -878,6 +926,7 @@ function event_encounter_load(e)
 	eq.register_npc_event("khati_sha",	Event.spawn,				arcanist_false,				evt_arcanist_false_spawn);
 	eq.register_npc_event("khati_sha",	Event.timer,				arcanist_false,				evt_arcanist_false_timer);
 	eq.register_npc_event("khati_sha",	Event.enter,				arcanist_false,				evt_arcanist_false_enter);
+	eq.register_npc_event("khati_sha",	Event.signal,				arcanist_false,				evt_arcanist_false_signal);
 
 	eq.register_npc_event("khati_sha",	Event.spawn,				arcanist_final,				evt_arcanist_final_spawn);
 	eq.register_npc_event("khati_sha",	Event.timer,				arcanist_final,				evt_arcanist_final_timer);
@@ -915,10 +964,12 @@ function event_encounter_load(e)
 	eq.register_npc_event("khati_sha",	Event.signal,				WDTrpMn,					evt_wdtrpmn_signal);
 	eq.register_npc_event("khati_sha",	Event.timer,				WDTrpMn,					evt_wdtrpmn_timer);
 
-	eq.register_npc_event("khati_sha",	Event.spawn,				event_add,					evt_add_spawn);
-	eq.register_npc_event("khati_sha",	Event.timer,				event_add,					evt_add_timer);
-	eq.register_npc_event("khati_sha",	Event.death_complete,		event_add,					evt_add_death_complete);
+	eq.register_npc_event("khati_sha",	Event.spawn,				a_deathguard,				evt_deathguard_spawn);
+	eq.register_npc_event("khati_sha",	Event.timer,				a_deathguard,				evt_deathguard_timer);
+	eq.register_npc_event("khati_sha",	Event.death_complete,		a_deathguard,				evt_deathguard_death_complete);
 
+	eq.register_npc_event("khati_sha",	Event.death_complete,		spiritwarder_true,			evt_spiritwarders_true_death_complete);
+	eq.register_npc_event("khati_sha",	Event.death_complete,		spiritwarder_false,			evt_spiritwarders_false_death_complete);
 	for i = 1, #grimling_spiritwarders do
 		eq.register_npc_event("khati_sha",	Event.spawn,			grimling_spiritwarders[i],	evt_spiritwarders_spawn);
 		eq.register_npc_event("khati_sha",	Event.combat,			grimling_spiritwarders[i],	evt_spiritwarders_combat);
