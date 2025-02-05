@@ -5,7 +5,6 @@ local as_event_failed			= false;
 local as_event_started			= false;
 local kr_event_failed			= false;
 local kr_event_started			= false;
-local arc_event_failed			= false;
 local boss						= false;
 local wol_activated				= false;
 local dialog_started			= false;
@@ -16,7 +15,6 @@ local ChantCounterB				= nil;
 local chant_timer				= 60
 local fail_timer				= 10 --default value (in minutes)
 local scenario					= 1;
-local event_counter				= 0;
 local deathguard_counter		= 0;
 local arcanist_counter			= 0;
 local leash_counter				= 0;
@@ -104,10 +102,7 @@ function evt_trigger_signal(e)
 				eq.signal(arcanist_true,1)	 -- signals True Arcanist (if correct scenario chosen otherwise he will not be up)
 				eq.set_global(instance_id.. "_IAC_Seal_2","1",3,"H2");	-- sets flag on 4 panel door to advance
 				eq.zone_emote(MT.DimGray,"The caverns rumble and shake violently as the third protective seal is broken. Khati Sha shouts, 'Who dares break the seals and defile the inner sanctum?! Come forth so that I may crush you!'");
-				eq.spawn2(elite_deathguard,0,0,684,-389,-23,384);
-				eq.spawn2(elite_deathguard,0,0,684,-379,-23,384);
-				eq.spawn2(elite_deathguard,0,0,684,-369,-23,384);
-				eq.spawn2(elite_deathguard,0,0,684,-359,-23,384);
+				SpawnMobs(elite_deathguard,deathguard_locs);
 				eq.signal(khati_sha_npc,30); -- signal Khati`Sha to Activate (become targetable)
 			elseif boss then	-- false arcanist dialogue
 				eq.zone_emote(MT.Red,"Despite the Arcanist's warning, the halls beyond the sealed door remain silent and empty. Khati Sha has no interest in holding audience with you on this day...");
@@ -288,7 +283,6 @@ function evt_arcanist_false_timer(e)
 			eq.stop_timer("dialogue");
 			eq.stop_timer(e.timer);
 
-			arc_event_failed = true;
 			if scenario == 1 then
 				SpawnMobs(a_deathguard,west_grimling_locs);
 			else
@@ -517,7 +511,7 @@ function evt_shimi_say(e)
 		if as_event_failed then
 			e.self:Emote("stares back at you with cold and empty eyes.")
 		elseif as_event_started then
-			EventDialogue(e);
+			as_EventDialogue(e);
 		elseif as_GuardCheck(e) then
 			e.self:Say("I have an urgent matter I need your assistance with, however I cannot speak with the sanctum guardians this close.");
 		else
@@ -896,7 +890,6 @@ function EventSetup()
 	for n = 1,8 do
 		eq.spawn2(154344,0,0,table.unpack(guard_locs[n])); -- NPC: a_grimling_guard 
 	end
-	event_counter	= 0;
 	life_seal		= false;
 	death_seal		= false;
 end
@@ -968,8 +961,6 @@ function event_encounter_load(e)
 	eq.register_npc_event("khati_sha",	Event.timer,				a_deathguard,				evt_deathguard_timer);
 	eq.register_npc_event("khati_sha",	Event.death_complete,		a_deathguard,				evt_deathguard_death_complete);
 
-	eq.register_npc_event("khati_sha",	Event.death_complete,		spiritwarder_true,			evt_spiritwarders_true_death_complete);
-	eq.register_npc_event("khati_sha",	Event.death_complete,		spiritwarder_false,			evt_spiritwarders_false_death_complete);
 	for i = 1, #grimling_spiritwarders do
 		eq.register_npc_event("khati_sha",	Event.spawn,			grimling_spiritwarders[i],	evt_spiritwarders_spawn);
 		eq.register_npc_event("khati_sha",	Event.combat,			grimling_spiritwarders[i],	evt_spiritwarders_combat);
